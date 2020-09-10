@@ -1,6 +1,7 @@
 package com.sph.practice.component.cloud.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Shen Peihong on 2020/9/10 14:31
@@ -8,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @since 1.0.0
  */
-@RequestMapping(path = "/DatasourceCtl")
+@RestController
+@RequestMapping(path = "/mgr/datasource")
 public class DatasourceCtl {
 
     /**

@@ -7,4 +7,8 @@ package com.sph.practice.test.jedis.utils;
  * @since 1.0.0
  */
 public class JedisClient {
+
+    //暂时写死，定义Jedis连接池
+
+    //init方法，初始化Jedis连接池
 }
