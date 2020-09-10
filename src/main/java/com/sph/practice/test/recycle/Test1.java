@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.sph.practice.test.bean.UserParam;
+import org.junit.Test;
 
 import java.util.*;
 
@@ -13,7 +14,7 @@ import java.util.*;
  *
  * @since 1.0.0
  */
-public class Test {
+public class Test1 {
 
     /**
      * list里面的String经过去重处理
@@ -88,15 +89,5 @@ public class Test {
         System.out.println(temp);
     }
 
-    /**
-     *  map的remove
-     */
-    @org.junit.Test
-    public void test5(){
-        Map<String, Object> map = Maps.newHashMap();
-        map.put("username","123");
-        map.remove("username","123");
-        System.out.println(map.get("username"));
-    }
 
 }

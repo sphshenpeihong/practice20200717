@@ -67,6 +67,20 @@
             <version>27.1-jre</version>
         </dependency>
 
+        <!-- poi Workbook -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.8</version>
+        </dependency>
+
+        <!-- poi XSSFWorkbook和SXSSHWorkbook -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.8</version>
+        </dependency>
+
 
     </dependencies>
 

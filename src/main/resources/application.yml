@@ -1,0 +1,51 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /shop
+    multipart:
+      max-file-size: 10MB  #单个文件
+      max-request-size: 100MB #总文件大小
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db_transactionmaster?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  redis:
+    database: 0 #数据库索引
+    host: 127.0.0.1  #远程redis服务器的地址 当前redis是在我们本机打开 所以localhost即可
+    port: 6379 #连接redis端口  redis默认开放在6379端口
+    password: #验证码 默认为空
+    jedis.pool.max-idle: 100 #最大空闲连接
+    jedis.pool.max-wait: -1ms
+    max-active: -1 #最大连接数(负数表示没有限制)
+    jedis.pool.min.idle: 2
+    timeout: 5000 #连接超时时间，连接redis数据库 超过这个时间的话 就连接不成功
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.shen.ssmschoolshop.entity
+  #devtools插件
+devtools:
+  restart:
+    enabled: true #是否支持热部署
+#mybaatis分页插件pagehelper设置
+pagehelper:
+  pagehelperDialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+
+  # 打印sql
+logging:
+  level:
+    com.shen.ssmschoolshop.dao: DEBUG
+
