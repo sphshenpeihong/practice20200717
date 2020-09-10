@@ -8,7 +8,15 @@ package com.sph.practice.test.jedis.utils;
  */
 public class JedisClient {
 
-    //暂时写死，定义Jedis连接池
+    //一、暂时写死，定义Jedis连接池
+    //Redis服务器IP
+    private static String HOST = "127.0.0.1";
 
-    //init方法，初始化Jedis连接池
+    //Redis的端口号
+    private static Integer PORT = 6379;
+
+    //访问密码
+    private String AUTH = "root";
+
+    //二、init方法，初始化Jedis连接池
 }

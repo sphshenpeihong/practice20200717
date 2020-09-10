@@ -81,6 +81,12 @@
             <version>3.8</version>
         </dependency>
 
+        <!-- redis spring内置redis 不用专门去下载 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
 
     </dependencies>
 
