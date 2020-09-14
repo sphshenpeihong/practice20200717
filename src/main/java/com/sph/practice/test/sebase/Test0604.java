@@ -1,9 +1,12 @@
 package com.sph.practice.test.sebase;
 
+import com.google.common.collect.Lists;
+import com.sph.practice.test.bean.User;
 import com.sph.practice.test.jedis.utils.JedisUtils;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Shen Peihong on 2020/6/4 17:58
@@ -94,6 +97,48 @@ public class Test0604 {
         }
         //静态代码块只会在类加载的时候才会去执行，只执行一次
         System.out.println("1111");
+    }
+
+    /**
+     * 定义一个泛型方法，参数带泛型的话，那么该方法是泛型方法，则需要记得声明方法是泛型方法
+     */
+    @Test
+    public void test11(){
+        List<String> list = Lists.newArrayList("123", "456");
+        String[] ss = new String[]{"111","44444"};
+        this.serial(ss);
+    }
+
+    private <E> void serial(E objects){
+        if (objects instanceof List){
+            for (String object : (List<String>)objects) {
+                System.out.println(object);
+            }
+        } else if (objects instanceof String[]){
+            for (String object : (String[])objects) {
+                System.out.println(object);
+            }
+        }
+    }
+
+    @Test
+    public void test12(){
+        User u = new User(1, "1", "2");
+        System.out.println(this.returnObject(u).getUsername());
+    }
+
+    //返回指定泛型对象
+    private <T> T returnObject(T t){
+        return t;
+    }
+
+    /**
+     * 测试一下TimeUnit枚举类
+     */
+    @Test
+    public void test0(){
+        System.out.println(TimeUnit.DAYS.toHours(1));
+        System.out.println(TimeUnit.MINUTES);
     }
 
 }
