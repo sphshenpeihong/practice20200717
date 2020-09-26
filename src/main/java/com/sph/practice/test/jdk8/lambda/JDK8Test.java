@@ -1,7 +1,7 @@
 package com.sph.practice.test.jdk8.lambda;
 
 import com.sph.practice.test.bean.User;
-import com.sun.deploy.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.util.*;

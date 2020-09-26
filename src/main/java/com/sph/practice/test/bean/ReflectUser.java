@@ -7,7 +7,8 @@ package com.sph.practice.test.bean;
  * @since 1.0.0
  */
 public class ReflectUser<T> {
-
+    //定义一个静态方法
+    public static void test1(){}
 
 
 }
