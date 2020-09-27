@@ -45,7 +45,7 @@ public class reflectTest {
      * @param <T> 声明一个泛型
      * @return
      */
-    private <T> T reflectMethod(Class<T> c){
+    private <T extends User> T reflectMethod(Class<T> c){
         try {
             T t = c.newInstance();
             return t;
