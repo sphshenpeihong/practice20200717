@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+跳转：<br/>
+<div id="entry" onclick="test()">监听</div>
+</body>
+<script>
+    $(function () {
+        $.ajax({
+            url:"/shop/mgr/poi/test10.do",
+            async:false,
+            success(){
+                console.log("1112");
+            }
+        });
+        $.ajax({
+            url:"/shop/mgr/poi/test10.do",
+            async:false,
+            success(){
+                console.log("1112");
+            }
+        });
+        $.ajax({
+            url:"/shop/mgr/poi/test10.do",
+            async:false,
+            success(){
+                console.log("1112");
+            }
+        });
+    })
+    function test() {
+        var ajax = $.ajax({
+            url:"/shop/mgr/poi/test10.do",
+            async:true,
+            success(){
+                console.log("111");
+            }
+        });
+    }
+</script>
+</html>
