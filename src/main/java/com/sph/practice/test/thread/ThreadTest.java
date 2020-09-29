@@ -1,7 +1,9 @@
 package com.sph.practice.test.thread;
 
 import com.sph.practice.test.thread.utils.ThreadPoolUtils;
+import org.junit.Test;
 
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -36,6 +38,33 @@ public class ThreadTest {
                 reentrantLock.unlock();//防止try里面的代码有异常，导致不继续往下走，导致锁一直不解开
                 //所以就为了防止无论try里面的代码有没有异常，最后都会执行finally
             }
+        }
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test1(){
+        //开启两个线程
+        new Thread(new AddThread()).start();
+        new Thread(new SizeThread()).start();
+    }
+
+    private Lock lock1 = new ReentrantLock();
+
+    /**
+     *  测试ReentranLock
+     */
+    @Test
+    public void test2(){
+
+            try {
+                lock1.lock();
+                System.out.println("打印");
+            }finally {
+                lock1.unlock();
         }
 
     }
