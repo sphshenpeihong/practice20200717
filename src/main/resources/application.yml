@@ -1,5 +1,5 @@
 server:
-  port: 8085
+  port: 8089
   servlet:
     context-path: /shop
     multipart:
@@ -48,4 +48,3 @@ pagehelper:
 logging:
   level:
     com.shen.ssmschoolshop.dao: DEBUG
-

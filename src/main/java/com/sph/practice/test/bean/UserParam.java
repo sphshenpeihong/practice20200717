@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @since 1.0.0
  */
 public class UserParam implements Cloneable, Serializable {
-    private static final Long serialVersionUID = 1L; //若PO、VO等类实现了序列化接口
+    private static final Long serialVersionUID = 2L; //若PO、VO等类实现了序列化接口
     private String id;
     private String usernmae;
     private String password;
@@ -76,5 +76,16 @@ public class UserParam implements Cloneable, Serializable {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "UserParam{" +
+                "id='" + id + '\'' +
+                ", usernmae='" + usernmae + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
     }
 }

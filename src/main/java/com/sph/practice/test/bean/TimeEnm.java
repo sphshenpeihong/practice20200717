@@ -15,6 +15,7 @@ public enum TimeEnm implements IEnumService {
     //定义已被实例化的对象，没有括号传参代表是代表当前枚举类的无参构造方法实例化的
     TIME1("2020-09-24"),
     TIME2("2020-09-25"),
+    TIME3,
     ;
     //定义枚举成员变量
     private String time;

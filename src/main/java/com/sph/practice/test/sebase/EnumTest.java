@@ -46,4 +46,20 @@ public class EnumTest {
             System.out.println(value.getTime());
         }
     }
+
+    @Test
+    public void test8(){
+        this.getEnm();
+    }
+
+    private void getEnm(){
+        TimeEnm[] values = TimeEnm.values();
+        for(TimeEnm timeEnm : values){
+            //直接使用枚举对象的话，那么它就直接是相当于一个常量而已了。
+            //除了直接使用常量外，还可以使用枚举对象调用里面的方法呢。
+            System.out.println(timeEnm.getTime());
+            System.out.println(timeEnm);
+        }
+        //return TimeEnm.TIME3;
+    }
 }
