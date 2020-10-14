@@ -3,6 +3,7 @@ package com.sph.practice.test.sebase;
 import com.google.common.collect.Lists;
 import com.sph.practice.test.bean.User;
 import com.sph.practice.test.jedis.utils.JedisUtils;
+import com.sph.practice.test.param.BankVO;
 import org.junit.Test;
 
 import java.util.*;
@@ -17,11 +18,11 @@ import java.util.concurrent.TimeUnit;
 public class Test0604 {
 
     /**
-     * 测试Integer是否可以使用equals方法
+     *
      */
     @Test
     public void test1(){
-
+        BankVO bankVO = new BankVO();
     }
 
     /**

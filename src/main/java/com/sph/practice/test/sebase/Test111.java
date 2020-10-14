@@ -4,6 +4,9 @@ import com.google.common.collect.Lists;
 import com.sph.practice.test.bean.UserParam;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -128,6 +131,41 @@ public class Test111 {
         Object s = 123;
         if (s instanceof String) System.out.println("123");
         System.out.println(map.get(s.toString()));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test7(){
+        List<String> list = Lists.newArrayList();
+        list.add("123");
+        list.add(null);
+        System.out.println(list);
+        List<String> collect = list.stream().filter(k -> k == null).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    /**
+     * 上传
+     */
+    @Test
+    public void test8() throws FileNotFoundException {
+        File file = new File("d:\\qycache\\111\\天下无贼-高清480P.qsv");
+        if (file.exists()){
+            System.out.println("存在");
+            System.out.println(file.length());
+        }
+        System.out.println("bu");
+        FileInputStream fis = new FileInputStream(file);
+    }
+
+    /**
+     * ReentrantLock lockInterruptibly
+     */
+    @Test
+    public void test9(){
+
     }
 
 }

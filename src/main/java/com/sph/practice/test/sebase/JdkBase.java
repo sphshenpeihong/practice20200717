@@ -15,6 +15,9 @@ public class JdkBase {
 
     private String test111 = "test111";
 
+
+
+
     /**
      * 匿名内部类里面的构造块，可以访问外部变量，但是基本类型只能访问不能修改，但是引用类型既能访问又能修改
      */
