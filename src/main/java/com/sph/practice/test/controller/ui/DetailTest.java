@@ -1,8 +1,10 @@
 package com.sph.practice.test.controller.ui;
 
+import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.ResultVO;
 import com.sph.practice.test.param.TeacherVO;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,19 +40,19 @@ public class DetailTest {
     }
 
     /**
-     *
+     * 使用@RequestBody 接收Json串
      */
     @RequestMapping(path = "/test3.do")
-    public void test3() {
-
+    public void test3( BankVO bankVO) {
+        System.out.println(bankVO);
     }
 
     /**
-     *
+     * 若请求参数使用@RequestBody注解声明的话，那么前端必须传json格式的数据，不然后端就会返回400的报错
      */
     @RequestMapping(path = "/test4.do")
-    public void test4() {
-
+    public void test4(@RequestBody String json) {
+        System.out.println(json);
     }
 
     /**
