@@ -12,7 +12,7 @@ import lombok.Data;
  * @since 1.0.0
  */
 @Data
-@Api("银行信息VO")
+@Api(tags = {"银行信息V6O"}) //表示说明实体类
 @ApiModel("银行信息实体类")
 public class BankVO {
 

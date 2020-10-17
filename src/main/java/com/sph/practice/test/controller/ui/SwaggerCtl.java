@@ -1,12 +1,14 @@
 package com.sph.practice.test.controller.ui;
 
 import com.sph.practice.test.param.BankVO;
+import com.sph.practice.test.param.StudentVO;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLType;
 
 /**
  * Created by Shen Peihong on 2020/10/15 12:29
@@ -64,6 +66,24 @@ public class SwaggerCtl {
         bankVO.setCardNumber("232");
         bankVO.setPersonName("4343");
         return bankVO;
+    }
+
+    //@ApiParam
+    //以下详细测试注解的属性使用 ------ end
+
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "username", value = "登陆账号", required = true, dataType = "String", example = "zhangfei", paramType = "query"),
+            @ApiImplicitParam(name = "password", value = "登陆密码", required = true, dataType = "String", example = "mima123456" ,paramType = "query")
+    })
+    @GetMapping("/test6.do")
+    public StudentVO test6(@RequestParam(name = "username")String username,
+                           @RequestParam(name = "password")String password){
+        StudentVO studentVO = new StudentVO();
+        studentVO.setAge("1");
+        studentVO.setId("4354");
+        studentVO.setName("5454");
+        return new StudentVO();
+
     }
 
 }
