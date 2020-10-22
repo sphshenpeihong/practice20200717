@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.util.Properties;
 
 /**
  * Created by Shen Peihong on 2020/9/28 18:10
@@ -59,8 +60,15 @@ public class DetailTest {
      *
      */
     @GetMapping(path = "/test5.do")
-    public void test5() {
-
+    public void test5() throws IOException {
+        Properties properties = new Properties();
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc/jdbc.properties");//获取指向classes目录
+        properties.load(is);//指向输入流地址
+        String url = properties.getProperty("url");
+        System.out.println(url);
+        /*
+            urlTest
+         */
     }
 
 
