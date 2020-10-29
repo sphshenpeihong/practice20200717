@@ -205,4 +205,57 @@ public class IOTest {
         fw.flush();
     }
 
+
+    // --- - -- - - - -- - - -- - -- - - - -- 再次练习IO流 深入理解
+
+    //输出流 不加处理流
+    @Test
+    public void test10(){
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream("d:\\temp\\IO流练习demo\\123.txt");
+            fos.write("是我吗5555？".getBytes());
+            //fos.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+          if (fos != null){
+              try {
+                  fos.close();
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+          }
+        }
+    }
+
+    //输出流 + 输出处理流(缓冲流)
+    @Test
+    public void test11() {
+        FileOutputStream fos = null;
+        BufferedOutputStream bos = null;
+        try {
+            fos = new FileOutputStream("d:\\temp\\IO流练习demo\\1234.txt");
+            bos = new BufferedOutputStream(fos);
+            bos.write("是我吗？6666".getBytes());
+            //bos.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bos != null) {
+                    bos.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+
 }

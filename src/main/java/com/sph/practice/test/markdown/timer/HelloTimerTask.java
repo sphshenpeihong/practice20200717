@@ -28,7 +28,6 @@ public class HelloTimerTask extends TimerTask {
     @Override
     public void run() {
         System.out.println("定时任务：hello,world");
-
         //可能发生线程安全的代码放在同步块中  num初始化票=10
         /*synchronized (this){
             System.out.println("当前线程：" + Thread.currentThread().getName() + "定时任务：hello,world" + " ，当前num为：" + num);
@@ -38,9 +37,7 @@ public class HelloTimerTask extends TimerTask {
             timer.cancel();
         }*/
 
-
         //由于cancel会使得当前定时任务执行完毕才结束，故放到最后
-
 
     }
 }

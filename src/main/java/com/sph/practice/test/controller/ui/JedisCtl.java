@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.sph.practice.test.bean.UserParam;
 import com.sph.practice.test.jedis.JedisTemplateTest;
+import com.sph.practice.test.param.BankVO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
@@ -609,6 +610,19 @@ public class JedisCtl {
     }
 
     /**
+     * 411
+     */
+    @RequestMapping("/test411.do")
+    public void test411(){
+        BankVO bankVO = new BankVO();
+        bankVO.setPersonName("123");
+        redisTemplate.opsForList().leftPush("bankVO", bankVO);
+        //redisTemplate.opsForValue().set("bankVO", bankVO);
+        //System.out.println(redisTemplate.opsForValue().get("bankVO"));
+        System.out.println(redisTemplate.opsForList().range("bankVO", 0, -1));
+    }
+
+    /**
      * 获取某个map中的所有keys
      */
     @RequestMapping("/test42.do")
@@ -661,6 +675,21 @@ public class JedisCtl {
     /*  ***************** hashMap end **********************/
 
     /*  ***************** Set start **********************/
+
+    @RequestMapping("/test451.do")
+    public void test451(){
+        SetOperations setOperations = redisTemplate.opsForSet();
+        Set<String> set = new HashSet<>();
+        set.add("111");
+        set.add("222");
+        Set<String> set1 = new HashSet<>();
+        set.add("333");
+        set.add("444");
+        setOperations.add("set1", set, set1);
+        //获取
+        Set members = setOperations.members("set1");
+        System.out.println(members);
+    }
 
     /**
      * 往Set集合中批量add数据 并且获取整个key对应的Set集合

@@ -1,12 +1,14 @@
 package com.sph.practice.test.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Shen Peihong on 2020/5/21 10:38
  * Description:
  *
  * @since 1.0.0
  */
-public class User implements Cloneable {
+public class User implements Cloneable, Serializable {
     private Integer id;
     private String username;
     private String password;

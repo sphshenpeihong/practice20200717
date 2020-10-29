@@ -21,13 +21,15 @@ public class AcceptThread implements Runnable {
             ss = new ServerSocket(7878);
             //由于是TCP传输，所以需要建立与发送端的连接，执行到这里时，接收端此时会一直等待发送端的连接
             accept = ss.accept();
-            //传输数据格式是IO流，所以获取输入流接收数据
-            input = accept.getInputStream();
-            //定义字节数组接收
-            byte[] buf = new byte[1024];
-            int length = input.read(buf);
-            String str = new String(buf, 0, length);
-            System.out.println("接收端已接收到数据 = " + accept.getInetAddress() + ":" + str);
+            while (true){
+                //传输数据格式是IO流，所以获取输入流接收数据
+                input = accept.getInputStream();
+                //定义字节数组接收
+                byte[] buf = new byte[1024];
+                int length = input.read(buf);
+                String str = new String(buf, 0, length);
+                System.out.println("接收端已接收到数据 = " + accept.getInetAddress() + ":" + str);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
