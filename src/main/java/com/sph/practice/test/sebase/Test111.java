@@ -1,12 +1,21 @@
 package com.sph.practice.test.sebase;
 
 import com.google.common.collect.Lists;
+import com.sph.practice.test.bean.User;
 import com.sph.practice.test.bean.UserParam;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.math.BigDecimal;
+import java.net.InetAddress;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -24,7 +33,7 @@ public class Test111 {
      *
      */
     @Test
-    public void test() throws InterruptedException {
+    public void test10() throws InterruptedException {
         List<String> list = Lists.newArrayList();
         Runnable runnable = new Runnable() {
             @Override
@@ -167,5 +176,26 @@ public class Test111 {
     public void test9(){
 
     }
+
+    //用于markdown demo详细全方法
+
+
+
+    /**
+     * Java代码获取某个IP对象
+     */
+    @Test
+    public void test() throws UnknownHostException {
+        //也可以根据主机名(计算机名)构建InetAddress对象
+        InetAddress ip = InetAddress.getByName("LAPTOP-OSAFAJBF");
+        //也可以根据ip地址(字符串)构建InetAddress对象
+        InetAddress ip1 = InetAddress.getByName("192.168.11.125");
+    }
+
+
+
+
+
+
 
 }

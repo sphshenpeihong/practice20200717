@@ -53,13 +53,4 @@ public class TeacherVO implements Cloneable, Serializable {
         this.time = time;
     }
 
-    @Override
-    public String toString() {
-        return "TeacherVO{" +
-                "id='" + id + '\'' +
-                ", teacherName='" + teacherName + '\'' +
-                ", teacherAge='" + teacherAge + '\'' +
-                ", time=" + time +
-                '}';
-    }
 }
