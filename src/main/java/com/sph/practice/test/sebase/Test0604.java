@@ -142,4 +142,9 @@ public class Test0604 {
         System.out.println(TimeUnit.MINUTES);
     }
 
+    @Test
+    public void test123(){
+        Set<String> set = new HashSet<>();
+    }
+
 }
