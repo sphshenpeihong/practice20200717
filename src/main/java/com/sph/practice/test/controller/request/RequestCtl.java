@@ -1,6 +1,8 @@
 package com.sph.practice.test.controller.request;
 
 import com.google.common.collect.Lists;
+import com.sph.practice.test.param.BankVO;
+import com.sph.practice.test.param.ResultVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -130,16 +132,10 @@ public class RequestCtl {
      *
      */
     @RequestMapping("/test6.do")
-    public void test6(){
-
-    }
-
-    /**
-     *
-     */
-    @RequestMapping("/test7.do")
-    public void test7(){
-
+    public ResultVO test6(){
+        ResultVO resultVO = new ResultVO();
+        resultVO.setResult(null);
+        return resultVO;
     }
 
     /**
