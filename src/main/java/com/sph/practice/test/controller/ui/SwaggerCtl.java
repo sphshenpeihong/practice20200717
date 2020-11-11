@@ -6,8 +6,11 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
 import java.sql.SQLType;
 
 /**
@@ -86,4 +89,23 @@ public class SwaggerCtl {
 
     }
 
+    @MyAnnotation(value = "123", list = {"132","456"})
+    private void test7(){
+
+    }
+
+
+
+}
+
+@Target({ElementType.TYPE,ElementType.METHOD})
+@interface MyAnnotation{
+    //别名
+    @AliasFor("name")
+    String value();
+
+    @AliasFor("value")
+    String name() default "12323";//添加默认值，不然使用时必须指定
+
+    String[] list() default {"123","456"};
 }
