@@ -96,4 +96,15 @@ public class JdkBase {
 
     //computeIfAbsent 获取两种为null的情况的话，那么会返回默认值 + 原map增加
 
+    //试试List的contains 还有String的contains
+    /**
+     *
+     */
+    @Test
+    public void test8(){
+        String str = "123456";
+        System.out.println(str.contains("2345"));
+        System.out.println(str.indexOf("2345"));
+    }
+
 }

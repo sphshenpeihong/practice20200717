@@ -7,6 +7,11 @@ import org.junit.Test;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Shen Peihong on 2020/11/18 0:39
@@ -15,6 +20,35 @@ import java.net.URLEncoder;
  * @since 1.0.0
  */
 public class DependencyTest {
+
+    /**
+     * Map 修改key的字符串
+     */
+    @Test
+    public void test7(){
+        Map<String, Object> map = new HashMap<String, Object>(){{
+            put("kafka.1", "123");
+            put("kafka.2", "456");
+            put("kafka.3", "789");
+        }};
+        //去掉key的kafaka.
+        //获取键值对 遍历键值对 get到值，然后获取key，然后修改key后，将新key和新value重新放到新的Map
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test8(){
+        List<String> list = new ArrayList<String>() {{
+            add("123");
+            add("456");
+            add("789");
+        }};
+        String collect = list.stream().collect(Collectors.joining(","));
+    }
+
 
     /**
      * 使用URL解码

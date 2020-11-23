@@ -15,7 +15,7 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("/jedis")
-public class JedisCtl {
+public class JedisCtl1 {
 
     /**
      * 手动创建jedis对象，并且操作String类型数据
