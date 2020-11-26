@@ -23,6 +23,14 @@ public class BankVO implements Serializable {
     private String cardNumber;
     private String personName;
 
+    public BankVO(){}
+
+    public BankVO(String id, String cardNumber, String personName) {
+        this.id = id;
+        this.cardNumber = cardNumber;
+        this.personName = personName;
+    }
+
     public String getId() {
         return id;
     }
@@ -45,5 +53,14 @@ public class BankVO implements Serializable {
 
     public void setPersonName(String personName) {
         this.personName = personName;
+    }
+
+    @Override
+    public String toString() {
+        return "BankVO{" +
+                "id='" + id + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", personName='" + personName + '\'' +
+                '}';
     }
 }

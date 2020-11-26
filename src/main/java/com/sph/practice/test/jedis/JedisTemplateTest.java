@@ -16,4 +16,12 @@ import javax.annotation.Resource;
  */
 public class JedisTemplateTest {
 
+    /**
+     * geospatial
+     */
+    @Test
+    public void test1(){
+
+    }
+
 }

@@ -2,6 +2,7 @@ package com.sph.practice.test.sebase;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.sph.practice.test.param.BankVO;
 import org.junit.Test;
 
 import java.util.*;
@@ -105,6 +106,38 @@ public class JdkBase {
         String str = "123456";
         System.out.println(str.contains("2345"));
         System.out.println(str.indexOf("2345"));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test9(){
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("username","123");
+        map.remove("sadasd");
+    }
+
+    /**
+     * 消费每个list 进行判断，满足条件修改值 看看会不会同步到原来的list
+     */
+    @Test
+    public void test10(){
+        List<BankVO> list = new ArrayList<>();
+        BankVO bankVO1 = new BankVO("1", "1", "1");
+        BankVO bankVO2 = new BankVO("2", "2", "2");
+        BankVO bankVO3 = new BankVO("3", "3", "3");
+        list.add(bankVO1);
+        list.add(bankVO2);
+        list.add(bankVO3);
+        list.stream().forEach(k -> {
+            if ("1".equals(k.getId())){
+                k.setPersonName("2323");
+            }
+        });
+        System.out.println(list);
+
+
     }
 
 }
