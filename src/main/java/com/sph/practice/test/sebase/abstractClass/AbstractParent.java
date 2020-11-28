@@ -9,6 +9,7 @@ import java.util.Map;
 /**
  * Created by Shen Peihong on 2020/11/26 14:45
  * Description: 定义方法，然后到时候子类调用，看看怎么调的方法链路
+ * 抽象父类定义构造器
  *
  * @since 1.0.0
  */
@@ -21,6 +22,10 @@ public abstract class AbstractParent {
     //提供设置code值的方法 该方法子类可重写
     public void setCode(){
         this.code = "123";
+    }
+
+    public AbstractParent(String name){
+
     }
 
     public void setField(){

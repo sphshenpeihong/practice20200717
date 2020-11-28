@@ -10,6 +10,10 @@ import org.junit.Test;
  */
 public class ExtendsSon extends AbstractParent {
 
+    public ExtendsSon(String name) {
+        super(name);
+    }
+
     //重写父类方法
     public void setCode(){
         this.code = "456";
