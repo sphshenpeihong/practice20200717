@@ -17,6 +17,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test0604 {
 
+    public void invokeTest(){
+        System.out.println("该方法对外提供调用");
+    }
+
     /**
      *
      */

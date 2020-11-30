@@ -3,11 +3,9 @@ package com.sph.practice.test.sebase;
 import com.google.common.collect.Maps;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Shen Peihong on 2020/5/31 0:27
@@ -58,6 +56,44 @@ public class SeBase {
         System.out.println(calendar.getTime().getTime());
     }
 
+    /**
+     *
+     */
+    @Test
+    public void test31(){
+        //里面可以获取到很多成员变量的信息 底层和OS对接的。
+        Calendar calendar = Calendar.getInstance();
+        //arg1：时间单位
+        //arg2：偏移量
+        calendar.add(Calendar.SECOND, 60);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = sdf.format(calendar.getTime());
+        System.out.println(str);
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test32(){
+        Calendar instance = Calendar.getInstance();
+        long dayTime = 1000*60*60*24; //一天的毫秒数
+        long l = new Date().getTime() - dayTime;
+        Date date = new Date(l);
+        instance.setTime(date);
+        System.out.println(date);
+        System.out.println(instance);
+        //date值setTime到Calendar对象中
+
+        //add 给日期类增加日期
+        //setTime是直接设置一个值 更改时间
+        //add方法可以增加偏移量 给Calendar对象
+        //getTime是直接获取获取直接戳对应的时间了。new Date(时间戳)
+
+
+    }
+
     @Test
     public void test4(){
         Calendar calendar = Calendar.getInstance();
@@ -72,6 +108,29 @@ public class SeBase {
     public void test5(){
         LocalTime now = LocalTime.now();
         System.out.println(now);
+    }
+
+    //先试试map 获取键值对后 判断后修改
+    /**
+     *
+     */
+    @Test
+    public void test6(){
+        //按你放进去的顺序 而不是根据key去排序
+        Map<Integer, Object> map = new LinkedHashMap<Integer, Object>() {{
+            put(1,"123");
+            put(0,"456");
+        }};
+        map.values().stream().forEach(k -> System.out.println(k));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test7(){
+        OrdinaryThread thread = new OrdinaryThread();
+        thread.start();
     }
 
 
