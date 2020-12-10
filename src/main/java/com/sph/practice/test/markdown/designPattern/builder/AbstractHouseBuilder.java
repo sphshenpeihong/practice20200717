@@ -12,6 +12,10 @@ public abstract class AbstractHouseBuilder {
         System.out.println("我是父类的构造方法");
     }
 
+    public void test111(){
+        System.out.println("123123");
+    }
+
     //最终结果是一个产品
     private House house;
 

@@ -1,5 +1,7 @@
 package com.sph.practice.test.markdown.designPattern.builder;
 
+import org.junit.Test;
+
 /**
  * Created by Shen Peihong on 2020/11/25 22:14
  * Description: 具体房子的类型，只需要继承建造者抽象类(抽象类里面定义了建造房子的步骤 定义成抽象方法，由继承子类去重写)
@@ -8,9 +10,22 @@ package com.sph.practice.test.markdown.designPattern.builder;
  */
 public class CommonHouse extends AbstractHouseBuilder {
 
+    @Override
+    public void test111(){
+        System.out.println("2222222222");
+    }
+
     public CommonHouse(){
         super();
-        System.out.println("我是子类的构造方法");
+        //System.out.println("我是子类的构造方法");
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test(){
+        this.test111();
     }
 
     @Override
