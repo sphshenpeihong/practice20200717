@@ -9,7 +9,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/db_transactionmaster?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/db_mybatis?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
     username: root
     password: root
   jpa:
@@ -32,8 +32,8 @@ spring:
 
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.shen.ssmschoolshop.entity
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.sph.practice.mybatis
   #devtools插件
 devtools:
   restart:
@@ -47,4 +47,7 @@ pagehelper:
   # 打印sql
 logging:
   level:
-    com.shen.ssmschoolshop.dao: DEBUG
+    com.sph.practice.mybatis.mapper: DEBUG
+
+# 配置项
+is_open: true

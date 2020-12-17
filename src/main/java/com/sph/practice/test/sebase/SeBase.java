@@ -2,6 +2,8 @@ package com.sph.practice.test.sebase;
 
 import com.google.common.collect.Maps;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -14,6 +16,8 @@ import java.util.*;
  * @since 1.0.0
  */
 public class SeBase {
+
+    private final static Logger logger = LoggerFactory.getLogger(SeBase.class);
 
     /**
      * 学习Calendar日历类
@@ -131,6 +135,24 @@ public class SeBase {
     public void test7(){
         OrdinaryThread thread = new OrdinaryThread();
         thread.start();
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test8(){
+        Integer i1 = 1;
+        Integer i2 = 1;
+        int i3 = 1;
+        int i4 = 1;
+        logger.info("1231231打印");
+    }
+
+    private String getName(){
+        System.out.println("123");
+        System.out.println("456");
+        return "123";
     }
 
 

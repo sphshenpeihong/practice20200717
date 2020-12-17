@@ -1,5 +1,10 @@
 package com.sph.practice.test.bean;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
 /**
  * Created by Shen Peihong on 2020/9/8 14:55
  * Description:
@@ -7,6 +12,7 @@ package com.sph.practice.test.bean;
  * @since 1.0.0
  */
 public class AccountPO {
+
 
     private Integer id;
     private String username;
