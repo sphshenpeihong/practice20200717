@@ -1,5 +1,6 @@
 package com.sph.practice.test.bean;
 
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import javax.annotation.PostConstruct;
  *
  * @since 1.0.0
  */
+@ToString
 public class AccountPO {
 
 

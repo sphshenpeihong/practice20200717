@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
@@ -15,6 +17,8 @@ import java.io.Serializable;
  */
 @Api(tags = {"银行信息V6O"}) //表示说明实体类
 @ApiModel("银行信息实体类")
+@Component
+@ToString
 public class BankVO implements Serializable {
 
     @ApiModelProperty("卡号id")

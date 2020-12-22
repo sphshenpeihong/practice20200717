@@ -23,14 +23,14 @@ import java.util.Map;
 public class ClassServiceImpl implements IClassService {
 
     @Resource
-    private IClassMapper IClassMapper;
+    private IClassMapper classMapper;
 
     @Override
     public QyClassPO getClassById(Integer id) {
         if (id == null){
             return null;
         }
-        return IClassMapper.getClassById(id);
+        return classMapper.getClassById(id);
     }
 
     @Override
@@ -42,22 +42,22 @@ public class ClassServiceImpl implements IClassService {
             put("className","班级二");
             put("csvo", csvo);
         }};
-        return IClassMapper.getClassByMap(map);
+        return classMapper.getClassByMap(map);
     }
 
     @Override
     public List<QyClassPO> getClassByIds(List<Integer> ids) {
-        return IClassMapper.getClassByIds(ids);
+        return classMapper.getClassByIds(ids);
     }
 
     @Override
     public QyClassPO getClassByVO(CSVO vo) {
-        return IClassMapper.getClassByVO(vo);
+        return classMapper.getClassByVO(vo);
     }
 
     @Override
     public List<CSVO> getCSVOByClassId(Integer id) {
-        return IClassMapper.getCSVOByClassId(id);
+        return classMapper.getCSVOByClassId(id);
     }
 
 

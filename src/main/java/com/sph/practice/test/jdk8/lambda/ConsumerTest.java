@@ -24,7 +24,7 @@ public class ConsumerTest {
     public void executeConsumer(){
         //我们只是实现这个方法而已，书写方法体即可，到时候参数传什么过来，具体由创建该接口对象，然后去执行该方法去传递参数呢
         //只有一行代码的话，省略方法体{} 省略分号;  省略方法形参的括号()  省略方法形参的类型
-        consumerTest("赵丽颖",name-> System.out.println(new StringBuilder(name).reverse()));//打印传递的参数
+        consumerTest("赵丽颖",name-> System.out.println(name));//打印传递的参数
         //我们主要是用了这个封装的方法，需要传递lambda表达式，书写实现类
     }
 
