@@ -191,6 +191,13 @@ public class JDK8Test {
 
     }
 
+    /*
+        groupingBy()分组的话，可能是对类类型某个字段进行分组，Map的返回值是整个List<类类型>,支持两重分组
+        比方一个VO类里面有考试id，也有试卷id的话，我们可以对考试id先进行分组，然后对已分组后的数据再进行按试卷id进行分组
+        最后返回的值的类型是Map<String, Map<String, List<类类型>>>
+     */
+
+
     /**
      * Collectors.partitioningBy  按照分数及格与否对学生进行分组
      */

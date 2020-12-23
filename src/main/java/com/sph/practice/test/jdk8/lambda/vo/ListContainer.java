@@ -1,9 +1,6 @@
 package com.sph.practice.test.jdk8.lambda.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,7 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Data
+@Setter
+@Getter
 public class ListContainer {
     private List<AClass> lst;
 }

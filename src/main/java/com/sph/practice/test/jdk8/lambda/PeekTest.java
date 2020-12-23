@@ -22,22 +22,33 @@ import java.util.stream.Stream;
 public class PeekTest {
 
     /**
-     *
+     * peek()区别于foreach：
+     * 1、这个不是终结方法，可以再继续流式处理
+     * 2、这个有返回值，返回处理后的值
      */
     @Test
     public void test1(){
-        AccountPO po1 = new AccountPO(1, "zhangsan", "zhangsan");
-        AccountPO po2 = new AccountPO(2, "lisi", "lisi");
-        List<AccountPO> list = Lists.newArrayList();
-        list.add(po1);
-        list.add(po2);
+        List<AccountPO> list = new ArrayList<AccountPO>(){
+            {
+                add(new AccountPO(1, "zhangsan", "zhangsan"));
+            }
+        };
         //使用peek修改其中的元素username
+        System.out.println("打印处理前的list");
         list.forEach(System.out::println);
-        System.out.println("==========");
+        /*
+            AccountPO(id=1, username=zhangsan, password=zhangsan, num=null)
+         */
         List<AccountPO> afterList = list.stream().peek(po -> po.setUsername("xiesi")).collect(Collectors.toList());
-        System.out.println("==========");
+        System.out.println("打印list本身");
+        /*
+            AccountPO(id=1, username=xiesi, password=zhangsan, num=null)
+         */
         list.forEach(System.out::println);
-        System.out.println("==========");
+        System.out.println("打印peek后的返回值afterList");
+        /*
+            AccountPO(id=1, username=xiesi, password=zhangsan, num=null)
+         */
         afterList.forEach(System.out::println);
     }
 
@@ -364,5 +375,175 @@ public class PeekTest {
         System.out.println(collect);
     }
 
+    /**
+     * 单独拿一个数组或一个list 再调用流式方法
+     */
+    @Test
+    public void test15(){
+        String[] strArray = {"hello", "world"};
+        String[] strArray1 = {"one", "two"};
+        List<String[]> list = new ArrayList<>();
+
+        Stream<String> stream = Arrays.stream(strArray);
+        List<String> collect = stream.collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    /**
+     * 练练faltMap()，然后总结一波
+     * 先简单转换成Stream<String>
+     */
+    @Test
+    public void test16(){
+        String[] strArray = {"hello", "world"};
+        String[] strArray1 = {"one", "two"};
+        List<String[]> list = new ArrayList<>();
+        list.add(strArray);
+        list.add(strArray1);
+        List<String> collect = list.stream().flatMap(Arrays::stream).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test17(){
+        List<String> list1 = Lists.newArrayList("hello", "world");
+        List<String> list2 = Lists.newArrayList("one", "two");
+        List<List<String>> list = new ArrayList<List<String>>() {
+            {
+                add(list1);
+                add(list2);
+            }
+        };
+        List<String> collect = list.stream().flatMap(Collection::stream).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test18(){
+        List<String> list1 = Lists.newArrayList("hello", "world");
+        List<String> list2 = Lists.newArrayList("one", "two");
+        List<List<String>> list = new ArrayList<List<String>>() {
+            {
+                add(list1);
+                add(list2);
+            }
+        };
+
+        for (List<String> strings : list) {
+            for (String string : strings) {
+                System.out.println(string);
+            }
+        }
+
+        List<String> collect = list.stream().flatMap(Collection::stream).filter(k -> k.equals("hello")).collect(Collectors.toList());
+        System.out.println(collect);
+
+        for (List<String> strings : list) {
+            for (String string : strings) {
+                System.out.println(string);
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test19(){
+        List<String> list = Lists.newArrayList("hello", "world");
+        System.out.println(list);
+        //不对~~~String类型肯定是不会改的，试试操作一下引用类型的呢
+        List<String> collect = list.stream().filter(k -> k.equals("hello")).collect(Collectors.toList());
+        System.out.println(list);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test20(){
+        List<AClass> list = new ArrayList<AClass>() {
+            {
+                add(new AClass(1,"zhangsan","zhangsan"));
+                add(new AClass(2,"lisi","lisi"));
+                add(new AClass(3,"wangwu","wangwu"));
+            }
+        };
+
+        List<AClass> collect = list.stream().filter(k -> k.getId() == 1).collect(Collectors.toList());
+        System.out.println(collect);
+        System.out.println("======");
+        System.out.println(list);
+
+    }
+
+    /**
+     * flatMap()扁平化流式处理
+     * 专门处理Stream<<List<泛型>> 或 Stream<String[]数组>类型的呢。
+     * 处理思想：将大流中的小流全部转换成全体同级的大流，也即是Stream<List<String>>转换成Stream<String>的过程，数组也是类似。
+     * 谨记：需要时刻关注流式处理方法的返回值呢。流式处理只针对结果，不针对之前的过程
+     */
+    @Test
+    public void test21(){
+        //封装多个Aclass类型多个List
+        List<AClass> aClassList1 = new ArrayList<AClass>() {
+            {
+                add(new AClass(1,"yi","yi"));
+                add(new AClass(2,"er","er"));
+                add(new AClass(3,"san","san"));
+            }
+        };
+        List<AClass> aClassList2 = new ArrayList<AClass>() {
+            {
+                add(new AClass(4,"si","si"));
+                add(new AClass(5,"wu","wu"));
+                add(new AClass(6,"liu","liu"));
+            }
+        };
+
+        List<ListContainer> list = new ArrayList<ListContainer>() {
+            {
+                add(new ListContainer(aClassList1));
+                add(new ListContainer(aClassList2));
+            }
+        };
+        //当id=1的话，将用户名改成"shenpeihong"
+        //引用类型的话，也会同步改变值
+        List<AClass> collect = list.stream().map(k -> k.getLst()).flatMap(Collection::stream).peek(k -> {
+            if (k.getId()==1){
+                k.setUsername("shenpeihong");
+            }
+        }).collect(Collectors.toList());
+        System.out.println(collect);
+        /*
+            [AClass(id=1, username=shenpeihong, password=yi),
+             AClass(id=2, username=er, password=er),
+              AClass(id=3, username=san, password=san),
+               AClass(id=4, username=si, password=si),
+                AClass(id=5, username=wu, password=wu),
+                 AClass(id=6, username=liu, password=liu)]
+         */
+        System.out.println("======");
+        System.out.println(aClassList1);
+        /*
+            [AClass(id=1, username=shenpeihong, password=yi),
+             AClass(id=2, username=er, password=er),
+              AClass(id=3, username=san, password=san)]
+         */
+    }
+
+    /**
+     *  peek与foreach的区别总结
+     */
+    @Test
+    public void test22(){
+
+    }
 
 }
