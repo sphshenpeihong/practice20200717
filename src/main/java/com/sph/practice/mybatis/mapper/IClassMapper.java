@@ -14,7 +14,6 @@ import java.util.Map;
  *
  * @since 1.0.0
  */
-//@Mapper
 public interface IClassMapper {
 
     //单表单数据查询 通过主键id查询

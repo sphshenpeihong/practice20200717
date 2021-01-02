@@ -17,7 +17,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class QyUserPO implements Cloneable, Serializable {
 
-    private String id;
+    private Integer id;
     private String userName;
 
 }

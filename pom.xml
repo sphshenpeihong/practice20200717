@@ -163,6 +163,13 @@
             <version>2.10.1</version>
         </dependency>
 
+        <!-- Springboot整合分页插件，配合Mybatis -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
    </dependencies>
 
     <build>

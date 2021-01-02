@@ -29,6 +29,8 @@ import java.util.stream.Stream;
  */
 public class Test111 {
 
+    //这里定义一个final常量 和 String字符串 ，然后分别两个类去使用到它  然后一个地方改变后，其它地方会不会影响到
+
     /**
      *
      */

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sph.practice.mybatis.mapper.ITestMapper">
+
+    <!-- void insertData(); -->
+    <insert id="insertData">
+        insert into qy_test(id,date1,time1) values (#{id},#{date1},#{time1},#{datetime1})
+    </insert>
+
+    <select id="selectData" resultType="QyTestPO">
+        select id,date1,time1,datetime1 from qy_test where id = 1
+    </select>
+
+</mapper>

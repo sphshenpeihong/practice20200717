@@ -1,5 +1,6 @@
 package com.sph.practice.test.sebase;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -149,11 +150,90 @@ public class SeBase {
         logger.info("1231231打印");
     }
 
-    private String getName(){
+    private static String getName(){
         System.out.println("123");
         System.out.println("456");
         return "123";
     }
 
+    public static void main(String[] args) {
+        //访问得到内部类的。内部类也是会先加载的
+        Class1.test();
+    }
+
+    public static String shishi1;
+
+    static class Class1{
+        public static String shishi;
+        private String username1;
+
+        /**
+         *
+         */
+        @Test
+        public static void test(){
+            getName();
+        }
+
+        public String getUsername1() {
+            return username1;
+        }
+
+        public void setUsername1(String username1) {
+            this.username1 = username1;
+        }
+    }
+
+    /**
+     * 看看debug时候的构造
+     */
+    @Test
+    public void test(){
+        List<String> list = Lists.newArrayList("111", "222");
+        System.out.println(list);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test11() throws ClassNotFoundException {
+        Class<InitClass> c1 = InitClass.class;
+        //new InitClass(1);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test12(){
+        //List转String数组
+        List<String> list = Lists.newArrayList("111", "222");
+        String[] array = new String[]{};
+        String[] strings = list.toArray(array);
+        /*for (String s : array) {
+            System.out.println(s);
+        }*/
+        for (String string : strings) {
+            System.out.println(string);
+        }
+    }
 
 }
+
+
+class InitClass{
+
+
+    private int id;
+
+    public InitClass(){
+        System.out.println("午餐");
+    }
+
+    public InitClass(int id) {
+        System.out.println("有参");
+        this.id = id;
+    }
+}
+

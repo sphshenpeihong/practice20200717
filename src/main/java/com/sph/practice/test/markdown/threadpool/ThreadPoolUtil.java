@@ -46,4 +46,24 @@ public class ThreadPoolUtil {
         return new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory);
     }
 
+    //提供自己指定最大核心线程数与最大线程数的构造方法
+    public ThreadPoolExecutor getInstance(int corePoolSize, int maximumPoolSize) {
+
+        keepAliveTime = 300;
+        unit = TimeUnit.SECONDS;
+        queueSize = 1000;
+        workQueue = new ArrayBlockingQueue<Runnable>(queueSize); //实现类已经去实现完接口定义的方法了
+        threadFactory = new ThreadFactory() {
+            private AtomicInteger currentNum = new AtomicInteger();
+
+            @Override
+            public Thread newThread(Runnable r) {
+                System.out.println("新创建线程成功,当前序号为：" + currentNum.getAndIncrement());
+                return new Thread(r);
+            }
+        };
+
+        return new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory);
+    }
+
 }
