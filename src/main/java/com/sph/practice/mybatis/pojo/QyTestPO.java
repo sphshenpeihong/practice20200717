@@ -20,10 +20,10 @@ public class QyTestPO {
     private Date date1;
 
     //@JSONField(format = "HH-mm-ss")
-    private Date time1;
+    private String time1;
 
     //@JSONField(format = "HH-mm-ss")
-    private Date datetime1;
+    private String datetime1;
 
     public Integer getId() {
         return id;
@@ -41,12 +41,19 @@ public class QyTestPO {
         this.date1 = date1;
     }
 
-    public void setTime1(Date time1) {
+    public String getTime1() {
+        return time1;
+    }
+
+    public void setTime1(String time1) {
         this.time1 = time1;
     }
 
-    public void setDatetime1(Date datetime1) {
-        this.datetime1 = datetime1;
+    public String getDatetime1() {
+        return datetime1;
     }
 
+    public void setDatetime1(String datetime1) {
+        this.datetime1 = datetime1;
+    }
 }

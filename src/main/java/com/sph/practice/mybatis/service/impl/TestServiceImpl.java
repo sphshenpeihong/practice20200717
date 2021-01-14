@@ -8,6 +8,7 @@ import com.sph.practice.mybatis.service.ITestService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,10 +28,9 @@ public class TestServiceImpl implements ITestService {
     @Override
     public void insertData() {
         Map<String, Object> map = Maps.newHashMap();
-        /*map.put("id", )
-        map.put("date1",)
-        map.put("time1",)*/
-        testMapper.insertData();
+        //map.put("id", 100);
+        map.put("date1", "2021-01-04");
+        testMapper.insertData(map);
     }
 
     @Override

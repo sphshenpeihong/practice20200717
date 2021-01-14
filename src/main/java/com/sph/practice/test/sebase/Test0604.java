@@ -1,13 +1,17 @@
 package com.sph.practice.test.sebase;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.sph.practice.test.bean.User;
+import com.sph.practice.test.controller.bean.DefaultBean;
 import com.sph.practice.test.jedis.utils.JedisUtils;
 import com.sph.practice.test.param.BankVO;
 import org.junit.Test;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Created by Shen Peihong on 2020/6/4 17:58
@@ -150,5 +154,75 @@ public class Test0604 {
     public void test123(){
         Set<String> set = new HashSet<>();
     }
+
+    private static int num = 0;
+
+    public static void main(String[] args) {
+        System.out.println(num);
+        num++;
+        main(args);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test6(){
+        List<String> list = getList();
+        list.add("123");
+    }
+
+    private List<String> getList(){
+
+        return Collections.emptyList();
+    }
+
+    //试试封装查询参数 map
+    /**
+     *
+     */
+    @Test
+    public void test13(){
+        test13a("111","222");
+    }
+
+    private void test13a(Object... Object){
+        List<String> strings = Lists.newArrayList("111", "222");
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("username", "123");
+        System.out.println(map.get("username"));
+        map.put("username", "456");
+        System.out.println(map.get("username"));
+    }
+
+    //用一下Hutool 任意一个为空则有问题
+    /**
+     *
+     */
+    @Test
+    public void test7(){
+        boolean flag1 = ObjectUtil.isAllNotEmpty(null, null);
+        boolean flag2 = ObjectUtil.isAllEmpty("123", null);
+        System.out.println("flag1 = " + flag1);
+        System.out.println("flag2 = " + flag2);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test8(){
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test9(){
+        DefaultBean defaultBean = new DefaultBean();
+        System.out.println(defaultBean);
+    }
+
+
 
 }

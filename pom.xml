@@ -104,6 +104,8 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+
+
         <!-- jedis -->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -168,6 +170,19 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.5</version>
+        </dependency>
+
+
+        <!-- hibernate校验参数 -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.4.1.Final</version>
         </dependency>
 
    </dependencies>

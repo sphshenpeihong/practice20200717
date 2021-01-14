@@ -21,4 +21,15 @@ public class AtomicLongTest {
     }
 
 
+
+    /**
+     * byte转int
+     */
+    @Test
+    public void test2(){
+        for (byte i = 0; i < 127; i++) {
+            System.out.println(i);
+        }
+    }
+
 }

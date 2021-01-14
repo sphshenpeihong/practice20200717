@@ -4,13 +4,16 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.sph.practice.test.bean.CloneParam;
 import com.sph.practice.test.bean.UserParam;
+import com.sph.practice.test.controller.bean.ParamBean;
 import com.sph.practice.test.jedis.JedisTemplateTest;
 import com.sph.practice.test.param.BankVO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
@@ -776,7 +779,7 @@ public class JedisCtl {
     /**
      * 多个Key所对应的set集合求交集，并返回求完交集后的结果
      */
-    @RequestMapping("/test52.do")
+    /*@RequestMapping("/test52.do")
     public void test52(){
         SetOperations setOperations = redisTemplate.opsForSet();
         setOperations.add("set1","zhangsan","lisi"); //批量往某个key 插入元素
@@ -784,7 +787,7 @@ public class JedisCtl {
         setOperations.add("set3","zhaoliu","wangwu"); //批量往某个key 插入元素
         Set intersect = setOperations.intersect(Lists.newArrayList("set1", "set2", "set3")); //多个key所对应的set集合求交集，并返回求完交集后的结果
         System.out.println(intersect);
-    }
+    }*/
 
     /**
      * 两个key所对应的集合求完交集后，将结果集放入第三个集合中
@@ -1110,20 +1113,155 @@ public class JedisCtl {
 
     }
 
+    /**
+     * redis缓存 value是list leftPush是放一个， leftPushAll是放多个 弹的话是只弹一个
+     */
+    @RequestMapping("/test81.do")
+    public void test81(){
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        List<String> list = Lists.newArrayList();
+        list.add("111");
+        list.add("222");
+        //直接放一个list
+        listRedisTemplate.leftPush("list0106", list);
+        //直接拿全部
+        Object list0106 = listRedisTemplate.rightPop("list0106");
+        System.out.println(list0106);
+        System.out.println("===========");
+        List range = listRedisTemplate.range("list0106", 0, -1);
+        System.out.println(range);
+    }
+
+    @RequestMapping("/test82.do")
+    public void test82(){
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        listRedisTemplate.leftPush("list1111", "111");
+        List list1111 = listRedisTemplate.range("list1111", 0, -1);
+        System.out.println(list1111);
+    }
+
+    //List 不推一个元素，推List
+    @RequestMapping("/test83.do")
+    public void test83(){
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        List<String> list = Lists.newArrayList();
+        list.add("111");
+        list.add("222");
+        listRedisTemplate.leftPushAll("shen2", list);
+        Object pop = listRedisTemplate.rightPop("shen2");
+        System.out.println(pop);
+        List list11 = listRedisTemplate.range("shen2", 0, -1);
+        System.out.println(list11);
+
+    }
 
 
+    //用List，但是只放一个
+    @RequestMapping("/test84.do")
+    public void test84(){
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        List<String> list = Lists.newArrayList();
+        list.add("111");
+        list.add("222");
+        listRedisTemplate.leftPush("list11", "666");
+        listRedisTemplate.leftPush("list11", "777");
+        Object pop = listRedisTemplate.rightPop("list11");
+        System.out.println(pop);
 
+    }
 
+    //队列的话，推一个用leftPush 推List类型的话直接用leftPushAll
 
+    //试一下对象类型
+    /**
+     *
+     */
+    @RequestMapping("/test85.do")
+    public void test85(){
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        List<ParamBean> list = Lists.newArrayList();
+        list.add(new ParamBean("1","1","1"));
+        list.add(new ParamBean("2","2","2"));
+        list.add(new ParamBean("3","3","3"));
+        //直接把一整个List放入redis
+        listRedisTemplate.leftPushAll("shen10", list);
+        //从右边弹出一个
+        ParamBean pop = (ParamBean) listRedisTemplate.rightPop("shen10");
+        System.out.println(pop);
+        //如果每次都整合了一个List类型再推的话，那么得先拿再改 再清空，再推 ，不符合
+    }
 
+    @RequestMapping("/test86.do")
+    public void test86(){
+        //先打印出来看看
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        List<ParamBean> range = listRedisTemplate.range("shen10", 0, -1);
+        System.out.println(range);
+        //单独推一个
+        listRedisTemplate.leftPush("shen10", new ParamBean("1","1","1"));
+        listRedisTemplate.leftPush("shen10", new ParamBean("2","2","2"));
+        listRedisTemplate.leftPush("shen10", new ParamBean("3","3","3"));
+        List<ParamBean> range1 = listRedisTemplate.range("shen10", 0, -1);
+        System.out.println(range1);
+    }
 
+    @RequestMapping("/test87.do")
+    public void test87(){
+        //先打印出来看看
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        List<ParamBean> range = listRedisTemplate.range("shen10", 0, -1);
+        System.out.println(range);
+        //右弹左推
+        listRedisTemplate.rightPopAndLeftPush("shen10", "shen10");
+        List<ParamBean> range1 = listRedisTemplate.range("shen10", 0, -1);
+        System.out.println(range1);
+        List<ParamBean> list = listRedisTemplate.range("shen10", 0, 1);
+        System.out.println(list);
+    }
 
+    @RequestMapping("/test88.do")
+    public void test88(){
+        //先打印出来看看
+        ListOperations listRedisTemplate = redisTemplate.opsForList();
+        List<ParamBean> range = listRedisTemplate.range("shen10", 0, -1);
+        System.out.println(range);
+        //根据索引拿值
+        ParamBean shen10 = (ParamBean)listRedisTemplate.index("shen10", 0);
+        System.out.println(shen10);
+        ParamBean s2 = (ParamBean)listRedisTemplate.index("shen10", 1);
+        System.out.println(s2);
+    }
 
+    @RequestMapping("/test89.do")
+    public void test89(){
+        //先打印出来看看
+        ListOperations<String ,ParamBean> listRedisTemplate = redisTemplate.opsForList();
+        //根据索引拿值
+        ParamBean shen10 = listRedisTemplate.index("shen10", 0);
+        System.out.println(shen10);
+        ParamBean s2 = (ParamBean)listRedisTemplate.index("shen10", 1);
+        System.out.println(s2);
+    }
 
+    @RequestMapping("/test90.do")
+    public void test90(CloneParam cloneParam){
+        //先打印出来看看
+        ListOperations<String ,ParamBean> listRedisTemplate = redisTemplate.opsForList();
+        //根据索引拿值
+        ParamBean shen10 = listRedisTemplate.index("shen10", 0);
+        System.out.println(shen10);
+        ParamBean s2 = (ParamBean)listRedisTemplate.index("shen10", 1);
+        System.out.println(s2);
+    }
 
-
-
-
+    @RequestMapping("/test91.do")
+    public void test91(CloneParam cloneParam){
+        //先打印出来看看
+        ValueOperations<String, ParamBean> valRedis = redisTemplate.opsForValue();
+        valRedis.set("ParamBean1", new ParamBean("11","22","33"));
+        ParamBean paramBean1 = valRedis.get("ParamBean1");
+        System.out.println(paramBean1);
+    }
 
 
 

@@ -4,7 +4,7 @@
 
     <!-- void insertData(); -->
     <insert id="insertData">
-        insert into qy_test(id,date1,time1) values (#{id},#{date1},#{time1},#{datetime1})
+        insert into qy_test(date1) values (#{date1})
     </insert>
 
     <select id="selectData" resultType="QyTestPO">

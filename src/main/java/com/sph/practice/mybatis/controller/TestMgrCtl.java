@@ -25,12 +25,22 @@ public class TestMgrCtl {
     @Resource(name = "testService")
     private ITestService testService;
 
+    //时间类型
+
+
     @RequestMapping("/test1.do")
     public void test1(QyTestPO date11){
         System.out.println(date11);
         QyTestPO qyTestPO = testService.selectData();
 
         System.out.println(qyTestPO);
+    }
+
+    //根据入参插入到数据库 看看，String类型能不能插入成功（mysql Date类型）
+
+    @RequestMapping("/test2.do")
+    public void test11(QyTestPO date11){
+        testService.insertData();
     }
 
     /**

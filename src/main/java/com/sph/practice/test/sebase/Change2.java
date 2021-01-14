@@ -20,11 +20,12 @@ public class Change2 {
         System.out.println(change1.username);
     }
 
+
     /**
      *
      */
     @Test
-    public void test(){
+    public void test3(){
 
     }
 

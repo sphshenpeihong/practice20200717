@@ -1,16 +1,16 @@
 package com.sph.practice.test.controller.ui;
 
+import com.sph.practice.test.controller.bean.ParamBean;
 import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.ResultVO;
 import com.sph.practice.test.param.TeacherVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 import java.io.*;
 import java.util.Properties;
 
@@ -24,6 +24,17 @@ import java.util.Properties;
 @RequestMapping(path = "/test")
 @Slf4j
 public class DetailTest {
+
+    @RequestMapping("/test11.do")
+    public void test11(@Valid ParamBean paramBean, @Nonnull String ok){
+        this.invoke(null);
+    }
+
+    private void invoke(@Nonnull String yes){
+        System.out.println("123123");
+    }
+
+
 
     //注解扫描，执行于此的时候，有static顺带先执行掉了，因为一扫描到类，装载时就立即先执行static块了，获取值是后面的了。
 

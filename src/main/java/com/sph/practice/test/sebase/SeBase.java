@@ -2,10 +2,13 @@ package com.sph.practice.test.sebase;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.sph.practice.test.controller.bean.ParamBean;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
@@ -216,6 +219,31 @@ public class SeBase {
         }*/
         for (String string : strings) {
             System.out.println(string);
+        }
+    }
+
+
+    /**
+     * 使用ObjectOutputStream 看看里面是如何将字节流转换成对象的
+     * 疑问：存储在硬盘中不是只能二进制数据吗？为啥支持对象类型的
+     */
+    @Test
+    public void test13() throws Exception{
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("D:\\temp\\IO流练习demo\\demo02.txt");
+            oos = new ObjectOutputStream(fos);
+            ParamBean paramBean = new ParamBean("111", "222", "333");
+            oos.writeObject(paramBean);
+            oos.flush();
+        } finally {
+            if (oos != null){
+                oos.close();
+            }
+            if (fos != null){
+                fos.close();
+            }
         }
     }
 
