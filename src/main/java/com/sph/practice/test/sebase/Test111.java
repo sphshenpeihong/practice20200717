@@ -194,6 +194,22 @@ public class Test111 {
         InetAddress ip1 = InetAddress.getByName("192.168.11.125");
     }
 
+    /**
+     * 这里试试时间计算问题，秒级
+     */
+    @Test
+    public void test12() throws InterruptedException {
+        //直接设置一个时间
+        LocalDate of = LocalDate.of(2021, 0, 14);
+        Date date = new Date();
+        //设置一个日期，计算两个日期的前后关系
+        Date date1 = new Date();
+        boolean before = date.before(date1);
+        System.out.println(before);
+    }
+
+
+
 
 
 

@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalField;
 import java.util.Locale;
 
 /**
@@ -74,6 +75,27 @@ public class LocalDataTest {
         System.out.println(System.currentTimeMillis());
 
 
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test(){
+        System.out.println("莫莫");
+    }
+
+    /**
+     * LocalData 入参String 和当前的日期做比较
+     */
+    @Test
+    public void test1(){
+        String str = "2021-01-16";
+        LocalDate parse = LocalDate.parse(str);
+        System.out.println(parse.get(ChronoField.MONTH_OF_YEAR));
+        LocalDate now = LocalDate.now();
+        boolean before = now.isBefore(parse);
+        System.out.println(before);
     }
 
 }
