@@ -1,13 +1,11 @@
 package com.sph.practice.mybatis.service.impl;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.sph.practice.mybatis.mapper.IClassMapper;
 import com.sph.practice.mybatis.pojo.QyClassPO;
 import com.sph.practice.mybatis.service.IClassService;
-import com.sph.practice.mybatis.util.ApplicationContextUtil;
 import com.sph.practice.mybatis.vo.CSVO;
-import org.junit.Test;
+import com.sph.practice.mybatis.vo.CSVO1;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -61,6 +59,16 @@ public class ClassServiceImpl implements IClassService {
     @Override
     public List<CSVO> getCSVOByClassId(Integer id) {
         return classMapper.getCSVOByClassId(id);
+    }
+
+    @Override
+    public List<CSVO> getCSVOList(Integer classId) {
+        return classMapper.getCSVOList(classId);
+    }
+
+    @Override
+    public List<CSVO1> getCSVO1(Map<String, Object> paramMap) {
+        return classMapper.getCSVO1(paramMap);
     }
 
 

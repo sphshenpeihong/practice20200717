@@ -11,4 +11,34 @@
         select id,user_name from qy_user
     </select>
 
+    <!-- 返回值map只支持一条数据，底层调selectOne() -->
+    <select id="getMapByIds" resultType="map">
+        select * from qy_user
+        <where>
+            <if test="idList != null and idList.size > 0">
+                AND id IN
+                <foreach collection="idList" item="id" open="(" close=")" separator="," index="index">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <!-- 结果集映射，SQL语句查询完毕后，具体返回类型根据这里的type，列与字段的映射规则如下。
+         一般无法进行ORM自动映射的才手动映射
+     -->
+    <resultMap id="rmParam1VO" type="Param1VO">
+        <!-- 表的主键id用id标签，其它列用result标签 -->
+        <result property="userNamea" column="user_name"/>
+    </resultMap>
+
+    <select id="selectOne1" resultMap="rmParam1VO">
+        select * from qy_user
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+        </where>
+    </select>
+
 </mapper>

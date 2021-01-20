@@ -3,8 +3,10 @@ package com.sph.practice.mybatis.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 import com.sph.practice.mybatis.pojo.QyUserPO;
 import com.sph.practice.mybatis.service.IUserService;
+import com.sph.practice.mybatis.vo.Param1VO;
 import com.sph.practice.test.sebase.current.ExtendsClass;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Shen Peihong on 2020/12/23 19:52
@@ -49,38 +53,28 @@ public class UserMgrCtl {
         System.out.println(pageInfo);
     }
 
-    //当前页
-    private int pageNum;
-    //每页的数量
-    private int pageSize;
-    //当前页的数量
-    private int size;
-    //当前页面第一个元素在数据库中的行号
-    private int startRow;
-    //当前页面最后一个元素在数据库中的行号
-    private int endRow;
-    //总页数
-    private int pages;
-    //前一页
-    private int prePage;
-    //
-    private int nextPage;
-    //是否为第一页
-    private boolean isFirstPage;
-    //是否为最后一页
-    private boolean isLastPage;
-    //是否有前一页
-    private boolean hasPreviousPage;
-    //是否有下一页
-    private boolean hasNextPage;
-    //导航页码数
-    private int navigatePages;
-    //所有导航页号
-    private int[] navigatepageNums;
-    private int navigateFirstPage;
-    private int navigateLastPage;
+    @RequestMapping("/test3.do")
+    public void test3() throws Exception{
+        Map<String, Object> paramMap = new HashMap<String, Object>() {
+            {
+                put("idList", Lists.newArrayList(1));
+            }
+        };
+        Map<String, Object> resultMap = userService.getMapByIds(paramMap);
+    }
 
-    //今晚再汇总总结一下
+    @RequestMapping("/test4.do")
+    public void test4() throws Exception{
+        int i = 1;
+        Param1VO VO = userService.selectOne(i);
+        System.out.println(VO);
+    }
 
+    @RequestMapping("/test5.do")
+    public void test5() throws Exception{
+        int i = 1;
+        Param1VO VO = userService.selectOne1(i);
+        System.out.println(VO);
+    }
 
 }

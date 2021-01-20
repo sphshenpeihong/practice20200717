@@ -3,11 +3,11 @@
 <mapper namespace="com.sph.practice.mybatis.mapper.IClassMapper">
 
     <resultMap id="selectCSVO" type="csvo">
-        <id property="classId" column="id"></id>
-        <result property="className" column="class_name"></result>
+        <id property="classId" column="id"/>
+        <result property="className" column="class_name"/>
         <association property="id" javaType="QyStudentPO">
-            <id property="studentId" column="id"></id>
-            <result property="studentName" column="student_name"></result>
+            <id property="studentId" column="id"/>
+            <result property="studentName" column="student_name"/>
         </association>
     </resultMap>
 
@@ -56,5 +56,46 @@
             c.id = #{id}
         </where>
     </select>
+
+    <resultMap id="CSVORM" type="CSVO">
+        <id property="classId" column="id"/>
+        <result property="className" column="class_name"/>
+        <result property="studentName" column="student_name"/>
+    </resultMap>
+
+    <!-- List<CSVO> getCSVOList(@Param("classId") Integer classId); -->
+    <select id="getCSVOList" resultMap="CSVORM">
+        select c.id,c.class_name,s.student_name from qy_class c
+        inner join qy_student s on c.id = s.class_id
+        <where>
+            <if test="classId != null and classId != ''">
+                AND c.id = #{classId}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="getCSVO1RM" type="CSVO1">
+        <id property="id" column="id"/>
+        <result property="className" column="class_name"/>
+        <association property="studentPO" javaType="QyStudentPO">
+            <id property="id" column="id"/>
+            <result property="studentName" column="student_name"/>
+        </association>
+    </resultMap>
+
+    <!-- List<CSVO1> getCSVO1(Map<String, Object> paramMap); -->
+    <select id="getCSVO1" resultMap="getCSVO1RM">
+        SELECT c.id, c.class_name, s.id, s.student_name FROM qy_class c
+        INNER JOIN qy_student s ON c.id = s.class_id
+        <where>
+            <if test="classIdList != null and classIdList.size > 0">
+                AND c.id IN
+                <foreach collection="classIdList" index="index" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
 
 </mapper>

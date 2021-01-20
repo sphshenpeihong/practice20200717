@@ -2,6 +2,8 @@ package com.sph.practice.mybatis.service;
 
 import com.sph.practice.mybatis.pojo.QyClassPO;
 import com.sph.practice.mybatis.vo.CSVO;
+import com.sph.practice.mybatis.vo.CSVO1;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -28,5 +30,27 @@ public interface IClassService {
 
     //多表查询
     public List<CSVO> getCSVOByClassId(Integer id);
+
+
+    /**
+     * 这里多表连接查询1班学生
+     *
+     * @param classId
+     * @return
+     * @author Shen Peihong
+     * @date 2021/1/19
+     */
+
+    List<CSVO> getCSVOList(@Param("classId") Integer classId);
+
+    /**
+     * 定义一个VO，包含多的List，resultMap在映射字段与属性的时候，利用association连接起来
+     *
+     * @param paramMap
+     * @return
+     * @author Shen Peihong
+     * @date 2021/1/20
+     */
+    List<CSVO1> getCSVO1(Map<String, Object> paramMap);
 
 }

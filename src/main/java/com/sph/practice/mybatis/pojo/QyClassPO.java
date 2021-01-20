@@ -13,6 +13,7 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class QyClassPO {
     private Integer id;

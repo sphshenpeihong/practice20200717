@@ -1,6 +1,7 @@
 package com.sph.practice.mybatis.controller;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.sph.practice.mybatis.mapper.IUserMapper;
 import com.sph.practice.mybatis.pojo.QyClassPO;
 import com.sph.practice.mybatis.pojo.QyUserPO;
@@ -8,12 +9,15 @@ import com.sph.practice.mybatis.service.IClassService;
 import com.sph.practice.mybatis.util.ApplicationContextUtil;
 import com.sph.practice.mybatis.util.GenericClass;
 import com.sph.practice.mybatis.vo.CSVO;
+import com.sph.practice.mybatis.vo.CSVO1;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Shen Peihong on 2020/12/13 12:10
@@ -81,6 +85,22 @@ public class ClassMgrCtl {
             System.out.println(csvo1);
         }
     }
+
+    @RequestMapping("/test6.do")
+    public void test6(){
+        List<CSVO> list = classService.getCSVOList(1);
+        System.out.println(list);
+    }
+
+    @RequestMapping("/test7.do")
+    public void test7(){
+        Map<String, Object> paramMap = Maps.newHashMap();
+        paramMap.put("classIdList", Lists.newArrayList(1,2));
+        List<CSVO1> list = classService.getCSVO1(paramMap);
+        System.out.println(list);
+    }
+
+
 
     /**
      *
