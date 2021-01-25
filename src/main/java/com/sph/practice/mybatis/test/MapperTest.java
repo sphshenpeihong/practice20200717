@@ -5,6 +5,7 @@ import com.sph.practice.mybatis.mapper.IUserMapper;
 import com.sph.practice.mybatis.pojo.QyClassPO;
 import com.sph.practice.mybatis.pojo.QyUserPO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,9 @@ public class MapperTest {
 
     @Resource
     private IClassMapper classMapper;
+
+    @Resource
+    private SqlSessionFactory factory;
 
     /**
      *
@@ -50,6 +54,14 @@ public class MapperTest {
         } catch (Exception e) {
             log.error("调dao接口异常");
         }
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test3(){
+
     }
 
 }

@@ -3,9 +3,13 @@ package com.sph.practice.mybatis.service.impl;
 import com.google.common.collect.Lists;
 import com.sph.practice.mybatis.mapper.IClassMapper;
 import com.sph.practice.mybatis.pojo.QyClassPO;
+import com.sph.practice.mybatis.pojo.QyStudentPO;
+import com.sph.practice.mybatis.pojo.QyUserPO;
 import com.sph.practice.mybatis.service.IClassService;
 import com.sph.practice.mybatis.vo.CSVO;
 import com.sph.practice.mybatis.vo.CSVO1;
+import com.sph.practice.mybatis.vo.ClassVO;
+import com.sph.practice.mybatis.vo.StudentVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -69,6 +73,41 @@ public class ClassServiceImpl implements IClassService {
     @Override
     public List<CSVO1> getCSVO1(Map<String, Object> paramMap) {
         return classMapper.getCSVO1(paramMap);
+    }
+
+    @Override
+    public List<CSVO> getCSVOList1(Integer classId) {
+        return classMapper.getCSVOList1(classId);
+    }
+
+    @Override
+    public List<StudentVO> getStudent() {
+        return classMapper.getStudent();
+    }
+
+    @Override
+    public ClassVO getClassVO() {
+        return classMapper.getClassVO();
+    }
+
+    @Override
+    public List<ClassVO> getClassVOList() {
+        return classMapper.getClassVOList();
+    }
+
+    @Override
+    public List<QyStudentPO> getUserList(Map<String, Object> paramMap) {
+        return classMapper.getUserList(paramMap);
+    }
+
+    @Override
+    public List<QyStudentPO> getUserList1(Map<String, Object> paramMap) {
+        return classMapper.getUserList1(paramMap);
+    }
+
+    @Override
+    public List<QyStudentPO> getUserListByIds(Map<String, Object> paramMap) {
+        return classMapper.getUserListByIds(paramMap);
     }
 
 

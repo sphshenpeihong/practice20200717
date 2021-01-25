@@ -1,5 +1,7 @@
 package com.sph.practice.mybatis.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -8,6 +10,8 @@ import lombok.ToString;
  *
  * @since 1.0.0
  */
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Param1VO {
 

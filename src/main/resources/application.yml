@@ -32,8 +32,15 @@ spring:
 
 
 mybatis:
+
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.sph.practice.mybatis
+  configuration:
+    #开启驼峰映射
+    map-underscore-to-camel-case: true
+    #指定Mybatis应如何自动映射列到字段或属性，NONE标识关闭自动映射；PARTIAL只会自动映射没有定义嵌套结果映射的字段。FULL会自动映射任何复杂的结果集（无论是否嵌套），默认值是PARTIAL，我们可以在resultMap标签使用autoMapping=true。标签指定优先级比较好，全局配置优先级稍低
+    auto-mapping-behavior: full
+
   #devtools插件
 devtools:
   restart:

@@ -3,10 +3,13 @@ package com.sph.practice.test.sebase;
 import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.sph.practice.mybatis.vo.Param1VO;
+import com.sph.practice.mybatis.vo.ParamVO;
 import com.sph.practice.test.bean.User;
 import com.sph.practice.test.controller.bean.DefaultBean;
 import com.sph.practice.test.jedis.utils.JedisUtils;
 import com.sph.practice.test.param.BankVO;
+import com.sph.practice.test.sebase.util.ObjectUtil1;
 import org.junit.Test;
 
 import java.util.*;
@@ -222,6 +225,113 @@ public class Test0604 {
         DefaultBean defaultBean = new DefaultBean();
         System.out.println(defaultBean);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void test10(){
+        ObjectUtil1 util1 = new ObjectUtil1();
+        ObjectUtil1 util11 = util1.ObjectTest();
+        System.out.println("123");
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test22(){
+        List<String> list = new ArrayList<String>(){
+            {
+                add("中交集团");
+                add("中交集团->one");
+                add("中交集团->two");
+                add("中交集团->two->three");
+            }
+        };
+        List<String> collect = list.stream().filter(str -> str.startsWith("中交集团->")).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    //String类型拼接的话，貌似只有 +
+
+    /**
+     *
+     */
+    @Test
+    public void test23(){
+        String str = "123";
+        String concat = str.concat("456");
+        System.out.println(concat);
+    }
+
+    // List里面放入对象，然后add，后面remove的时候
+    /**
+     *
+     */
+    @Test
+    public void test24(){
+        List<Param1VO> list = new ArrayList<Param1VO>() {
+            {
+                add(new Param1VO(1,"1"));
+                add(new Param1VO(2,"2"));
+            }
+        };
+        Param1VO param1VO = new Param1VO(1, "1");
+        //记录id，然后删除的时候根据id去删即可
+
+    }
+
+    /**
+     * 遍历一个list，能否遍历过程中改变当前这个List呢？
+     */
+    @Test
+    public void test25(){
+        //循环的次数有变？
+        List<String> list = new Vector<String>() {
+            {
+                add("1");
+                add("2");
+                add("3");
+                add("4");
+                add("5");
+                add("6");
+            }
+        };
+        List<Object> respList = Lists.newArrayList();
+        for (int i = 0; i < list.size(); i++) {
+            respList.add(list.get(i));
+            list.remove("3");
+            list.remove("4");
+        }
+        System.out.println(list);
+        System.out.println(respList);
+
+    }
+
+    //直接remove一整个collection
+    /**
+     *
+     */
+    @Test
+    public void test26(){
+        List<Param1VO> list = new ArrayList<Param1VO>() {
+            {
+                add(new Param1VO(1,"1"));
+                add(new Param1VO(2,"2"));
+                add(new Param1VO(3,"3"));
+            }
+        };
+        List<Param1VO> list1 = new ArrayList<Param1VO>() {
+            {
+                add(new Param1VO(1,"1"));
+                add(new Param1VO(2,"2"));
+            }
+        };
+        list.removeAll(list1);
+        System.out.println(list);
+    }
+
 
 
 

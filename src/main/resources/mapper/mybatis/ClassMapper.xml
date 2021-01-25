@@ -38,6 +38,7 @@
         </where>
     </select>
 
+
     <select id="getClassByIds" resultType="QyClassPO">
         select * from qy_class c where c.id
         IN
@@ -47,7 +48,7 @@
     </select>
 
     <select id="getClassByVO" parameterType="csvo" resultType="QyClassPO">
-        select * from qy_class c where c.id = #{vo.classId}
+        select id,class_name from qy_class c where c.id = 1
     </select>
 
     <select id="getCSVOByClassId" parameterType="Integer" resultMap="selectCSVO">
@@ -97,5 +98,118 @@
         </where>
     </select>
 
+
+<!--    <resultMap id="CSVORM1" type="CSVO">
+        <id property="classId" column="id"/>
+        <result property="className" column="class_name"/>
+        <result property="studentName" column="student_name"/>
+    </resultMap>-->
+
+    <!-- List<CSVO> getCSVOList(@Param("classId") Integer classId); -->
+
+    <resultMap id="getCSVOList1RM" type="CSVO">
+        <id property="classId" column="id"></id>
+    </resultMap>
+
+    <select id="getCSVOList1" resultMap="getCSVOList1RM">
+        select c.id, c.class_name, s.id as student_id, s.student_name
+        from qy_student s inner join qy_class c on c.id = s.class_id
+        <where>
+            <if test="classId != null and classId != ''">
+                AND c.id = #{classId}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="StudentVORM" type="StudentVO" autoMapping="true">
+        <association property="classPO" javaType="QyClassPO">
+            <id property="id" column="class_id"/>
+        </association>
+    </resultMap>
+
+    <!-- List<StudentVO> getStudent(); -->
+    <select id="getStudent" resultMap="StudentVORM">
+        SELECT c.id AS class_id, c.class_name, s.id, s.student_name FROM qy_class c
+        INNER JOIN qy_student s ON c.id = s.class_id
+        ORDER BY class_id ASC
+    </select>
+
+    <resultMap id="ClassVORM" type="ClassVO">
+        <id property="id" column="id"/>
+        <result property="className" column="class_name"/>
+        <collection property="studentPOList" ofType="QyStudentPO" >
+            <id property="id" column="student_id"/>
+            <result property="classId" column="id" />
+        </collection>
+    </resultMap>
+
+    <!-- List<StudentVO> getStudent(); -->
+    <select id="getClassVO" resultMap="ClassVORM">
+        SELECT c.id, c.class_name, s.id AS student_id, s.student_name FROM qy_class c
+        INNER JOIN qy_student s ON c.id = s.class_id
+        WHERE c.id = 1
+        ORDER BY class_id ASC
+    </select>
+
+    <!--//一对多，返参List
+    List<ClassVO> getClassVOList();-->
+
+    <resultMap id="ClassVOListRM" type="ClassVO">
+        <id property="id" column="id"/>
+        <!--<result property="className" column="class_name"/>-->
+        <collection property="studentPOList" ofType="QyStudentPO" >
+            <id property="id" column="student_id"/>
+            <result property="classId" column="id" />
+        </collection>
+    </resultMap>
+
+    <select id="getClassVOList" resultMap="ClassVOListRM">
+        SELECT c.id, c.class_name, s.id AS student_id, s.student_name FROM qy_class c
+        INNER JOIN qy_student s ON c.id = s.class_id
+        ORDER BY class_id ASC
+    </select>
+
+    <!-- List<QyUserPO> getUserList(); -->
+    <select id="getUserList" parameterType="map" resultType="QyStudentPO">
+        select * from qy_student
+        <where>
+            <choose>
+                <!-- when、otherwise组合就像switch或说像if、else if、else一样，匹配到就不会匹配下一个 -->
+                <when test="classId != null and classId != ''">
+                    and class_id = #{classId}
+                </when>
+                <when test="studentName != null and studentName != ''">
+                    and student_name = #{studentName}
+                </when>
+                <otherwise>
+                    and id = 5
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="getUserList1" parameterType="map" resultType="QyStudentPO">
+        select * from qy_student
+        <where>
+            <if test="classId != null and classId != ''">
+                or class_id = #{classId}
+            </if>
+            <if test="studentName != null and studentName != ''">
+                or student_name = #{studentName}
+            </if>
+        </where>
+    </select>
+
+    <!-- List<QyStudentPO> getUserListByIds(Map<String, Object> paramMap); -->
+    <select id="getUserListByIds" parameterType="map" resultType="QyStudentPO">
+        select * from qy_student
+        <where>
+            <if test="idList != null and idList.size > 0">
+                <foreach collection="idList" item="id" index="index" separator="or">
+                    id = #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
 
 </mapper>

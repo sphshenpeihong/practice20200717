@@ -4,12 +4,15 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sph.practice.mybatis.mapper.IUserMapper;
 import com.sph.practice.mybatis.pojo.QyClassPO;
+import com.sph.practice.mybatis.pojo.QyStudentPO;
 import com.sph.practice.mybatis.pojo.QyUserPO;
 import com.sph.practice.mybatis.service.IClassService;
 import com.sph.practice.mybatis.util.ApplicationContextUtil;
 import com.sph.practice.mybatis.util.GenericClass;
 import com.sph.practice.mybatis.vo.CSVO;
 import com.sph.practice.mybatis.vo.CSVO1;
+import com.sph.practice.mybatis.vo.ClassVO;
+import com.sph.practice.mybatis.vo.StudentVO;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -100,7 +103,72 @@ public class ClassMgrCtl {
         System.out.println(list);
     }
 
+    @RequestMapping("/test8.do")
+    public void test8(){
 
+        List<CSVO> csvoList1 = classService.getCSVOList1(1);
+        System.out.println(csvoList1);
+    }
+
+
+    @RequestMapping("/test9.do")
+    public void test9(){
+
+        List<StudentVO> studentVOList = classService.getStudent();
+        System.out.println(studentVOList);
+    }
+
+    @RequestMapping("/test10.do")
+    public void test10(){
+
+        ClassVO classVO = classService.getClassVO();
+        System.out.println(classVO);
+    }
+
+    @RequestMapping("/test11.do")
+    public void test11(){
+
+        List<ClassVO> classVOList = classService.getClassVOList();
+        System.out.println(classVOList);
+    }
+
+    @RequestMapping("/test12.do")
+    public void test12(){
+
+        Map paramMap = new HashMap<String, Object>() {
+            {
+                put("studentName", "刘一");
+                put("classId", 1);
+            }
+        };
+        List<QyStudentPO> qyStudentPOList = classService.getUserList(paramMap);
+        System.out.println(qyStudentPOList);
+    }
+
+    @RequestMapping("/test13.do")
+    public void test13(){
+
+        Map paramMap = new HashMap<String, Object>() {
+            {
+                put("studentName", "张三");
+                put("classId", 1);
+            }
+        };
+        List<QyStudentPO> qyStudentPOList = classService.getUserList1(paramMap);
+        System.out.println(qyStudentPOList);
+    }
+
+    @RequestMapping("/test14.do")
+    public void test14(){
+
+        Map paramMap = new HashMap<String, Object>() {
+            {
+                put("idList", Lists.newArrayList(1,2,3));
+            }
+        };
+        List<QyStudentPO> qyStudentPOList = classService.getUserListByIds(paramMap);
+        System.out.println(qyStudentPOList);
+    }
 
     /**
      *

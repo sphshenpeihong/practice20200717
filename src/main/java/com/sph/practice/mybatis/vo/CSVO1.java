@@ -23,4 +23,11 @@ public class CSVO1 extends QyClassPO {
     public void setStudentPO(QyStudentPO studentPO) {
         this.studentPO = studentPO;
     }
+
+    @Override
+    public String toString() {
+        return "CSVO1{" +
+                "studentPO=" + studentPO +
+                '}';
+    }
 }
