@@ -18,4 +18,5 @@ public interface ITestMapper {
     //先查询
     QyTestPO selectData();
 
+    //one
 }
