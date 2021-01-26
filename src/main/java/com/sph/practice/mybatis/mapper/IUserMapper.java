@@ -56,4 +56,6 @@ public interface IUserMapper {
      */
     Param1VO selectOne1(@Param("id") Integer id) throws Exception;
 
+    //0126B
+
 }
