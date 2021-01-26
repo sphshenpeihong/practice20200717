@@ -1,25 +1,26 @@
-/*
 package com.sph.practice.mybatisplus.service.impl;
 
 import com.sph.practice.mybatisplus.mapper.PlusUserMapper;
 import com.sph.practice.mybatisplus.pojo.po.User;
 import com.sph.practice.mybatisplus.service.IPlusUserService;
 import org.junit.Assert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-*/
+
 /**
  * Created by Shen Peihong on 2021/1/26
  * Description:
  *
  * @since 1.0.0
- *//*
-
+ */
+@Service("plusUserService")
 public class PlusUserServiceImpl implements IPlusUserService {
 
-    @Resource(name = "plusUserMapper")
+    @Autowired
     private PlusUserMapper plusUserMapper;
 
 
@@ -31,4 +32,4 @@ public class PlusUserServiceImpl implements IPlusUserService {
         userList.forEach(System.out::println);
     }
 }
-*/
+

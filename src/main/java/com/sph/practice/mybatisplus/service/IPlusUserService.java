@@ -1,13 +1,12 @@
-/*
 package com.sph.practice.mybatisplus.service;
 
-*/
+
 /**
  * Created by Shen Peihong on 2021/1/26
  * Description:
  *
  * @since 1.0.0
- *//*
+ */
 
 public interface IPlusUserService {
 
@@ -15,4 +14,4 @@ public interface IPlusUserService {
     void mpTest();
 
 }
-*/
+
