@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * @since 1.0.0
  */
-public class User implements Cloneable, Serializable {
+public class User1 implements Cloneable, Serializable {
     private Integer id;
     private String username;
     private String password;
@@ -17,15 +17,15 @@ public class User implements Cloneable, Serializable {
 
 
     //提供克隆方法
-    public User clone(){
+    public User1 clone(){
         try {
-            return (User) super.clone();
+            return (User1) super.clone();
         } catch (CloneNotSupportedException e) {
             return null;
         }
     }
 
-    public User(Integer id, String username, String password, Integer parentId, Integer score) {
+    public User1(Integer id, String username, String password, Integer parentId, Integer score) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -33,12 +33,12 @@ public class User implements Cloneable, Serializable {
         this.score = score;
     }
 
-    public User(String username,String password){
+    public User1(String username, String password){
         this.username = username;
         this.password = password;
     }
 
-    public User(Integer id,String username,String password){
+    public User1(Integer id, String username, String password){
         this.id = id;
         this.username = username;
         this.password = password;
@@ -52,14 +52,14 @@ public class User implements Cloneable, Serializable {
         this.score = score;
     }
 
-    public User(Integer id, String username, String password, Integer parentId) {
+    public User1(Integer id, String username, String password, Integer parentId) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.parentId = parentId;
     }
 
-    public User() {
+    public User1() {
     }
 
     public Integer getId() {
@@ -96,7 +96,7 @@ public class User implements Cloneable, Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User1{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

@@ -1,6 +1,6 @@
 package com.sph.practice.test.optional;
 
-import com.sph.practice.test.bean.User;
+import com.sph.practice.test.bean.User1;
 import org.junit.Test;
 
 import java.util.*;
@@ -39,17 +39,17 @@ public class OptionalMethod {
     //试试Collections里面提供的各种方法
     @Test
     public void tesr4(){
-        /*List<User> list = new ArrayList<>();
-        List<User> list1 = new ArrayList<>();
+        /*List<User1> list = new ArrayList<>();
+        List<User1> list1 = new ArrayList<>();
         //使用List的求交集方法
-        User u1 = new User("zhangsan","zhangsan");
-        User u2 = new User("lisi","lisi");
-        User u3 = new User("zhangsan","zhangsan");
+        User1 u1 = new User1("zhangsan","zhangsan");
+        User1 u2 = new User1("lisi","lisi");
+        User1 u3 = new User1("zhangsan","zhangsan");
         list.add(u1);
         list.add(u2);
         list1.add(u3);
         list.retainAll(list1);
-        for (User user : list) {
+        for (User1 user : list) {
             System.out.println(user.getUsername());
         }*/
     }
@@ -101,18 +101,18 @@ public class OptionalMethod {
 
     @Test
     public void test1() {
-        //public User(Integer id, String username, String password, Integer parentId) {
-        User u1 = new User(1, "zhangsan", "zhangsan", -1);
-        User u2 = new User(2, "lisi", "lisi", -2);
-        User u3 = new User(3, "wangwu", "wangwu", -1);
-        List<User> list = new ArrayList<User>();
+        //public User1(Integer id, String username, String password, Integer parentId) {
+        User1 u1 = new User1(1, "zhangsan", "zhangsan", -1);
+        User1 u2 = new User1(2, "lisi", "lisi", -2);
+        User1 u3 = new User1(3, "wangwu", "wangwu", -1);
+        List<User1> list = new ArrayList<User1>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Optional<List<User>> listOptional = Optional.ofNullable(list); //使用ofNullable创建实例
+        Optional<List<User1>> listOptional = Optional.ofNullable(list); //使用ofNullable创建实例
         if (listOptional.isPresent()) {
             //map映射想要的列
-            List<String> collect = listOptional.get().stream().map(User::getUsername).collect(Collectors.toCollection(ArrayList::new));
+            List<String> collect = listOptional.get().stream().map(User1::getUsername).collect(Collectors.toCollection(ArrayList::new));
             for (String s : collect) {
                 System.out.println(s);
             }
@@ -132,16 +132,16 @@ public class OptionalMethod {
 
     @Test
     public void test3() {
-        //public User(Integer id, String username, String password, Integer parentId) {
-        User u1 = new User(1, "zhangsan", "zhangsan", -1);
-        User u2 = new User(2, "lisi", "lisi", -2);
-        User u3 = new User(3, "wangwu", "wangwu", -1);
-        List<User> list = new ArrayList<User>();
+        //public User1(Integer id, String username, String password, Integer parentId) {
+        User1 u1 = new User1(1, "zhangsan", "zhangsan", -1);
+        User1 u2 = new User1(2, "lisi", "lisi", -2);
+        User1 u3 = new User1(3, "wangwu", "wangwu", -1);
+        List<User1> list = new ArrayList<User1>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        //先求List<User>   成  mao映射成 List<Integer> 然后过滤  过滤完最后再使用终结方法collect方法 转成List
-        List<Integer> collect = list.stream().map(User::getId).filter(value->value>1).collect(Collectors.toList());
+        //先求List<User1>   成  mao映射成 List<Integer> 然后过滤  过滤完最后再使用终结方法collect方法 转成List
+        List<Integer> collect = list.stream().map(User1::getId).filter(value->value>1).collect(Collectors.toList());
         for (Integer integer : collect) {
             System.out.println(integer);
         }

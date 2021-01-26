@@ -1,6 +1,6 @@
 package com.sph.practice.test.jdk8.lambda;
 
-import com.sph.practice.test.bean.User;
+import com.sph.practice.test.bean.User1;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -197,8 +197,8 @@ public class StreamTest {
      */
     @Test
     public void nullTest(){
-        User u = new User();
-        User u1 = null;
+        User1 u = new User1();
+        User1 u1 = null;
         String s = null;
         String d = "123";
 

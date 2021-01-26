@@ -1,8 +1,6 @@
 package com.sph.practice.test.markdown.io;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.sph.practice.test.bean.User;
+import com.sph.practice.test.bean.User1;
 import org.junit.Test;
 
 import java.io.*;
@@ -101,9 +99,9 @@ public class FileIOTest {
             fos = new FileOutputStream("D:\\temp\\IO流练习demo\\objectOutputStream.txt");
             //获取处理流对象（对象输出流 相当于内层嵌套了文件输出流）
             oos = new ObjectOutputStream(fos);
-            User user = new User("zhangsan", "123456");
+            User1 user1 = new User1("zhangsan", "123456");
             //写入对象
-            oos.writeObject(user);
+            oos.writeObject(user1);
             //写入的时候，在txt文件呈现的也是二进制数据来的，只不过传输过程我们使用了处理流(封装流)
             oos.flush();
         } catch (Exception e) {
@@ -128,10 +126,10 @@ public class FileIOTest {
         try {
             fis = new FileInputStream("D:\\temp\\IO流练习demo\\objectOutputStream.txt");
             ois = new ObjectInputStream(fis);
-            User user = (User) ois.readObject();
-            System.out.println(user);
+            User1 user1 = (User1) ois.readObject();
+            System.out.println(user1);
             /*
-                User{id=null, username='zhangsan', password='123456', parentId=null, score=null}
+                User1{id=null, username='zhangsan', password='123456', parentId=null, score=null}
              */
         } catch (Exception e) {
             e.printStackTrace();

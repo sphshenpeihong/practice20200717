@@ -59,7 +59,7 @@ public class RequestCtl {
         //requestURL ： http://localhost:8085/shop/request/test1.do
 
         //7、获得头部的某个属性
-        String userAgent = request.getHeader("User-Agent");
+        String userAgent = request.getHeader("User1-Agent");
         System.out.println("userAgent" + " ： " + userAgent);
         //userAgent ： PostmanRuntime/7.26.5
 

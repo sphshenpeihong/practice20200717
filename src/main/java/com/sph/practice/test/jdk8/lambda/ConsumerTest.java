@@ -29,18 +29,18 @@ public class ConsumerTest {
     }
 
     /*public static void main(String[] args) {
-        List<User> list = new ArrayList<>();
-        User u = new User();
+        List<User1> list = new ArrayList<>();
+        User1 u = new User1();
         u.setPassword("123");
         u.setUsername("123");
         list.add(u);
-        for (User user : list) {
+        for (User1 user : list) {
             System.out.println(user.getUsername());
         }
-        for (User user : list) {
+        for (User1 user : list) {
             user.setUsername("1");
         }
-        for (User user : list) {
+        for (User1 user : list) {
             System.out.println(user.getUsername());
         }
     }*/

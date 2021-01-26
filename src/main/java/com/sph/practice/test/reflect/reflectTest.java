@@ -1,12 +1,9 @@
 package com.sph.practice.test.reflect;
 
-import com.sph.practice.test.bean.User;
-import org.apache.poi.ss.formula.functions.T;
+import com.sph.practice.test.bean.User1;
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.util.List;
 
 /**
  * Created by Shen Peihong on 2020/9/8 10:40
@@ -21,10 +18,10 @@ public class reflectTest {
      */
     @Test
     public void test() throws Exception {
-        User u = new User(1,"zhangsan","123456",-1);
+        User1 u = new User1(1,"zhangsan","123456",-1);
 
-        Class user = User.class;
-        Class user1 = Class.forName("com.sph.practice.test.bean.User");
+        Class user = User1.class;
+        Class user1 = Class.forName("com.sph.practice.test.bean.User1");
         Field id = user1.getDeclaredField("id");
         id.setAccessible(true);
         System.out.println(id.get(u));
@@ -35,8 +32,8 @@ public class reflectTest {
      */
     @Test
     public void test1(){
-        User user = (User) this.reflectMethod(User.class);
-        System.out.println(user);
+        User1 user1 = (User1) this.reflectMethod(User1.class);
+        System.out.println(user1);
     }
 
     /**
@@ -45,7 +42,7 @@ public class reflectTest {
      * @param <T> 声明一个泛型
      * @return
      */
-    private <T extends User> T reflectMethod(Class<T> c){
+    private <T extends User1> T reflectMethod(Class<T> c){
         try {
             T t = c.newInstance();
             return t;
@@ -59,7 +56,7 @@ public class reflectTest {
 
         //获取Class对象
         //1，通过对象来获取.class对象
-        User u1 = new User();
+        User1 u1 = new User1();
         Class c1 = u1.getClass();  //获取一个类的.class对象的一种方法
 
         reflectTest d1 = new reflectTest();
@@ -68,12 +65,12 @@ public class reflectTest {
         System.out.println(c1==c2);
 
         //2，通过类来获取.class对象
-        Class c3 = User.class;
-        Class c4 = User.class;
+        Class c3 = User1.class;
+        Class c4 = User1.class;
         System.out.println(c1==c4);
 
         //3，通过Class类里面的静态方法forName();
-        Class c5 = Class.forName("com.sikiedu.chapter4.User");
+        Class c5 = Class.forName("com.sikiedu.chapter4.User1");
         System.out.println(c5==c2);
     }
 

@@ -1,6 +1,5 @@
 package com.sph.practice.test.sebase;
 
-import com.sph.practice.test.bean.User;
 import org.junit.Test;
 
 /**

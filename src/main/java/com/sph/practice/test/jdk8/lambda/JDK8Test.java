@@ -1,6 +1,6 @@
 package com.sph.practice.test.jdk8.lambda;
 
-import com.sph.practice.test.bean.User;
+import com.sph.practice.test.bean.User1;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -20,14 +20,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsSimple(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        List<String> collect = list.stream().map(User::getUsername).collect(Collectors.toList());
+        List<String> collect = list.stream().map(User1::getUsername).collect(Collectors.toList());
         System.out.println(collect);
     }
 
@@ -36,14 +36,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest1(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Set<String> collect = list.stream().map(User::getUsername).collect(Collectors.toSet());
+        Set<String> collect = list.stream().map(User1::getUsername).collect(Collectors.toSet());
         System.out.println(collect);
     }
 
@@ -52,14 +52,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest6(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Set<String> treeSet = list.stream().map(User::getUsername).collect(Collectors.toCollection(TreeSet::new));
+        Set<String> treeSet = list.stream().map(User1::getUsername).collect(Collectors.toCollection(TreeSet::new));
         System.out.println(treeSet);
     }
 
@@ -68,14 +68,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest2(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        String collect = list.stream().map(User::getUsername).collect(Collectors.joining("|")); //也可以使用StringUtils.join方法连接
+        String collect = list.stream().map(User1::getUsername).collect(Collectors.joining("|")); //也可以使用StringUtils.join方法连接
         System.out.println(collect);
     }
 
@@ -84,14 +84,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest3(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        List<String> collect = list.stream().map(User::getUsername).collect(Collectors.toList()); //也可以使用StringUtils.join方法连接
+        List<String> collect = list.stream().map(User1::getUsername).collect(Collectors.toList()); //也可以使用StringUtils.join方法连接
         System.out.println(collect);
 
         String join = StringUtils.join(collect, "|");
@@ -99,18 +99,18 @@ public class JDK8Test {
     }
 
     /**
-     * Collectors.summingInt()   将List<User>中某个Int类型的值 累加
+     * Collectors.summingInt()   将List<User1>中某个Int类型的值 累加
      */
     @Test
     public void collectorsTest4(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Integer collect = list.stream().collect(Collectors.summingInt(User::getId));
+        Integer collect = list.stream().collect(Collectors.summingInt(User1::getId));
         System.out.println(collect);
     }
 
@@ -119,18 +119,18 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest5(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Map<Integer, List<User>> collect = list.stream().collect(Collectors.groupingBy(User::getParentId));
-        Set<Map.Entry<Integer, List<User>>> entrySet = collect.entrySet();
-        for (Map.Entry<Integer, List<User>> entry : entrySet) {
-            List<User> entryValue = entry.getValue();
-            List<String> collect1 = entryValue.stream().map(User::getUsername).collect(Collectors.toList());
+        Map<Integer, List<User1>> collect = list.stream().collect(Collectors.groupingBy(User1::getParentId));
+        Set<Map.Entry<Integer, List<User1>>> entrySet = collect.entrySet();
+        for (Map.Entry<Integer, List<User1>> entry : entrySet) {
+            List<User1> entryValue = entry.getValue();
+            List<String> collect1 = entryValue.stream().map(User1::getUsername).collect(Collectors.toList());
         }
     }
 
@@ -139,10 +139,10 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest50(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
@@ -150,7 +150,7 @@ public class JDK8Test {
         //Supplier 生产接口
         //Consumer函数接口 消费接口
         //Predicate函数式接口，返回值是true 里面是判断式
-        list.stream().collect(Collectors.groupingBy(User::getParentId)); //Function函数式接口，将T类型转换成R类型
+        list.stream().collect(Collectors.groupingBy(User1::getParentId)); //Function函数式接口，将T类型转换成R类型
     }
 
     /**
@@ -158,14 +158,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest7(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Map<Integer, Integer> collect = list.stream().collect(Collectors.groupingBy(User::getParentId, Collectors.summingInt(User::getId)));
+        Map<Integer, Integer> collect = list.stream().collect(Collectors.groupingBy(User1::getParentId, Collectors.summingInt(User1::getId)));
 
     }
 
@@ -180,14 +180,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest70(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        /*Map<Integer, Integer> collect = list.stream().collect(Collectors.groupingBy(User::getParentId, Collectors.min));*/
+        /*Map<Integer, Integer> collect = list.stream().collect(Collectors.groupingBy(User1::getParentId, Collectors.min));*/
 
     }
 
@@ -203,16 +203,16 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest8(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Map<Boolean, List<User>> collect = list.stream().collect(Collectors.partitioningBy(s -> s.getScore() >= 60)); //按照分数及格与否对学生进行分组
-        Set<Map.Entry<Boolean, List<User>>> entrySet = collect.entrySet();
-        for (Map.Entry<Boolean, List<User>> entry : entrySet) {
+        Map<Boolean, List<User1>> collect = list.stream().collect(Collectors.partitioningBy(s -> s.getScore() >= 60)); //按照分数及格与否对学生进行分组
+        Set<Map.Entry<Boolean, List<User1>>> entrySet = collect.entrySet();
+        for (Map.Entry<Boolean, List<User1>> entry : entrySet) {
             for (int i=0;i<entry.getValue().size();i++){
                 System.out.println(entry.getKey()+"："+entry.getValue().get(i).getUsername());
             }
@@ -226,14 +226,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest18(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Map<Boolean, Set<User>> collect = list.stream().collect(Collectors.partitioningBy(s -> s.getScore() >= 60, Collectors.toSet()));
+        Map<Boolean, Set<User1>> collect = list.stream().collect(Collectors.partitioningBy(s -> s.getScore() >= 60, Collectors.toSet()));
 
     }
 
@@ -242,10 +242,10 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest19(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
@@ -253,7 +253,7 @@ public class JDK8Test {
         //toMap的重载方法参数   两个参数时，  arg1:key生成器   arg2:value生成器
         // （但是这里Key生成器有一个问题，那么就是不能重复，识别出重复时，会抛duplicate key异常 重复key） 与我们平常使用Map会覆盖恰好不同
         // 如果想要实现相同key ，用新值覆盖老值的方法的话，那么需要再第三个参数指定
-        Map<Integer, User> collect = list.stream().collect(Collectors.toMap(User::getParentId, e -> e, (oldValue, newValue) -> newValue));
+        Map<Integer, User1> collect = list.stream().collect(Collectors.toMap(User1::getParentId, e -> e, (oldValue, newValue) -> newValue));
         //arg1:key生成器 arg2:value生成器  arg3:当key相同时，指定取oldValue还是newValue
     }
 
@@ -262,14 +262,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest190(){
-        User user = new User("1","111");
-        User user1 = new User("2","222");
-        List<User> list = new ArrayList<>();
+        User1 user = new User1("1","111");
+        User1 user1 = new User1("2","222");
+        List<User1> list = new ArrayList<>();
         list.add(user);
         list.add(user1);
         //下面对一个List<VO>类改成Map映射类型
         //toMap里面的函数式接口是Function 也就是转换性接口
-        Map<String, String> collect = list.stream().collect(Collectors.toMap(User::getUsername, User::getPassword, (oldValue, newValue) -> newValue));//toMap有三个参数，参数1：key生成器，参数2：value生成器，参数3，规定当key值冲突时，新值替换掉旧值 这种一般不会，因为key会是唯一的
+        Map<String, String> collect = list.stream().collect(Collectors.toMap(User1::getUsername, User1::getPassword, (oldValue, newValue) -> newValue));//toMap有三个参数，参数1：key生成器，参数2：value生成器，参数3，规定当key值冲突时，新值替换掉旧值 这种一般不会，因为key会是唯一的
         Set<Map.Entry<String, String>> entrySet = collect.entrySet();
         for (Map.Entry<String, String> entry : entrySet) {
             System.out.println(entry.getKey());
@@ -325,15 +325,15 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest11(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
         //mapping可以将list本身的类型去转换成其它类型，试试将PO类去转换成String?
-        List<String> collect = list.stream().collect(Collectors.mapping(User::getUsername, Collectors.toList()));
+        List<String> collect = list.stream().collect(Collectors.mapping(User1::getUsername, Collectors.toList()));
         System.out.println(collect);
     }
 
@@ -350,11 +350,11 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest12(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        User u4 = new User(4,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        User1 u4 = new User1(4,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
@@ -370,10 +370,10 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest13(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
@@ -389,14 +389,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest14(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        /*list.stream().map(User::getId).reduce(Integer::)*/
+        /*list.stream().map(User1::getId).reduce(Integer::)*/
 
     }
 
@@ -405,14 +405,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest15(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Integer integer = list.stream().map(User::getId).reduce(Integer::min).get();  //求list中的最小值
+        Integer integer = list.stream().map(User1::getId).reduce(Integer::min).get();  //求list中的最小值
         System.out.println(integer);
 
     }
@@ -422,14 +422,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest16(){
-        User u1 = new User(2,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(1,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(2,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(1,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        Optional<Integer> collect = list.stream().map(User::getId).collect(Collectors.reducing(Integer::min));
+        Optional<Integer> collect = list.stream().map(User1::getId).collect(Collectors.reducing(Integer::min));
         System.out.println(collect);
 
     }
@@ -440,14 +440,14 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest17(){
-        User u1 = new User(2,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(1,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(2,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(1,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);
         list.add(u3);
-        LinkedHashMap<Integer, Set<User>> collect = list.stream().collect(Collectors.groupingBy(User::getParentId, LinkedHashMap::new, Collectors.toSet()));
+        LinkedHashMap<Integer, Set<User1>> collect = list.stream().collect(Collectors.groupingBy(User1::getParentId, LinkedHashMap::new, Collectors.toSet()));
 
     }
 
@@ -476,10 +476,10 @@ public class JDK8Test {
 
     @Test
     public void collectosTest(){
-        User u1 = new User(1,"zhangsan","zhangsan",-1);
-        User u2 = new User(2,"lisi","lisi",-1);
-        User u3 = new User(3,"wangwu","wangwu",-2);
-        List<User> list = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
+        User1 u2 = new User1(2,"lisi","lisi",-1);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+        List<User1> list = new ArrayList<>();
     }
 
     /**
@@ -487,18 +487,18 @@ public class JDK8Test {
      */
     @Test
     public void collectorsTest21() throws Exception {
-        User u1 = new User(1,"zhangsan","zhangsan",-1,61);
-        User u2 = new User(2,"lisi","lisi",-1,59);
-        User u3 = new User(3,"wangwu","wangwu",-2,50);
-        List<User> list = new ArrayList<>();
-        List<User> list1 = new ArrayList<>();
+        User1 u1 = new User1(1,"zhangsan","zhangsan",-1,61);
+        User1 u2 = new User1(2,"lisi","lisi",-1,59);
+        User1 u3 = new User1(3,"wangwu","wangwu",-2,50);
+        List<User1> list = new ArrayList<>();
+        List<User1> list1 = new ArrayList<>();
         int i = 100;
         String s = null;
         list.add(u1);
         list.add(u2);
         list.add(u3);
         System.out.println(list);
-        Optional<List<User>> listOptional = Optional.ofNullable(list);
+        Optional<List<User1>> listOptional = Optional.ofNullable(list);
         if(listOptional.isPresent()){
             /*listOptional.*/
         }else{

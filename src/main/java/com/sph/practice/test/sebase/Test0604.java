@@ -4,8 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sph.practice.mybatis.vo.Param1VO;
-import com.sph.practice.mybatis.vo.ParamVO;
-import com.sph.practice.test.bean.User;
+import com.sph.practice.test.bean.User1;
 import com.sph.practice.test.controller.bean.DefaultBean;
 import com.sph.practice.test.jedis.utils.JedisUtils;
 import com.sph.practice.test.param.BankVO;
@@ -135,7 +134,7 @@ public class Test0604 {
 
     @Test
     public void test12(){
-        User u = new User(1, "1", "2");
+        User1 u = new User1(1, "1", "2");
         System.out.println(this.returnObject(u).getUsername());
     }
 
