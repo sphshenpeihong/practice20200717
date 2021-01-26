@@ -15,10 +15,9 @@ import javax.annotation.PostConstruct;
  *
  * @since 1.0.0
  */
-@Component
+//@Component
 public class ParentBeanVO {
     private String parentStr = "123";
-    @Nullable
     private static BankVO bankVO;
 
     static {

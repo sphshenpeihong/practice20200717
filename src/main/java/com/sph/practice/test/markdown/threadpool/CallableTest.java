@@ -26,15 +26,25 @@ public class CallableTest implements Callable<Integer> {
             CallableTest thread = new CallableTest();
             //支持返回值的线程只支持实现Callable接口呢
             Future<Integer> submit = instance.submit(thread); //每个线程交给线程池去跑完后，会返回返回值
-            TimeUnit.SECONDS.sleep(1);
+            System.out.println("11111");
+            /*Integer integer = submit.get();
+            System.out.println(integer);*/
+            //TimeUnit.SECONDS.sleep(1);
         }
-        TimeUnit.SECONDS.sleep(10);
+        //TimeUnit.SECONDS.sleep(10);
     }
 
 
     @Override
     public Integer call() throws Exception {
-        TimeUnit.SECONDS.sleep(1);
+        long start = System.currentTimeMillis();
+        System.out.println((System.currentTimeMillis() - start) / 1000);
+        TimeUnit.SECONDS.sleep(2);
+
+
+
+
+        System.out.println((System.currentTimeMillis() - start) / 1000);
         return num++;
     }
 
