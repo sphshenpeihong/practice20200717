@@ -11,7 +11,10 @@ import lombok.Data;
  */
 
 @Data
-public class User {
+public class QyPlusUserPO {
+
+    // MP提供了很多主键生成策略，只需要你在实体类的id上面加个注解制订后
+
     private Long id;
     private String name;
     private Integer age;

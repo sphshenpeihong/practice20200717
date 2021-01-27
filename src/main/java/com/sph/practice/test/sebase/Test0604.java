@@ -331,6 +331,46 @@ public class Test0604 {
         System.out.println(list);
     }
 
+    /**
+     *
+     */
+    @Test
+    public void test27(){
+        String str = "http://localhost:8085/wxqyh/learnonline.html?corp_id=10086&agentCode=learnonline#learnonline/?id=2312323";
+        //目标：将appId追加在参数列上 最好是追加在?后面，不能直接追加在最后面呢。
+        //实现：转成sb，sb里面有个insert方法可以指定位置索引插入，
+        //我们先获得?出现的索引，
+        int index = str.indexOf("?");
+        StringBuffer sb = new StringBuffer(str);
+        StringBuffer insert = sb.insert(++index, String.format("appId=%s&", 6000));
+        System.out.println(insert);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test28(){
+        // indexOf
+        String str = "http";
+        int h = str.indexOf("1");
+        System.out.println(h);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test29(){
+        String str = "555";
+        str = handleUrl(str);
+        System.out.println(str);
+    }
+
+    private String handleUrl(String str){
+        return str + "666";
+    }
+
 
 
 
