@@ -120,7 +120,8 @@ public class ClassMgrCtl {
 
     @RequestMapping("/test10.do")
     public void test10(){
-
+        // 有加：1
+        //没加 ：2
         ClassVO classVO = classService.getClassVO();
         System.out.println(classVO);
     }

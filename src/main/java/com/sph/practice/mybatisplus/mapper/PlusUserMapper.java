@@ -10,6 +10,6 @@ import com.sph.practice.mybatisplus.pojo.po.QyPlusUserPO;
  * @since 1.0.0
  */
 
-public interface PlusUserMapper extends BaseMapper<QyPlusUserPO> {
+public interface PlusUserMapper extends BaseMapper {
 
 }

@@ -14,6 +14,8 @@ public class ClassVO {
     private Integer id;
     private String className;
     private List<QyStudentPO> studentPOList;
+    // 基本变量
+    //
 
     public Integer getId() {
         return id;
