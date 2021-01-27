@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Component
 @SpringBootTest
-public class QyPlusUserPO1Test {
+public class QyPlusUser1Test {
 
     @Resource
     private IClassMapper classMapper;

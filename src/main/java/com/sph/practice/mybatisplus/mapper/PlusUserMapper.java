@@ -1,7 +1,7 @@
 package com.sph.practice.mybatisplus.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sph.practice.mybatisplus.pojo.po.QyPlusUserPO;
+import com.sph.practice.mybatisplus.pojo.po.QyPlusUser;
 
 /**
  * Created by Shen Peihong on 2021/1/26
@@ -10,6 +10,6 @@ import com.sph.practice.mybatisplus.pojo.po.QyPlusUserPO;
  * @since 1.0.0
  */
 
-public interface PlusUserMapper extends BaseMapper {
+public interface PlusUserMapper extends BaseMapper<QyPlusUser> {
 
 }
