@@ -13,6 +13,7 @@ import com.sph.practice.mybatis.vo.CSVO;
 import com.sph.practice.mybatis.vo.CSVO1;
 import com.sph.practice.mybatis.vo.ClassVO;
 import com.sph.practice.mybatis.vo.StudentVO;
+import com.sph.practice.test.controller.ui.DetailTest;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +48,7 @@ public class ClassMgrCtl {
 
     @RequestMapping("/test2.do")
     public void test2(Integer id){
+        DetailTest detailTest = new DetailTest();
         IClassService classService1 = ApplicationContextUtil.getBean("classService", IClassService.class);
         List<QyClassPO> poList = classService1.getClassByMap(id);
         for (QyClassPO po : poList) {

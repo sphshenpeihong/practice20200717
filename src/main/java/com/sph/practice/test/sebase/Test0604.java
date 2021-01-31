@@ -1,14 +1,17 @@
 package com.sph.practice.test.sebase;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sph.practice.mybatis.vo.Param1VO;
 import com.sph.practice.test.bean.User1;
 import com.sph.practice.test.controller.bean.DefaultBean;
+import com.sph.practice.test.controller.bean.ParamBean;
 import com.sph.practice.test.jedis.utils.JedisUtils;
 import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.sebase.util.ObjectUtil1;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.*;
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
  *
  * @since 1.0.0
  */
+@Slf4j
 public class Test0604 {
 
     public void invokeTest(){
@@ -371,7 +375,50 @@ public class Test0604 {
         return str + "666";
     }
 
+    /**
+     * 切割祖先单位
+     */
+    @Test
+    public void test30(){
+        String unitFullName = "中交集团->通产部门->研发三部->研发二组->打杂祖";
+        //用lastIndexOf判断是否包含 "->"字眼，如果存在的话，那么进行切割，切割的方法从0到 lastIndex -1
 
+        List<String> ancestorDeptList = new ArrayList<>();
+        getAncestorDepts(unitFullName, ancestorDeptList);
+        System.out.println(ancestorDeptList);
+    }
+
+    // 提供一个递归切割方法，入参String和List 获取祖先部门
+
+    private void getAncestorDepts(String unitFullName, List<String> ancestorDeptList) {
+        int lastIndex = unitFullName.lastIndexOf("->");
+        if (lastIndex > -1) {
+            //如果有的话，先subString进行切割，然后添加到List后，再进行递归
+            String preDeptName = unitFullName.substring(0, lastIndex);
+            ancestorDeptList.add(preDeptName);
+            getAncestorDepts(preDeptName, ancestorDeptList);
+        }
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test31(){
+        List<ParamBean> list = new ArrayList<ParamBean>(){
+            {
+                add(new ParamBean("111","111","111"));
+                add(new ParamBean("222","222","222"));
+            }
+        };
+        Map<String, ParamBean> map = new HashMap<String, ParamBean>() {
+            {
+                put("1", new ParamBean("111","111","111"));
+                put("2", new ParamBean("222","222","222"));
+            }
+        };
+        log.info(JSON.toJSONString(map));
+    }
 
 
 }

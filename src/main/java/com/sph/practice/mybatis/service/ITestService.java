@@ -14,4 +14,7 @@ public interface ITestService {
 
     QyTestPO selectData();
 
+    // A账户-50 B账户+50
+    void handleAccount();
+
 }

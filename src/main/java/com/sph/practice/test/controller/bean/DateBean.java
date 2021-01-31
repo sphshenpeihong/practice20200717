@@ -6,6 +6,7 @@ package com.sph.practice.test.controller.bean;
  *
  * @since 1.0.0
  */
+
 public class DateBean {
 
     private String id ;

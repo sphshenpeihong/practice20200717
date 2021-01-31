@@ -42,14 +42,14 @@ public class DetailTest {
     //都会在类装载阶段都先赋零值了。
     //引入值
     @Value("${is_open}")
-    private static boolean isOpen;
+    public boolean isOpen;
 
     //许多类加了注解，Springboot项目，加了注解，那么tomcat启动的时候，注解扫描的时候，就会去扫描到加了注解的类
     //加了注解的类里面有static静态代码块 或 @PostConstruct声明的方法的话，都会去顺带执行的呢
-    static {
+    /*static {
         System.out.println("1打印is_open" + isOpen);
         log.info("我执行了哈1");
-    }
+    }*/
 
     public DetailTest(){
         log.info("看看构造方法是否执行");
@@ -70,7 +70,7 @@ public class DetailTest {
      * 测试返回json格式，但是String字符串是重新编码，而不是采用utf-8的编码
      */
     @RequestMapping(path = "/test1.do")
-    public static ResultVO test1() throws UnsupportedEncodingException {
+    public ResultVO test1() throws UnsupportedEncodingException {
         System.out.println("我也看看isOpen " + isOpen);
         String s = new String("测试一下".getBytes(), "UTF-8");
         ResultVO resultVO = new ResultVO();

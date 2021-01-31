@@ -18,7 +18,8 @@ public interface ITestMapper {
     //先查询
     QyTestPO selectData();
 
-    //one
+    void addMoney();
 
-    //two
+    void reduceMoney();
+
 }

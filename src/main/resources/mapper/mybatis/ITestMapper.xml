@@ -8,7 +8,17 @@
     </insert>
 
     <select id="selectData" resultType="QyTestPO">
-        select id,date1,time1,datetime1 from qy_test where id = 1
+        select id,date1,time1,datetime1,money from qy_test where id = 1
     </select>
+
+    <!--void addMoney();
+
+    void reduceMoney();-->
+    <update id="addMoney">
+        UPDATE qy_test SET money = money - 50 WHERE id = 1
+    </update>
+    <update id="reduceMoney">
+        UPDATE qy_test SET money = money + 50 WHERE id = 3
+    </update>
 
 </mapper>

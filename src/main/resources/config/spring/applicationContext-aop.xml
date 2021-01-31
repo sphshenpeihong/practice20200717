@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <!-- 事务核心管理器(由于我们的项目是Springboot项目，这里底层已经帮我们配好了) -->
+    <!--<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" -->
+
+    <!-- 事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- name是需要进行事务处理的方法名 -->
+            <!-- 通知这里只配一些查询的，然后设置只读，因为默认是可写可读 -->
+            <!--<tx:method name="handleAccount" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="load*" read-only="true"/>
+            <tx:method name="list*" read-only="true"/>
+            <tx:method name="count*" read-only="true"/>
+            <tx:method name="search*" read-only="true"/>
+            <tx:method name="pageList*" read-only="true"/>
+            <!-- 有异常时进行回滚事务 -->
+            <tx:method name="*" rollback-for="Throwable"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--切面 = 切点 + 通知-->
+    <aop:config>
+        <!-- 切点表达式使用bean(*Service) 即是：所以符合*Service命名的bean对象 -->
+        <aop:pointcut id="txPC" expression="bean(*Service)"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPC"/>
+    </aop:config>
+
+</beans>

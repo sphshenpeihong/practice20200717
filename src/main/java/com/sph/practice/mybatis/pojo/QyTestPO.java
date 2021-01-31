@@ -14,6 +14,7 @@ import java.util.Date;
  */
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class QyTestPO {
     private Integer id;
     //@JSONField(format = "yyyy-MM-dd")
@@ -24,6 +25,16 @@ public class QyTestPO {
 
     //@JSONField(format = "HH-mm-ss")
     private String datetime1;
+
+    private Float money;
+
+    public Float getMoney() {
+        return money;
+    }
+
+    public void setMoney(Float money) {
+        this.money = money;
+    }
 
     public Integer getId() {
         return id;

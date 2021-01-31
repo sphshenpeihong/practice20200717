@@ -192,6 +192,19 @@
             <version>5.4.1.Final</version>
         </dependency>
 
+        <!-- Spring-aop -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.13</version>
+        </dependency>
+        <!-- aspectj支持 -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.9</version>
+        </dependency>
+
    </dependencies>
 
     <build>

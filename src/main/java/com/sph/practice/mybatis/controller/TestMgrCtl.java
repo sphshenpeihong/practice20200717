@@ -43,15 +43,12 @@ public class TestMgrCtl {
         testService.insertData();
     }
 
-    /**
-     *
-     */
-    @Test
-    public void test1(){
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String format = sdf.format(date);
-        System.out.println(format);
-
+    @RequestMapping("/test3.do")
+    public void test3(){
+        // 这里去update数据库的数据  金额的 此时没加事务
+        testService.handleAccount();
     }
+
+
+
 }

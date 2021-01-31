@@ -6,6 +6,7 @@ import com.sph.practice.mybatis.mapper.IUserMapper;
 import com.sph.practice.mybatis.pojo.QyTestPO;
 import com.sph.practice.mybatis.service.ITestService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -36,6 +37,28 @@ public class TestServiceImpl implements ITestService {
     @Override
     public QyTestPO selectData() {
         return testMapper.selectData();
+    }
+
+    @Transactional
+    @Override
+    public void handleAccount() {
+        System.out.println("判断开启事务的时机");
+        QyTestPO qyTestPO1 = testMapper.selectData();
+
+        // update语句  调+50的方法
+        testMapper.addMoney();
+
+
+        // select语句  一级缓存
+        QyTestPO qyTestPO2 = testMapper.selectData();
+        QyTestPO qyTestPO3 = testMapper.selectData();
+        QyTestPO qyTestPO4 = testMapper.selectData();
+
+        //int i = 1 / 0;
+
+        // update语句  调-50的方法
+        testMapper.reduceMoney();
+        System.out.println("判断提交事务的时机");
     }
 
 

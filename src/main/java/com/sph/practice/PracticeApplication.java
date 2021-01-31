@@ -7,9 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @MapperScan({"com.sph.practice.mybatis.mapper", "com.sph.practice.mybatisplus.mapper"})
+@ImportResource({"classpath:applicationContext.xml"})
 public class PracticeApplication {
 
     public static void main(String[] args)
