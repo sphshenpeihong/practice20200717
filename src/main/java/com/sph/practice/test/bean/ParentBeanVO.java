@@ -4,6 +4,7 @@ import com.sph.practice.test.param.BankVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import org.junit.Test;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +32,25 @@ public class ParentBeanVO {
 
     public void setParentStr(String parentStr) {
         this.parentStr = parentStr;
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test1(){
+        //startWith
+        String str = "666";
+        boolean b = "6".startsWith(str);
+        System.out.println(b);
+        // 当前管理的部门 123
+        //  用户绑定的部门是12
+        // 用户绑定的是中交->灏明
+        // 管理员管理的部门是 中交->灏明->666
+        // userBindDeptFullName.startsWith(manageDeptFullName)
+        String userBindDeptFullName = "中交集团->1郝明测试";
+        String manageDeptFullName = "中交集团->1郝明测试->65464";
+        boolean b1 = userBindDeptFullName.startsWith(manageDeptFullName);
     }
 
   /*  public BankVO getBankVO() {

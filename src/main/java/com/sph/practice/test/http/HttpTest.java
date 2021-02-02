@@ -13,6 +13,12 @@ import org.junit.Test;
  */
 public class HttpTest {
 
+    private static String s;
+
+    static {
+        System.out.println("HttpTest");
+    }
+
     /**
      * 发起请求
      */
