@@ -41,7 +41,7 @@ public class SimpleTest {
     }
 
     /**
-     * int insert(T entity);
+     * 1、int insert(T entity);
      * 单表插入一条数据
      */
     @Test
@@ -54,7 +54,7 @@ public class SimpleTest {
     }
 
     /**
-     * int deleteById(Serializable id);
+     * 2、int deleteById(Serializable id);
      * 删除某条数据（要看具体泛型是什么类型哈，别删错了）
      * 入参声明成Serializable是因为Number类型实现了这个接口，向上转型嗷
      */
@@ -66,7 +66,7 @@ public class SimpleTest {
     }
 
     /**
-     * int deleteByMap(@Param("cm") Map<String, Object> columnMap);
+     * 3、int deleteByMap(@Param("cm") Map<String, Object> columnMap);
      * 删除数据，可以在Map添加指定的列与列对应的值
      * 若Map有多个键值对的话，到时候SQL语句是用AND连接条件的
      * 到时候实际是where 指定列名1 = 列值1 AND 指定列名2 = 列值2
@@ -78,6 +78,27 @@ public class SimpleTest {
         paramMap.put("name", "3");
         paramMap.put("age", 2);
         int row = plusUserMapper.deleteByMap(paramMap);
+        System.out.println(row);
+    }
+
+    /**
+     * 4、int delete(@Param("ew") Wrapper<T> queryWrapper);
+     */
+    @Test
+    public void deleteTest(){
+
+    }
+
+    /**
+     * int updateById(@Param("et") T entity);
+     */
+    @Test
+    public void updateTest(){
+        //更新主键id为：1354836048880775171 的数据
+        QyPlusUser user = new QyPlusUser("3", 3, "3");
+        user.setId(1354836048880775173L);
+        user.setName("123321");
+        int row = plusUserMapper.updateById(user);
         System.out.println(row);
     }
 

@@ -6,6 +6,7 @@ import com.sph.practice.test.param.BankVO;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * Created by Shen Peihong on 2020/9/16 22:03
@@ -140,4 +141,86 @@ public class JdkBase {
 
     }
 
+
+    /**
+     * ArrayList
+     */
+    @Test
+    public void test11() throws InterruptedException {
+        // 开多个线程，同事操作一个list 防止出现ConcurrentModify
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            new Thread(() -> {
+                // 多线程情况下对ArrayList进行读写，会发生线程安全问题
+                list.add(UUID.randomUUID().toString().substring(0, 4));
+                System.out.println(list);
+            }, "A").start();
+
+        }
+
+        /*for (int i = 0; i < 30; i++) {
+            new Thread(() -> {
+                list.add(UUID.randomUUID().toString().substring(0, 4));
+            }, "B").start();
+            System.out.println(Thread.currentThread().getName());
+        }*/
+
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println(list);
+    }
+
+    /**
+     * CopyOnWriteArrayList
+     * 同样也会对代码块进行上锁，每次执行添加下一个值时，会先复制一份
+     */
+    @Test
+    public void test12() throws InterruptedException {
+        // 开多个线程，同事操作一个list 防止出现ConcurrentModify
+        List<String> list = new CopyOnWriteArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            new Thread(() -> {
+                // 多线程情况下对ArrayList进行读写，会发生线程安全问题
+                list.add(UUID.randomUUID().toString().substring(0, 4));
+                System.out.println(list);
+            }, "A").start();
+
+        }
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    // 线程安全，Set
+    /**
+     *
+     */
+    @Test
+    public void test13(){
+        // HashSet的底层就是HashMap
+        Set<String> set = new HashSet<>();
+        set.add("123");
+        new ArrayList<>();
+    }
+
+    /**
+     * Callable
+     */
+    @Test
+    public void test14() throws InterruptedException, ExecutionException {
+        CallableTest callable = new CallableTest();
+        FutureTask<String> stringFutureTask = new FutureTask<>(callable);
+        new Thread(stringFutureTask).start();
+        String str = stringFutureTask.get();
+        System.out.println(str);
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+
+}
+
+class CallableTest implements Callable<String>{
+
+    @Override
+    public String call() throws Exception {
+        System.out.println("123456");
+        return "Hello,Wolrd!";
+    }
 }

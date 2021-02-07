@@ -1,8 +1,12 @@
 package com.sph.practice.mybatisplus.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+
+import java.util.Date;
 
 
 /**
@@ -22,14 +26,18 @@ public class QyPlusUser {
         UUID(4),            //生成UUID
         ID_WORKER_STR(5);
      */
-
-    // MP提供了很多主键生成策略，只需要你在实体类的id上面加个注解制订后
-    // 如果插入
+    // MP提供了很多主键生成策略，只需要你在实体类的id上面加个注解指定后
     @TableId(type = IdType.AUTO)
     private Long id;
     private String name;
     private Integer age;
     private String email;
+
+    @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 
     public QyPlusUser(String name, Integer age, String email) {
         this.name = name;

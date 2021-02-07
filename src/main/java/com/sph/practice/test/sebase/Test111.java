@@ -9,6 +9,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.*;
 import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -201,7 +203,35 @@ public class Test111 {
     }
 
 
+    /**
+     *
+     */
+    @Test
+    public void test13(){
+        Lock lock = new ReentrantLock();
+        lock.lock();
+        lock.lock();
+        lock.lock();
+        try {
+            System.out.println("123");
+        } finally {
+            lock.unlock();
+        }
+    }
 
+    /**
+     *
+     */
+    @Test
+    public void test14(){
+        List<String> list = Lists.newArrayList();
+        list.add("111");
+        list.add("222");
+        list.add("111");
+        boolean contains = list.contains("111");
+        System.out.println(contains);
+
+    }
 
 
 
