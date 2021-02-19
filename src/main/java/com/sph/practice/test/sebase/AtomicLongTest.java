@@ -17,6 +17,8 @@ public class AtomicLongTest {
         //Number类类型是许多数值类型的父类
         //创建一个原子型Integer
         AtomicInteger num = new AtomicInteger(1);
+        // 原子类的+1操作，底层是用了自旋锁的操作，CAS
+        // num.compareAndSet()
         System.out.println(num);
     }
 

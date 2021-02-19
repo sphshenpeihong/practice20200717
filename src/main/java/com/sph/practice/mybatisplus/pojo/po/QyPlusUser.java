@@ -1,10 +1,10 @@
 package com.sph.practice.mybatisplus.pojo.po;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
 
@@ -17,6 +17,9 @@ import java.util.Date;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class QyPlusUser {
     /*
         AUTO(0),            //自增，需要数据库设置自增才有效
@@ -32,6 +35,9 @@ public class QyPlusUser {
     private String name;
     private Integer age;
     private String email;
+
+    @Version
+    private Integer version;
 
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;

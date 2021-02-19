@@ -1,6 +1,9 @@
 package com.sph.practice.mybatisplus;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Maps;
 import com.sph.practice.mybatisplus.mapper.PlusUserMapper;
 import com.sph.practice.mybatisplus.pojo.po.QyPlusUser;
@@ -100,6 +103,90 @@ public class SimpleTest {
         user.setName("123321");
         int row = plusUserMapper.updateById(user);
         System.out.println(row);
+    }
+
+    /**
+     * 测试乐观锁，先select，然后执行update的时候，会判断当前乐观锁字段与select时的对比，若不一致，则修改不成功
+     */
+    @Test
+    public void versionTest(){
+        QyPlusUser qyPlusUser = plusUserMapper.selectById(1354836048880775173L);
+        qyPlusUser.setName("version");
+        int row = plusUserMapper.updateById(qyPlusUser);
+        System.out.println(row);
+    }
+
+    /**
+     * 测试乐观锁，
+     * 修改完毕后，没及时update，这个时候也被其它线程给update了，那么我慢了一点，还能Update成功吗？
+     */
+    @Test
+    public void versionTest1() {
+        QyPlusUser user1 = plusUserMapper.selectById(1354836048880775173L);
+        user1.setName("version");
+
+        // 模拟另外一个线程B，在A线程还没update的时候，结果B成功了，A没成功
+        // 因为当A执行的时候，判断乐观锁字段版本对不上，所以本次执行update语句失败
+        QyPlusUser user2 = plusUserMapper.selectById(1354836048880775173L);
+        user2.setName("niubi");
+        int row2 = plusUserMapper.updateById(user2);
+        System.out.println(row2);
+
+        int row1 = plusUserMapper.updateById(user1);
+    }
+
+    /**
+     * List<T> selectByMap(@Param("cm") Map<String, Object> columnMap);
+     */
+    @Test
+    public void selectByMapTest() {
+        // 用map设置条件查询 多个条件用AND连接
+        Map<String, Object> paramMap = Maps.newHashMap();
+        paramMap.put("email", "3");
+        paramMap.put("age", "3");
+
+        List<QyPlusUser> userList = plusUserMapper.selectByMap(paramMap);
+        userList.forEach(System.out::println);
+    }
+
+    /**
+     * Wrapper是底层接口，具体许多条件构造器的方法封装到抽象类AbstractWrapper
+     */
+    @Test
+    public void queryWrapperTest() {
+        // 查找年龄大于17岁，名字是J开头的数据
+        QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
+        wrapper.gt("age", 17);
+        wrapper.likeRight("name", "J");
+
+        List<QyPlusUser> userList = plusUserMapper.selectList(wrapper);
+        userList.forEach(System.out::println);
+    }
+
+    /**
+     * Wrapper是底层接口，具体许多条件构造器的方法封装到抽象类AbstractWrapper
+     */
+    @Test
+    public void queryWrapperCountTest() {
+        // 查找年龄大于17岁，名字是J开头的数据
+        QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
+        wrapper.gt("age", 17);
+        wrapper.likeRight("name", "J");
+
+        Integer row = plusUserMapper.selectCount(wrapper);
+        System.out.println(row);
+    }
+
+
+
+    /**
+     * 试试MP的分页插件
+     */
+    @Test
+    public void pageSelectTest() {
+        // 创建分页对象
+        IPage<QyPlusUser> page = new Page();
+        /*plusUserMapper.selectPage()*/
     }
 
 
