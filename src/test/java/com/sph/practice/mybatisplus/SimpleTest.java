@@ -65,7 +65,7 @@ public class SimpleTest {
     public void deleteByIdTest(){
         // 删除某条数据（要看具体泛型是什么类型哈，别删错了）
         // 返回值是影响的条数
-        int row = plusUserMapper.deleteById(1354833168517992450L);
+        int row = plusUserMapper.deleteById(1354836048880775173L);
     }
 
     /**
@@ -186,7 +186,8 @@ public class SimpleTest {
     public void pageSelectTest() {
         // 创建分页对象
         IPage<QyPlusUser> page = new Page();
-        /*plusUserMapper.selectPage()*/
+        plusUserMapper.selectPage(page, null);
+        System.out.println();
     }
 
 

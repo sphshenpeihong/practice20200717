@@ -1,11 +1,15 @@
 package com.sph.practice.mybatisplus.config;
 
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.github.pagehelper.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * Created by Shen Peihong on 2021/2/10
@@ -28,10 +32,42 @@ public class MybatisPlusConfig {
         return new OptimisticLockerInterceptor();
     }
 
+    /**
+     * 分页插件
+     *
+     * @return
+     */
+    @Bean
     public PaginationInterceptor getPaginationInterceptor(){
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         paginationInterceptor.setDialectType("mysql");
         return paginationInterceptor;
     }
+
+    /**
+     * 逻辑删除
+     *
+     * @return
+     */
+    @Bean
+    public ISqlInjector getSqlInjector(){
+        return new LogicSqlInjector();
+    }
+
+    /**
+     * SQL执行效率插件（可以设置SQL执行多少秒后超时、格式化SQL等）
+     *
+     * @return
+     */
+    @Bean
+    @Profile({"dev", "test"})
+    public PerformanceInterceptor getPerformanceInterceptor(){
+        PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        performanceInterceptor.setMaxTime(3000); //ms 设置sql执行的最大时间，如果超过了则不执行
+        performanceInterceptor.setFormat(true); //格式化SQL
+        return performanceInterceptor;
+    }
+
+
 
 }

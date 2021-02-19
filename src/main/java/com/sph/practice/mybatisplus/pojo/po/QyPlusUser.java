@@ -39,6 +39,9 @@ public class QyPlusUser {
     @Version
     private Integer version;
 
+    @TableLogic
+    private Integer deleted;
+
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 

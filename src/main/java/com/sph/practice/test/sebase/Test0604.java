@@ -420,5 +420,14 @@ public class Test0604 {
         log.info(JSON.toJSONString(map));
     }
 
+    /**
+     * 获取当前项目所在的目录路径
+     */
+    @Test
+    public void test20() {
+        String projectPath = System.getProperty("user.dir");
+        System.out.println(projectPath);
+    }
+
 
 }
