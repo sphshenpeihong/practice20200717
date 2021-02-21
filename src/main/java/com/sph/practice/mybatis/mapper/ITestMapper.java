@@ -13,7 +13,7 @@ import java.util.Map;
 public interface ITestMapper {
 
     //插入数据与查询数据 关于类型
-    void insertData(Map<String, Object> map);
+    int insertData(Map<String, Object> map);
 
     //先查询
     QyTestPO selectData();
@@ -21,5 +21,7 @@ public interface ITestMapper {
     void addMoney();
 
     void reduceMoney();
+
+    int createData(QyTestPO qyTestPO);
 
 }

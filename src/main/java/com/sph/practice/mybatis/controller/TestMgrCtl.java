@@ -49,6 +49,14 @@ public class TestMgrCtl {
         testService.handleAccount();
     }
 
+    @RequestMapping("/test4.do")
+    public void test4(){
+        QyTestPO qyTestPO = new QyTestPO();
+        qyTestPO.setDate1(new Date());
+        int data = testService.createData(qyTestPO);
+        System.out.println(data);
+    }
+
 
 
 }

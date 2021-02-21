@@ -31,7 +31,8 @@ public class TestServiceImpl implements ITestService {
         Map<String, Object> map = Maps.newHashMap();
         //map.put("id", 100);
         map.put("date1", "2021-01-04");
-        testMapper.insertData(map);
+        int i = testMapper.insertData(map);
+        System.out.println("打印i ：" + i);
     }
 
     @Override
@@ -59,6 +60,11 @@ public class TestServiceImpl implements ITestService {
         // update语句  调-50的方法
         testMapper.reduceMoney();
         System.out.println("判断提交事务的时机");
+    }
+
+    @Override
+    public int createData(QyTestPO qyTestPO) {
+        return testMapper.createData(qyTestPO);
     }
 
 

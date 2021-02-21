@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sph.practice.mybatis.mapper.ITestMapper">
 
-    <!-- void insertData(); -->
-    <insert id="insertData">
+    <!-- int insertData(); -->
+    <insert id="insertData" useGeneratedKeys="true" keyProperty="id">
         insert into qy_test(date1) values (#{date1})
     </insert>
 
@@ -20,5 +20,10 @@
     <update id="reduceMoney">
         UPDATE qy_test SET money = money + 50 WHERE id = 3
     </update>
+
+    <!--  -->
+    <insert id="createData" parameterType="QyTestPO" useGeneratedKeys="true" keyProperty="id">
+        insert into qy_test(date1) values(#{date1})
+    </insert>
 
 </mapper>
