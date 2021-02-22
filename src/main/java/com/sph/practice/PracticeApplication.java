@@ -9,7 +9,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication
+// 默认只扫描practice这个目录及以下的注解，但也提供了主动扫描某些目录的属性
+@SpringBootApplication(scanBasePackages = {"com.sph.practice123"})
 @MapperScan({"com.sph.practice.mybatis.mapper", "com.sph.practice.mybatisplus.mapper"})
 @ImportResource({"classpath:applicationContext.xml"})
 public class PracticeApplication {

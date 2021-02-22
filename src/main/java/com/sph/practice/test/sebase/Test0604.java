@@ -4,6 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.sph.practice.mybatis.vo.Param1VO;
 import com.sph.practice.test.bean.User1;
 import com.sph.practice.test.controller.bean.DefaultBean;
@@ -428,6 +429,207 @@ public class Test0604 {
         String projectPath = System.getProperty("user.dir");
         System.out.println(projectPath);
     }
+
+    /**
+     * null
+     */
+    @Test
+    public void test40(){
+        int FIELD = 1;
+        Integer i = 1;
+
+        //System.out.println(FIELD == i);
+        System.out.println(!Integer.valueOf(FIELD).equals(i));
+    }
+
+    /**
+     * 试试一个List的对象，然后遍历时候的地址
+     */
+    @Test
+    public void test41(){
+        List<ParamBean> list = new ArrayList<ParamBean>(){
+            {
+                add(new ParamBean("111","111","111"));
+                add(new ParamBean("222","222","222"));
+                add(new ParamBean("333","333","333"));
+            }
+        };
+        HashSet<ParamBean> set = new HashSet<>(list);
+        Set<ParamBean> small = set.stream().filter(VO -> "111".equals(VO.getId())).collect(Collectors.toSet());
+        System.out.println(small);
+
+        Sets.SetView<ParamBean> difference = Sets.difference(set, small); //求补集 求arg1的补集，也即是arg1中-arg2中相同的 剩余的就是arg1的补集
+        System.out.println(difference);
+    }
+
+    /**
+     *  Long contains
+     */
+    @Test
+    public void test42(){
+        String str = "123";
+        HashSet<Long> set = Sets.newHashSet();
+        set.add(1L);
+        set.add(10000123456L);
+        set.add(11111L);
+        Long i = 10000123456L;
+        System.out.println(set.contains(i));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test43(){
+        List<ParamBean> list = new ArrayList<ParamBean>(){
+            {
+                add(new ParamBean("111","111","111"));
+                add(new ParamBean("222","222","222"));
+                add(new ParamBean("333","333","333"));
+            }
+        };
+
+        ParamBean paramBean = new ParamBean("111", "111", "111");
+        boolean equals = paramBean.equals(paramBean);
+        boolean contains = list.contains(paramBean);
+        System.out.println("=====");
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test44(){
+        Long l1 = 123456L;
+        Long l2 = 123456L;
+        boolean equals = l1.equals(l2);
+        System.out.println("======");
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test45(){
+        Integer i1 = 123;
+        Integer i2 = 123;
+        boolean equals = i1.equals(null);
+        System.out.println(equals);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test46(){
+        ParamBean paramBean = new ParamBean("222", "222", "222");
+        ParamBean paramBean1 = new ParamBean("222", "222", "222");
+        paramBean.equals(paramBean1);
+        //Long Integer这些都重写了Object的equals方法了，所以没用Object的equals方法
+        // Object的equals方法直接是用== 比较地址值了
+
+    }
+
+    // 看了equlas方法，大概也可以直接contains也是大概这个套路
+
+    /**
+     *
+     */
+    @Test
+    public void test47(){
+        List<ParamBean> list = new ArrayList<ParamBean>(){
+            {
+                add(new ParamBean("111","111","111"));
+                add(new ParamBean("222","222","222"));
+                add(new ParamBean("333","333","333"));
+            }
+        };
+        ParamBean paramBean = new ParamBean("111", "111", "111");
+        boolean contains = list.contains(paramBean);
+        System.out.println(contains);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test48(){
+        List<Long> list = Lists.newArrayList();
+        list.add(1L);
+        list.add(10000123L);
+        list.add(11111L);
+        Object i = 10000123L;
+        boolean contains = list.contains(i);
+        System.out.println(contains);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test49(){
+        ExtendObject extendObject = new ExtendObject();
+        boolean equals = extendObject.equals("1");
+        System.out.println(equals);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test50(){
+        String str =  "123";
+        String str1 = "123";
+        boolean equals = str.equals(str1);
+        System.out.println(equals);
+    }
+
+    /**
+     * Set的contains
+     */
+    @Test
+    public void test51(){
+        String str = "123";
+        HashSet<Long> set = Sets.newHashSet();
+        set.add(1L);
+        set.add(10000123456L);
+        set.add(11111L);
+        Long i = 10000123456L;
+        boolean contains = set.contains(i);
+        System.out.println(contains);
+
+    }
+
+    /**
+     * Map 用Long
+     * Key  Long 拆箱
+     */
+    @Test
+    public void test52(){
+        Map<Long, Object> map = new HashMap<>();
+        map.put(1L, new Object());
+        map.put(1L, new Object());
+        map.put(2L, new Object());
+        map.containsKey(1L);
+        System.out.println("=====");
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test53(){
+
+    }
+
+
+
+
+
+
+
+
 
 
 }
