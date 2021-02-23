@@ -620,7 +620,15 @@ public class Test0604 {
      */
     @Test
     public void test53(){
+        try {
+            System.out.println("456");
+            int i = 1 / 0;
+            System.out.println("123");
+        } catch (Exception e) {
+            System.out.println("123123");
+        } finally {
 
+        }
     }
 
 

@@ -11,4 +11,6 @@
 
     <bean name="dateBean" class="com.sph.practice.test.controller.bean.DateBean"></bean>
 
+    <bean name="studentVO" class="com.sph.practice.mybatis.vo.StudentVO"></bean>
+
 </beans>
