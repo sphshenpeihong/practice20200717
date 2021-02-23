@@ -26,12 +26,12 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
-        <!-- Springboot整合Mybatis -->
-        <dependency>
+        <!-- Springboot整合Mybatis  //引入MP，就不需要再引用mybatis了的，MP里面已经有包含了的 -->
+        <!--<dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.2</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Springboot整合MybatisPlus -->
         <dependency>

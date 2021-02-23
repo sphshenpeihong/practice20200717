@@ -17,6 +17,9 @@ import org.springframework.context.annotation.Profile;
  *
  * @since 1.0.0
  */
+/*
+    使用@Configuration声明的类，到时候配置类本身也会加入到IOC容器当中
+ */
 @Configuration
 @Slf4j
 public class MybatisPlusConfig {
