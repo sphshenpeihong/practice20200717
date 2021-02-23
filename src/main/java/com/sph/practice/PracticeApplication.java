@@ -21,7 +21,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 @ImportResource({"classpath:applicationContext.xml"})
 @Import({QyTestPO.class, QyUserPO.class, MybatisPlusConfig.class}) //将指定类，加载到Spring容器当中，id的值就是类的全路径
 public class PracticeApplication {
-    //提供你可以修改
 
     //自动配置 （默认值）
 
