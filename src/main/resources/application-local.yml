@@ -1,0 +1,64 @@
+# 该模块是微服务的话，必配
+spring:
+  application:
+    name: pro
+
+# 部署端口
+server:
+  port: 8085
+
+# -------- 20210223 测试一下yml配置文件的各种格式 start ----------
+# 自定义配置项0  简单key/value
+is_open: true
+
+# 自定义配置项1  对象数据
+my-car:
+  carName: BYD
+  carPrice: 10000
+  carDesc: "好看哦"
+
+# 自定义配置项2  数组数据
+car-name-array:
+  carNames:
+    - byd
+    - yd
+    - fengtian
+    - bentian
+
+# 自定义配置项3  List<String>
+car-name-list:
+  carNameList:
+    - bydList
+    - yd
+    - fengtian
+    - bentian
+
+# 自定义配置项4  List<类类型>
+car-list:
+  carList:
+    - carName: benchi
+      carPrice: 100
+      carDesc: "贵"
+    - carName: wuling
+      carPrice: 20
+      carDesc:  "便宜"
+
+# 自定义配置项5 Map<String, 类类型>
+car-map:
+  carMap:
+    car1:
+      carName: benchi
+      carPrice: 100
+      carDesc: "贵"
+    car2:
+      carName: wuling
+      carPrice: 20
+      carDesc:  "便宜"
+
+# 自定义配置项6 类中类
+class-nest-class:
+  car:
+    carName: benchi
+    carPrice: 100
+    carDesc: "贵"
+# -------- 20210223 测试一下yml配置文件的各种格式 end ----------

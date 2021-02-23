@@ -1,4 +1,4 @@
-package com.sph.practice.component.boot.pojo.po;
+package com.sph.practice.component.boot.pojo.vo;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -12,11 +12,12 @@ import org.springframework.stereotype.Component;
  *
  * @since 1.0.0
  */
-//@Component
+@Component
 // 读取配置文件类去读取配置文件的话，必须要保证这个类同时也是交给Spring容器管理的，这样才能拿到配置文件的值
 @ConfigurationProperties(prefix = "my-car")
 @Data
 public class Car {
     private String carName;
     private Integer carPrice;
+    private String carDesc;
 }

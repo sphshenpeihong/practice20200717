@@ -1,11 +1,9 @@
 package com.sph.practice.component.boot.config;
 
-import com.sph.practice.component.boot.pojo.po.Car;
 import com.sph.practice.test.param.DateVO;
 import com.sph.practice.test.param.FieldVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @Slf4j
-@EnableConfigurationProperties(Car.class) //如果@ConfigurationProperties所在类没有注解@Component的话，那我们可以按需装配（指向的配置文件类需要的时候再开启允许装配）
+//@EnableConfigurationProperties(Car.class) //如果@ConfigurationProperties所在类没有注解@Component的话，那我们可以按需装配（指向的配置文件类需要的时候再开启允许装配）
 public class SpringBootConfig {
 
 
