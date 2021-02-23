@@ -77,3 +77,10 @@ pagehelper:
 
 # 配置项
 is_open: true
+
+# 自定义配置项1  对象数据
+my-car:
+  carName: BYD
+  carPrice: 10000
+
+

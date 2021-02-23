@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.redis.core.RedisTemplate;
 
 // 默认只扫描practice这个目录及以下的注解，但也提供了主动扫描某些目录的属性
-@SpringBootApplication()
+@SpringBootApplication(scanBasePackages = {"com.sph.practice", "com.sph.practice123"})
 @MapperScan({"com.sph.practice.mybatis.mapper", "com.sph.practice.mybatisplus.mapper"})
 @ImportResource({"classpath:applicationContext.xml"})
 @Import({QyTestPO.class, QyUserPO.class, MybatisPlusConfig.class}) //将指定类，加载到Spring容器当中，id的值就是类的全路径
