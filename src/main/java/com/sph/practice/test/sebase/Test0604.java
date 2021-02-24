@@ -631,13 +631,29 @@ public class Test0604 {
         }
     }
 
+    /**
+     *
+     */
+    @Test
+    public void test54(){
+        String str = "事业一部->业务二部->业务三组->打工仔";
+        ArrayList<String> list = Lists.newArrayList();
+        test54List(str, list);
+        System.out.println(list);
 
+    }
 
-
-
-
-
-
+    // 递归函数，到时候形参list就是切割完的部门全路径
+    private void test54List(String str, List<String> list){
+        // 若当前部门的全路径仍有上下层级关系
+        if (str.contains("->")){
+            int index = str.lastIndexOf("->");
+            // 获取上一级部门
+            String substring = str.substring(0, index);
+            list.add(substring);
+            test54List(substring, list);
+        }
+    }
 
 
 }

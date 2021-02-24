@@ -1,10 +1,12 @@
 package com.sph.practice.component.boot.config;
 
 import com.sph.practice.component.boot.param.ImportClass;
+import com.sph.practice.component.boot.pojo.vo.Car;
 import com.sph.practice.test.param.DateVO;
 import com.sph.practice.test.param.FieldVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
