@@ -1,15 +1,16 @@
 package com.sph.practice.component.boot.config;
 
-import com.sph.practice.component.boot.param.ImportClass;
+import com.sph.practice.component.boot.param.*;
 import com.sph.practice.component.boot.pojo.vo.Car;
 import com.sph.practice.test.param.DateVO;
 import com.sph.practice.test.param.FieldVO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * Created by Shen Peihong on 2021/2/23
@@ -31,8 +32,14 @@ import org.springframework.context.annotation.Import;
 @Import({ImportClass.InnerImportClass.class})
 public class SpringBootConfig {
 
-
+    // ConditionalProperty和其它注解一样，也是控制组件是否要加载的，下面介绍注解的具体属性
+    // prefix：配置文件的前缀
+    // name：配置文件的值（组合前缀） 切记不可和value共同使用
+    // value：配置文件的值（组合前缀） 切记不可和name共同使用
+    // matchIfMissing：当为true时，如果前面声明的配置文件的值没有匹配上的话，也会去注册组件
+    // havingValue：假设key确实存在了，但是这里还需要再匹配value值是否匹配上（双重校验key/value），匹配上才会去注册组件
     @Bean("dateVO")
+    @ConditionalOnProperty(prefix = "sha1.sha2", value = "sha3", havingValue = "1", matchIfMissing = false)
     public DateVO dateVO(){
         return new DateVO();
     }
@@ -46,5 +53,37 @@ public class SpringBootConfig {
     public FieldVO fieldVO(){
         return new FieldVO();
     }
+
+    // 若没有属性，则代表没有当前组件时，则注册组件
+    // 当有指定name或value的话，则代表没有指定组件时，才去注册组件
+    // 这里可能会存在bean注册的先后问题（可以采用设置bean加载的优先级或顺序啥的）
+    @ConditionalOnMissingBean(name = "dateVO")
+    @Bean
+    public ConditionalOnMissingBeanVO conditionalOnMissingBeanVO(){
+        return new ConditionalOnMissingBeanVO();
+    }
+
+    // 当我们项目有此类时，才会去注册组件
+    @ConditionalOnClass(DispatcherServlet.class)
+    @Bean
+    public ConditionalOnClassVO conditionalOnClassVO(){
+        return new ConditionalOnClassVO();
+    }
+
+    // 当我们项目是Servlet编程(非响应式编程)，才注册组件
+    @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+    @Bean
+    public ConditionalOnWebApplicationVO conditionalOnWebApplicationVO(){
+        return new ConditionalOnWebApplicationVO();
+    }
+
+    // 当classpath下有此资源文件时，，才会去注册组件
+    @ConditionalOnResource(resources = "/local/local.properties")
+    @Bean
+    public ConditionalOnResourceVO conditionalOnResourceVO(){
+        return new ConditionalOnResourceVO();
+    }
+
+
 
 }

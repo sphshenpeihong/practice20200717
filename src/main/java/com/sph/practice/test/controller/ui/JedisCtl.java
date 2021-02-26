@@ -7,18 +7,14 @@ import com.google.common.collect.Sets;
 import com.sph.practice.test.bean.CloneParam;
 import com.sph.practice.test.bean.UserParam;
 import com.sph.practice.test.controller.bean.ParamBean;
-import com.sph.practice.test.jedis.JedisTemplateTest;
+import com.sph.practice.test.controller.ui.param.CacheVO;
 import com.sph.practice.test.param.BankVO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -1263,8 +1259,92 @@ public class JedisCtl {
         System.out.println(paramBean1);
     }
 
+    /**
+     *
+     */
+    @RequestMapping("/test92.do")
+    public void test92(){
 
 
+        Map<String, String> map = Maps.newHashMap();
+        map.put("huan1", "111");
+        map.put("huan2", "222");
+        redisTemplate.opsForValue().multiSet(map);
+        List<String> list = Lists.newArrayList("huan1", "huan2", "huan3");
+        List<String> list1 = new ArrayList<>();
+        // 100个直播id，批量缓存中获取
+        List<String> getList = redisTemplate.opsForValue().multiGet(list1);
+        for (int i = 0; i < getList.size(); i++) {
+            if (getList.get(0) == null){
+                //等于null的话，直接记录下标，到时候通过下表去原先的list获取对应的LiveIds
+            }
+        }
 
+        System.out.println(list1);
+
+    }
+    // 直接multiGet 可能存在某些下标对应的是null，则需要记录为null的下表，再次查list看看是哪些
+
+    @RequestMapping("/test93.do")
+    public void test93(){
+
+
+        Map<String, String> map = Maps.newHashMap();
+        redisTemplate.opsForValue().multiSet(map);
+        List<String> list = Lists.newArrayList("huan4", "huan5", "huan6");
+        List<String> list1 = new ArrayList<>();
+        // 100个直播id，批量缓存中获取
+        List<String> getList = redisTemplate.opsForValue().multiGet(list1);
+        for (int i = 0; i < getList.size(); i++) {
+            if (getList.get(0) == null){
+                //等于null的话，直接记录下标，到时候通过下表去原先的list获取对应的LiveIds
+            }
+        }
+
+        System.out.println(list1);
+
+    }
+
+
+    /**
+     *
+     */
+    @Test
+    public void test(){
+        List<String> list = new ArrayList();
+        for (String s : list) {
+            System.out.println("123123213");
+        }
+    }
+
+    // 测试一些VO放到缓存，临时这个对象又加了字段 咋整
+
+    @RequestMapping("/test94.do")
+    public void test94(){
+
+        /*CacheVO cacheVO = new CacheVO(1, "111");
+        redisTemplate.opsForValue().set("cacheVO1", cacheVO);*/
+
+        CacheVO cacheVO1 = (CacheVO) redisTemplate.opsForValue().get("cacheVO1");
+        System.out.println(cacheVO1);
+
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test1000(){
+        ArrayList<CacheVO> list = Lists.newArrayList();
+        list.add(new CacheVO(1,"1","1"));
+        list.add(new CacheVO(2,"2","2"));
+        System.out.println(list);
+        list.forEach(l -> l.setId(3));
+        System.out.println(list);
+    }
+
+    // A目录 VO set 缓存
+    // B目录， 操作缓存
 
 }

@@ -3,6 +3,8 @@ package com.sph.practice.test.controller.request;
 import com.google.common.collect.Lists;
 import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.ResultVO;
+import org.springframework.core.io.UrlResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +12,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by Shen Peihong on 2020/10/21 21:16
@@ -142,8 +147,12 @@ public class RequestCtl {
      *
      */
     @RequestMapping("/test8.do")
-    public void test8(){
-
+    public void test8() throws IOException {
+        Enumeration<URL> resources = this.getClass().getClassLoader().getResources("BOOT-INF/classes/banner.txt");
+        URL url = resources.nextElement();
+        UrlResource resource = new UrlResource(url);
+        Properties properties = PropertiesLoaderUtils.loadProperties(resource);
+        System.out.println(properties);
     }
 
     /**

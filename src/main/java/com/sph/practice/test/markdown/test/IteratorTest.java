@@ -59,4 +59,24 @@ public class IteratorTest {
          */
     }
 
+    // 迭代器是否按顺序
+    /**
+     *
+     */
+    @Test
+    public void test2(){
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("111");
+        strings.add("222");
+        strings.add("34");
+        strings.add("12");
+        Iterator<String> iterator = strings.iterator();
+        int currentIndex = 0;
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+            System.out.println(currentIndex);
+            ++currentIndex;
+        }
+    }
+
 }

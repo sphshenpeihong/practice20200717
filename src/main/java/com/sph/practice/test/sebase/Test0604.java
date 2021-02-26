@@ -14,7 +14,13 @@ import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.sebase.util.ObjectUtil1;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.core.io.UrlResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
