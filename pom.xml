@@ -125,8 +125,6 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-
-
         <!-- jedis -->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -212,11 +210,34 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.13</version>
         </dependency>
+
         <!-- aspectj支持 -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>1.8.9</version>
+        </dependency>
+
+        <!-- 引入Spring配置文件映射我们自己配置类的属性时有增加提示 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- 引入webJars的bootstrap -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.0.0-beta2</version>
+        </dependency>
+
+        <!-- 临时引入servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
         </dependency>
 
    </dependencies>
@@ -226,6 +247,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 只是方便我们开发时使用，但我们不希望打jar报的时候，也引入了这个依赖 -->
+                <!--<configuration>
+                    <excludes>
+                        <exclude>
+                            <dependency>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-configuration-processor</artifactId>
+                                <optional>true</optional>
+                            </dependency>
+                        </exclude>
+                    </excludes>
+                </configuration>-->
             </plugin>
         </plugins>
     </build>

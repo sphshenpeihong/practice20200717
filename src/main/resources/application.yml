@@ -17,9 +17,16 @@ spring:
   jpa:
     show-sql: true
   mvc:
+    # 不指定静态资源的目录的话，默认有许多个，这里指定的话，就相当改默认值了
+    #static-path-pattern: classpath:/haha
     view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
+      prefix: /
+      suffix: .html
+      #prefix: /WEB-INF/views/
+      #suffix: .jsp
+
+    # 访问静态资源需要带上前缀，默认不需要前缀
+    static-path-pattern: /res/**
   redis:
     database: 0 #数据库索引
     host: 127.0.0.1  #远程redis服务器的地址 当前redis是在我们本机打开 所以localhost即可

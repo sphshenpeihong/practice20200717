@@ -32,7 +32,7 @@ public class SwaggerConfig {
     public Docket docket(Environment environment){
 
         //设置要显示的Swagger环境
-        Profiles profiles = Profiles.of("dev","test");
+        Profiles profiles = Profiles.of("dev", "test", "local");
         //通过environment.acceptsProfiles判断是否处在自己设定的环境当中
         //调用该方法可以将方法参数配置的值和application.properties或application.yml配置的 spring.profiles.active的值进行比对，如果匹配得上则为true，反之则false
         boolean flag = environment.acceptsProfiles(profiles);

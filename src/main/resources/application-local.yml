@@ -13,9 +13,9 @@ is_open: true
 
 # 自定义配置项1  对象数据
 my-car:
-  carName: BYD
   carPrice: 10000
   carDesc: "好看哦"
+  car-name: BYD
 
 # 自定义配置项2  数组数据
 car-name-array:
@@ -62,3 +62,5 @@ class-nest-class:
     carPrice: 100
     carDesc: "贵"
 # -------- 20210223 测试一下yml配置文件的各种格式 end ----------
+
+huanhang: "huanhang \n 123"
