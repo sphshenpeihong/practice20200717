@@ -15,7 +15,6 @@ public class ApplicationListenerServiceImpl {
 
     @EventListener
     public void getEvent(ApplicationEvent event){
-        System.out.println("使用注解去接收实现，收到了" + event);
+        //System.out.println("使用注解去接收实现，收到了" + event);
     }
-
 }

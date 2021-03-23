@@ -21,6 +21,6 @@ import org.springframework.stereotype.Component;
 public class ApplicationListenerEvent implements ApplicationListener<ApplicationEvent> {
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
-        System.out.println("定义接口去接收事件，收到了" + event);
+        // System.out.println("定义接口去接收事件，收到了" + event);
     }
 }
