@@ -39,10 +39,11 @@ public class UserMgrCtl {
     }
 
 
+
     @RequestMapping("/test2.do")
     public void test1() throws Exception{
         //初始化分页对象存放到ThreadLocal里面的Map中
-        PageHelper.startPage(4, 2);
+        PageHelper.startPage(4, 2, "desc");
         //使用了分页插件的话，那么SQL就不能再去重复写Limit了，因为Mybatis底层也是通过获取ThreadLocal的值
         List<QyUserPO> list = userService.getAllUser();
         //利用PageInfo的构造方法去get到相关值

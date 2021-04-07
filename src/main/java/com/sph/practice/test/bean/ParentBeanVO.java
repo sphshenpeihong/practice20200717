@@ -4,6 +4,7 @@ import com.sph.practice.test.param.BankVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.junit.Test;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,8 @@ import javax.annotation.PostConstruct;
  * @since 1.0.0
  */
 //@Component
+@Data
+@Accessors(chain = true)
 public class ParentBeanVO {
     private String parentStr = "123";
     private static BankVO bankVO;

@@ -22,4 +22,10 @@ public class InvokeServiceImpl {
         System.out.println(i);
     }
 
+    public void test71() throws Exception {
+        throw new Exception("123123");
+    }
+
+
+
 }

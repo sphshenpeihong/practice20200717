@@ -6,20 +6,22 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.sph.practice.mybatis.vo.Param1VO;
+import com.sph.practice.test.bean.ParentBeanVO;
 import com.sph.practice.test.bean.User1;
 import com.sph.practice.test.controller.bean.DefaultBean;
 import com.sph.practice.test.controller.bean.ParamBean;
 import com.sph.practice.test.jedis.utils.JedisUtils;
 import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.sebase.util.ObjectUtil1;
+import lombok.NonNull;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import javax.annotation.Nonnull;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -675,6 +677,47 @@ public class Test0604 {
         Thread.sleep(1);
 
         // System.out.println(list);
+    }
+
+    /**
+     * lombok @nonnull
+     */
+    @Test
+    public void test102(){
+        test1021(null);
+    }
+
+
+    private void test1021(@NonNull String str){
+        System.out.println(str);
+    }
+
+    /**
+     *  ParentBeanVO
+     */
+    @Test
+    public void test103(){
+        ParentBeanVO parentBeanVO = new ParentBeanVO();
+        System.out.println(parentBeanVO);
+
+    }
+
+    /**
+     * @Sneaky
+     */
+    //@SneakyThrows(value = {FileNotFoundException.class})
+    @Test
+    public void test104() {
+        System.out.println("123");
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test105(){
+        /*ParentBeanVO parentBeanVO = new ParentBeanVO();
+        parentBeanVO.setParentStr();*/
     }
 
 }

@@ -19,6 +19,8 @@ import java.util.Locale;
  */
 public class LocalDataTest {
 
+    private String pattern = "yyyy-MM-dd HH:mm:ss";
+
     //测试日期工具类LocalDate
     @Test
     public void testLocalDate(){
@@ -75,6 +77,16 @@ public class LocalDataTest {
         System.out.println(System.currentTimeMillis());
 
 
+    }
+
+    // String转LocalDateTime
+    @Test
+    public void stringToLocalDateTime(){
+        String str = "2020-04-06 18:40:40";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pattern,Locale.CHINESE); //格式化对象
+        LocalDateTime parse = LocalDateTime.parse(str, dtf);
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(parse);
     }
 
     /**

@@ -78,6 +78,16 @@ public class Change1 {
         invokeService.test2();
     }
 
+    @RequestMapping("/test71.do")
+    public void test71(){
+        try {
+            invokeService.test71();
+        } catch (Exception e) {
+            String message = e.getMessage();
+            System.out.println(message);
+        }
+    }
+
     //Spring包括Springmvc的话，创建对象的方式都是单例的呢。默认单例的呢。比方你要调Springmvc的接口的话，那么底层也是先去创建对象，再调
     //而这个创建对象的就是获取同一个单例对象的呢。所以我们开发过程当中，如果你定义常量的话，一定一定一定要用final，不然你不知道它啥时候
     //就被修改了，而这个成员变量被修改，就会影响到其它的呢。我们定义final常量的话，存储地方就是在方法区里面的常量池呢。

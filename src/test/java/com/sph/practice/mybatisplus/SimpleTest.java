@@ -177,6 +177,16 @@ public class SimpleTest {
         System.out.println(row);
     }
 
+    // 测试一下查询List 入参null
+    @Test
+    public void queryWrapperCountTest1() {
+        // 查找年龄大于17岁，名字是J开头的数据
+        QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("age", null);
+
+        List<QyPlusUser> qyPlusUsers = plusUserMapper.selectList(wrapper);
+        System.out.println(qyPlusUsers);
+    }
 
 
     /**
@@ -184,9 +194,13 @@ public class SimpleTest {
      */
     @Test
     public void pageSelectTest() {
+        QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
+        wrapper.orderByAsc("create_time");
         // 创建分页对象
         IPage<QyPlusUser> page = new Page();
-        plusUserMapper.selectPage(page, null);
+        page.setCurrent(2);
+        page.setSize(2);
+        plusUserMapper.selectPage(page, wrapper);
         System.out.println();
     }
 

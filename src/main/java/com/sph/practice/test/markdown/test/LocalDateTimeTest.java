@@ -77,8 +77,10 @@ public class LocalDateTimeTest {
     public void test3(){
         LocalDateTime now = LocalDateTime.now(); //获取当前日期+时间 结果：2020-06-17T18:21:37.098
         LocalDateTime of = LocalDateTime.of(2020, Month.JUNE, 17, 18, 21, 36); //自定义时间带T 需要格式化
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss", Locale.CHINESE); //格式化对象
-        String format = LocalDateTime.now().format(dtf);//当前时间 进行格式化  //这个不是24小时制的，要具体后面看（备注）
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.CHINESE); //格式化对象
+        // String format = LocalDateTime.now().format(dtf);//当前时间 进行格式化  //这个不是24小时制的，要具体后面看（备注）
+        String format = of.format(dtf);//当前时间 进行格式化  //这个不是24小时制的，要具体后面看（备注）
+        System.out.println(format);
     }
 
     /**
