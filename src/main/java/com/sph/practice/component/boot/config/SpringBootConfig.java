@@ -30,7 +30,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 @Configuration
 @Slf4j
 //@EnableConfigurationProperties(Car.class) //如果@ConfigurationProperties所在类没有注解@Component的话，那我们可以按需装配（指向的配置文件类需要的时候再开启允许装配）
-@Import({ImportClass.InnerImportClass.class})
+@Import({ImportClass.class})
 public class SpringBootConfig {
 
     // ConditionalProperty和其它注解一样，也是控制组件是否要加载的，下面介绍注解的具体属性
