@@ -26,4 +26,16 @@ public class CloneTest {
 
     }
 
+    /**
+     *
+     */
+    @Test
+    public void test1(){
+        Integer i = 1;
+        switch (i) {
+            case 1:System.out.println("1");break;
+            case 2:System.out.println("2");break;
+        }
+    }
+
 }

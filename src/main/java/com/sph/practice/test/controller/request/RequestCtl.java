@@ -5,6 +5,7 @@ import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.ResultVO;
 import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -159,8 +160,8 @@ public class RequestCtl {
      *
      */
     @RequestMapping("/test9.do")
-    public void test9(){
-
+    public void test9(@RequestBody Receive2DTO receive2DTO){
+        System.out.println("停");
     }
 
     /**
