@@ -19,7 +19,7 @@ public class TcpCtl {
     public void test1() throws InterruptedException {
         //线程start一次线程执行完毕后就没了。所以需要让该线程不要停下来
         new Thread(new AcceptThread()).start();
-        Thread.sleep(500);//防止发送线程先执行
+        Thread.sleep(5000);//防止发送线程先执行
         new Thread(new SendThread()).start();
     }
 

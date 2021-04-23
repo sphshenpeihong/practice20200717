@@ -2,6 +2,8 @@ package com.sph.practice.test.markdown.designPattern.inversion;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.sph.practice.mybatis.vo.ClassVO;
+import com.sph.practice.mybatis.vo.ParamVO;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
@@ -77,7 +79,9 @@ public class DependencyTest {
         json.put("authJson", "[{\"type\":0,\"functionCode\":\"design_high_instance_title\",\"vipLevel\":0,\"hiddenAttr\":0},{\"type\":0,\"functionCode\":\"design_field_member\",\"vipLevel\":0,\"hiddenAttr\":0},{\"type\":0,\"functionCode\":\"design_field_dept\",\"vipLevel\":0,\"hiddenAttr\":0},{\"type\":0,\"functionCode\":\"design_flow_fix\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_flow_branch\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_type_general\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_type_task\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_type_open\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_submit_limit_all_num\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_submit_limit_everyone_num\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":1,\"functionCode\":\"design_remind_tab\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":1,\"functionCode\":\"portal_order_roll_page\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_flow_type\",\"vipLevel\":0,\"hiddenAttr\":1},{\"type\":0,\"functionCode\":\"design_flow_open\",\"vipLevel\":0,\"hiddenAttr\":1}]");
 
         String str = JSON.toJSONString(json);
+        String str1 = json.toJSONString();
         System.out.println(str);
+        System.out.println(str1);
     }
 
 
@@ -89,6 +93,18 @@ public class DependencyTest {
         OpenAndClose openAndClose = new OpenAndClose();
         //调接口的时候，需要传递依赖对象   -- > 形参
         openAndClose.open(new Changhong());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test5(){
+        ClassVO classVO = new ClassVO();
+        classVO.setClassName("123");
+        classVO.setId(1);
+        String s = JSON.toJSONString(classVO);
+        System.out.println(s);
     }
 
 

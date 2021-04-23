@@ -22,6 +22,14 @@ import java.util.List;
 @RequestMapping("/change1")
 public class Change1 {
 
+    /**
+     *
+     */
+    @Test
+    public void tes13t(){
+
+    }
+
 
     @Autowired
     private InvokeServiceImpl invokeService;

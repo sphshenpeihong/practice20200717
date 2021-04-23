@@ -1,9 +1,11 @@
 package com.sph.practice.test.markdown.timer;
 
+import lombok.SneakyThrows;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -17,7 +19,7 @@ public class HelloTimerTask extends TimerTask {
     private Timer timer;
     //Thread类才有构造方法给取线程名字
 
-    private static Integer num;
+    private static Integer num = 0;
 
     public HelloTimerTask(Timer timer) {
         this.timer = timer;
@@ -25,9 +27,12 @@ public class HelloTimerTask extends TimerTask {
 
     public HelloTimerTask(){}
 
+    @SneakyThrows
     @Override
     public void run() {
-        System.out.println("定时任务：hello,world");
+        System.out.println(Thread.currentThread().getName() + " ： " + num++);
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(Thread.currentThread().getName() + " 执行完毕了 ");
         //可能发生线程安全的代码放在同步块中  num初始化票=10
         /*synchronized (this){
             System.out.println("当前线程：" + Thread.currentThread().getName() + "定时任务：hello,world" + " ，当前num为：" + num);
