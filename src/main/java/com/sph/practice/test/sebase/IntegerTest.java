@@ -18,6 +18,26 @@ public class IntegerTest {
         Integer i = 1;
     }
 
+    @Test
+    public void test10(){
+        int i = 1;
+        long l = 1;
+        long l1 = (long) i;
+        int i1 = (int) l;
+        System.out.println();
+
+    }
+
+    @Test
+    public void test11(){
+        int i = 1;
+        double l = 1.2;
+        double l1 = (double) i;
+        int i1 = (int) l;
+        System.out.println();
+
+    }
+
     /**
      *
      */

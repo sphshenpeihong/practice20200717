@@ -22,7 +22,14 @@ public class JavaBeanConvert {
         AccountPO accountPO = new AccountPO();
         System.out.println("打印1");
         BeanUtils.copyProperties(accountVO, accountPO);
+        accountPO.setId(Integer.valueOf(accountVO.getId()));
         System.out.println("打印2");
+    }
+
+    @Test
+    public void test1() throws IllegalAccessException, InstantiationException {
+        Class c1 = AccountPO.class;
+        AccountPO o = (AccountPO)c1.newInstance();
     }
 
 }

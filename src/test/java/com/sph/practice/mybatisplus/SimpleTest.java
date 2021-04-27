@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Maps;
+import com.sph.practice.component.boot.pojo.dto.Pager;
+import com.sph.practice.component.boot.pojo.vo.ReqPager;
+import com.sph.practice.component.boot.utils.util.WebUtil;
 import com.sph.practice.mybatisplus.mapper.PlusUserMapper;
 import com.sph.practice.mybatisplus.pojo.po.QyPlusUser;
 import org.junit.Assert;
@@ -198,10 +201,46 @@ public class SimpleTest {
         wrapper.orderByAsc("create_time");
         // 创建分页对象
         IPage<QyPlusUser> page = new Page();
-        page.setCurrent(2);
-        page.setSize(2);
+        page.setCurrent(-1);
+        page.setSize(11);
+        IPage<QyPlusUser> iPage = plusUserMapper.selectPage(page, wrapper);
+        System.out.println(iPage);
+        System.out.println("page :" + page);
+    }
+
+    /**
+     * 试试MP的分页插件 （自定义格式化一下）
+     */
+    @Test
+    public void pageSelectTest1() {
+        QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
+        wrapper.orderByAsc("create_time");
+        // 创建分页对象
+        IPage<QyPlusUser> page = new Page();
+        page.setCurrent(3);
+        page.setSize(22);
         plusUserMapper.selectPage(page, wrapper);
-        System.out.println();
+        Pager pager = Pager.formatRespPage(page);
+        System.out.println(pager);
+        System.out.println("page :" + page);
+    }
+
+    /**
+     * 试试MP的分页插件 （自定义格式化一下） 自定义入参分页对象
+     */
+    @Test
+    public void pageSelectTest2() {
+        QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
+        wrapper.orderByAsc("create_time");
+        // 创建分页对象
+        IPage<QyPlusUser> page = new Page();
+        ReqPager reqPager = WebUtil.getReqPager();
+        page.setCurrent(reqPager.getCurrentPage());
+        page.setSize(reqPager.getPageSize());
+        plusUserMapper.selectPage(page, wrapper);
+        Pager pager = Pager.formatRespPage(page);
+        System.out.println(pager);
+        System.out.println("page :" + page);
     }
 
 

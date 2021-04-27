@@ -1,16 +1,25 @@
 package com.sph.practice.test.sebase;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.sph.practice.component.boot.resp.Response;
+import com.sph.practice.mybatis.vo.ClassVO;
+import com.sph.practice.test.controller.bean.ValidDTO;
 import com.sph.practice.test.controller.service.InvokeServiceImpl;
 import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.FieldVO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Shen Peihong on 2020/12/26 16:06
@@ -21,6 +30,37 @@ import java.util.List;
 @RestController
 @RequestMapping("/change1")
 public class Change1 {
+
+    @GetMapping("/acceptList.do")
+    public String acceptList(@RequestBody ClassVO classVO) {
+        // 参数解析器
+        return JSON.toJSONString(classVO);
+    }
+
+    @GetMapping("/acceptList5.do")
+    public String acceptList5(@RequestBody ClassVO classVO) {
+        return JSON.toJSONString(classVO);
+    }
+
+    @GetMapping("/acceptList3.do")
+    public String acceptList3(String classVO) {
+        return JSON.toJSONString(classVO);
+    }
+
+    public Response respAny() {
+        Response response = new Response();
+        ValidDTO validDTO = new ValidDTO();
+        response.setData(validDTO);
+        return response;
+    }
+
+    @GetMapping("/acceptList2.do")
+    public String acceptList(String str) {
+        ClassVO classVO = JSON.parseObject(str, ClassVO.class);
+
+
+        return JSON.toJSONString(classVO);
+    }
 
     /**
      *

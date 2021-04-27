@@ -1,6 +1,9 @@
 package com.sph.practice.mybatis.vo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sph.practice.mybatis.pojo.QyStudentPO;
+import lombok.Data;
 
 import java.util.List;
 
@@ -10,43 +13,15 @@ import java.util.List;
  *
  * @since 1.0.0
  */
+@Data
 public class ClassVO {
+    //@JSONField(name = "Id")
+    @JsonProperty(value = "Id")
     private Integer id;
     private String className;
+    @JSONField
     private List<QyStudentPO> studentPOList;
     // 基本变量
     //
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
-
-    public List<QyStudentPO> getStudentPOList() {
-        return studentPOList;
-    }
-
-    public void setStudentPOList(List<QyStudentPO> studentPOList) {
-        this.studentPOList = studentPOList;
-    }
-
-    @Override
-    public String toString() {
-        return "ClassVO{" +
-                "id=" + id +
-                ", className='" + className + '\'' +
-                ", studentPOList=" + studentPOList +
-                '}';
-    }
 }
