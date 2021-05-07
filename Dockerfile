@@ -1,24 +1,27 @@
 #基础镜像使用openjdk 以及 centos 试试能不能直接在容器里面手动去运行java -jar命令
 # 基础镜像
 FROM openjdk:8-jdk-alpine
+EXPOSE 8081
 
-# 定义一个环境变量，到时候利用一下run的时候修改
-# 工作目录
-ENV WORKDIR /app/
-ENV CHUAN /app/app6
-ENV DUANKOU 8081
+ENV WORK_PATH /data/app
+ENV APP_NAME *.jar
+ENV JAVA_OPTS -Xmx512m -Xss512m
+ENV LOG_PROPERTIES /data/logs
 
-# 容器暴露端口
-EXPOSE $DUANKOU
+WORKDIR $WORK_PATH
+
+# 修改时区
+RUN echo "Asia/Shanghai" > /etc/timezone
+
+# COPY test7.txt /app/app/test7.txt
+
+VOLUME ["$WORK_PATH" , "$LOG_PROPERTIES"]
 
 # 复制文件 首先宿主机去主机的文件传输
-COPY practice-0.0.1-SNAPSHOT.jar /app/app.jar
-COPY test7.txt /app/app/test7.txt
+COPY target/practice-0.0.1-SNAPSHOT.jar $WORK_PATH/app.jar
 
+ENTRYPOINT exec java $JAVA_OPTS -jar -Djava.security.egd=file:/dev/./urandom -jar app.jar
 
-WORKDIR $WORKDIR
-
-ENTRYPOINT java -jar /app/app.jar
 
 # 基础镜像
 #FROM openjdk:8-jdk-alpine

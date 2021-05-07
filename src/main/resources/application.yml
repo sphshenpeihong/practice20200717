@@ -38,6 +38,9 @@ spring:
     jedis.pool.min.idle: 2
     timeout: 5000 #连接超时时间，连接redis数据库 超过这个时间的话 就连接不成功
 
+  profiles:
+    active: local
+
 
 
 #mybatis:
