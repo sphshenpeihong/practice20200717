@@ -2,6 +2,14 @@
 spring:
   application:
     name: pro
+  # 本地开发环境，开启热部署
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+  freemarker:
+    cache: false    #页面不加载缓存，修改即时生效
 
 # 部署端口
 server:
@@ -64,3 +72,6 @@ class-nest-class:
 # -------- 20210223 测试一下yml配置文件的各种格式 end ----------
 
 huanhang: "huanhang \n 123"
+
+
+

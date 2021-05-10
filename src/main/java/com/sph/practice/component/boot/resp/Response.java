@@ -21,8 +21,26 @@ public class Response {
     private String desc;
     private Object data;
 
+    public Response(Integer code, String desc) {
+        this.code = code;
+        this.desc = desc;
+        this.data = null;
+    }
+
+    public static ResponseEntity<Response> ok() {
+        return ResponseEntity.ok(new Response(RespEnum.OK.getCode(), RespEnum.OK.getDesc()));
+    }
+
     public static ResponseEntity<Response> ok(Object data) {
         return ResponseEntity.ok(new Response(RespEnum.OK.getCode(), RespEnum.OK.getDesc(), data));
+    }
+
+    public static ResponseEntity<Response> error(){
+        return ResponseEntity.ok(new Response(RespEnum.ERROR.getCode(), RespEnum.ERROR.getDesc()));
+    }
+
+    public static ResponseEntity<Response> error(Response response) {
+        return ResponseEntity.ok(response);
     }
 
 }
