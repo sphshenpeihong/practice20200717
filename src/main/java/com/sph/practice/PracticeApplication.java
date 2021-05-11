@@ -27,7 +27,7 @@ public class PracticeApplication {
     public static void main(String[] args) {
         //启动类，返回值是Spring上下文对象（可以说是返回整个IOC容器对象）
         ApplicationContext context = SpringApplication.run(PracticeApplication.class, args);
-        ApplicationContextUtil.setContext(context);
+        // ApplicationContextUtil.setContext(context);
         ApplicationContextTest(context);
     }
 

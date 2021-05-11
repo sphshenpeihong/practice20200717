@@ -2,15 +2,19 @@ package com.sph.practice.component.websocket.service;
 
 import com.sph.practice.component.exception.BaseException;
 import com.sph.practice.component.websocket.pojo.vo.SessionVO;
+import com.sph.practice.mybatis.util.ApplicationContextUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -38,6 +42,8 @@ public class WebsocketServer {
     // concurrent包的线程安全Set，用来存放每个客户端对应的WebSocketServer对象。
     private static Map<String, CopyOnWriteArraySet<SessionVO>> clientMap = new ConcurrentHashMap<>();
 
+    private RedisTemplate redisTemplate = ApplicationContextUtil.getBean("redisTemplate", RedisTemplate.class);
+
     /**
      * ws连接通道建立完毕后，将入参的session、liveId、userId存储到静态Map，存储完毕后，向该场直播的其他人发送消息，说这个人进入直播了
      *
@@ -51,6 +57,7 @@ public class WebsocketServer {
         SessionVO sessionVO = new SessionVO();
         sessionVO.setUserId(userId);
         sessionVO.setSession(session);
+        System.out.println("userId：" + userId + "，当前ws连接指向的服务器端口为："  + getServerPort());
         // 当直播存在时
         if (clientMap.containsKey(liveId)){
             clientMap.get(liveId).add(sessionVO);
@@ -133,6 +140,17 @@ public class WebsocketServer {
         if (Objects.isNull(session) || StringUtils.isAnyEmpty(liveId, userId)) {
             throw new BaseException(-1, "非法参数");
         }
+    }
+
+    // 获取到配置项的值
+    private String getServerPort() throws IOException {
+        Properties properties = new Properties();
+        // 获取指向classes目录
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("application-local.yml");
+        properties.load(is);//指向输入流地址
+        // yml文件的话，有点坑，不是server.port，而是port
+        String serverPort = properties.getProperty("port");
+        return serverPort;
     }
 
 }

@@ -208,9 +208,17 @@ public class JdkBase {
         CallableTest callable = new CallableTest();
         FutureTask<String> stringFutureTask = new FutureTask<>(callable);
         new Thread(stringFutureTask).start();
+        System.out.println("我提前先打印1？");
         String str = stringFutureTask.get();
-        System.out.println(str);
-        TimeUnit.SECONDS.sleep(1);
+        System.out.println("我提前先打印2？");
+        // System.out.println(str);
+        TimeUnit.SECONDS.sleep(10);
+        /*
+            我提前先打印1？
+            123456
+            我提前先打印2？
+            Hello,Wolrd!
+         */
     }
 
 
@@ -220,7 +228,12 @@ class CallableTest implements Callable<String>{
 
     @Override
     public String call() throws Exception {
+        if (true) {
+            throw new Exception();
+        }
+        Thread.sleep(1000);
         System.out.println("123456");
+        Thread.sleep(4000);
         return "Hello,Wolrd!";
     }
 }

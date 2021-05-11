@@ -1,10 +1,9 @@
 package com.sph.practice.component.websocket.pojo.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.websocket.Session;
+import java.io.Serializable;
 
 /**
  * @author Shen Peihong
@@ -12,7 +11,7 @@ import javax.websocket.Session;
  * @date 2021/5/8
  */
 @Data
-public class SessionVO {
+public class SessionVO implements Serializable {
 
     private String userId;
     private Session session;
