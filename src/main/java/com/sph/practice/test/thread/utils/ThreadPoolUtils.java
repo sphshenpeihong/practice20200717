@@ -21,7 +21,7 @@ public class ThreadPoolUtils {
     //告警的队列大小
     private int WARN_QUEUE_SIZE;
     //阻塞队列，当核心线程都被占用，且阻塞队列已满的情况下，才会开启额外线程
-    private BlockingQueue<Runnable> workQueue = null;
+    private BlockingQueue<Runnable> WORK_QUEUE;
     //线程池
     private ThreadPoolExecutor threadPool;
     //线程池名称
@@ -54,7 +54,7 @@ public class ThreadPoolUtils {
         QUEUE_SIZE = queueSize;
         //告警队列长度
         WARN_QUEUE_SIZE = (QUEUE_SIZE*2)/3;
-        workQueue = new ArrayBlockingQueue<Runnable>(QUEUE_SIZE);
+        WORK_QUEUE = new ArrayBlockingQueue<Runnable>(QUEUE_SIZE);
         //线程池名称
         POOL_NAME = poolName;
         //线程工厂 在线程池中负责开启线程的
@@ -62,11 +62,15 @@ public class ThreadPoolUtils {
             private AtomicInteger integer = new AtomicInteger();
             @Override
             public Thread newThread(Runnable r) {
-                return new Thread(r,"ThreadPool"+POOL_NAME+"thread:"+integer.getAndIncrement());
+                return new Thread(r,"ThreadPool" + POOL_NAME + "thread:" + integer.getAndIncrement());
             }
         };
         threadPool = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME,
-                TimeUnit.SECONDS, workQueue, threadFactory);//创建线程池
+                TimeUnit.SECONDS, WORK_QUEUE, threadFactory);//创建线程池
+    }
+
+    // 提供直获取实例方法
+    public ThreadPoolUtils(String poolName){
 
     }
 

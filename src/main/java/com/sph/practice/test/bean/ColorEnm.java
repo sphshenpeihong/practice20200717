@@ -8,4 +8,8 @@ package com.sph.practice.test.bean;
  */
 public enum ColorEnm {
 
+    red,
+    blue,
+    ;
+
 }

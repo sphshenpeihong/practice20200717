@@ -11,7 +11,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportSelector;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import java.util.concurrent.Executor;
 
 /**
  * Created by Shen Peihong on 2021/2/23
@@ -31,6 +35,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 @Slf4j
 //@EnableConfigurationProperties(Car.class) //如果@ConfigurationProperties所在类没有注解@Component的话，那我们可以按需装配（指向的配置文件类需要的时候再开启允许装配）
 @Import({ImportClass.class})
+// 激活线程池
+@EnableAsync
 public class SpringBootConfig {
 
     // ConditionalProperty和其它注解一样，也是控制组件是否要加载的，下面介绍注解的具体属性
@@ -85,6 +91,19 @@ public class SpringBootConfig {
         return new ConditionalOnResourceVO();
     }
 
-
+    /**
+     * 线程池bean
+     *
+     * @return
+     */
+    @Bean("threadPoolTaskExecutor")
+    public Executor threadPoolTaskExecutor() {
+        ThreadPoolTaskExecutor executorService = new ThreadPoolTaskExecutor();
+        executorService.setCorePoolSize(10);
+        executorService.setMaxPoolSize(100);
+        executorService.setKeepAliveSeconds(3);
+        executorService.setQueueCapacity(100);
+        return executorService;
+    }
 
 }

@@ -205,20 +205,44 @@ public class JdkBase {
      */
     @Test
     public void test14() throws InterruptedException, ExecutionException {
+        System.out.println(Thread.currentThread().isDaemon());
         CallableTest callable = new CallableTest();
         FutureTask<String> stringFutureTask = new FutureTask<>(callable);
-        new Thread(stringFutureTask).start();
+        Thread thread = new Thread(stringFutureTask);
+        thread.setDaemon(true);
+        thread.start();
+        // thread.join(1000);
+        Thread.sleep(100);
         System.out.println("我提前先打印1？");
-        String str = stringFutureTask.get();
+        // String str = stringFutureTask.get();
         System.out.println("我提前先打印2？");
         // System.out.println(str);
-        TimeUnit.SECONDS.sleep(10);
+        // TimeUnit.SECONDS.sleep(10);
         /*
             我提前先打印1？
             123456
             我提前先打印2？
             Hello,Wolrd!
          */
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test15() throws InterruptedException {
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                System.out.println(Thread.currentThread().isDaemon());
+                Thread.sleep(1000);
+                System.out.println("123456");
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "Hello,Wolrd!";
+        });
+        TimeUnit.SECONDS.sleep(1);
     }
 
 
@@ -228,9 +252,7 @@ class CallableTest implements Callable<String>{
 
     @Override
     public String call() throws Exception {
-        if (true) {
-            throw new Exception();
-        }
+        System.out.println(Thread.currentThread().isDaemon());
         Thread.sleep(1000);
         System.out.println("123456");
         Thread.sleep(4000);

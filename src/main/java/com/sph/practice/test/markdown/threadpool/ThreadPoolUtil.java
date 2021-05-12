@@ -4,6 +4,8 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 学习这个。
+ *
  * Created by Shen Peihong on 2020/10/29 17:14
  * Description:封装线程池对象方法
  *
@@ -24,6 +26,9 @@ public class ThreadPoolUtil {
     private int queueSize;
     //线程工厂
     private ThreadFactory threadFactory;
+
+    // 拒绝策略，线程池容许的最大线程数 = 最大线程数 + 队列长度(候客区)
+    // 拒绝策略两种情况下会去拒绝，1是上面这个，2是队列等待时间超过设置的keepAliveTime的时间，也会被拒绝策略所拒绝
 
     //提供线程池对象实例
     //默认创建线程池

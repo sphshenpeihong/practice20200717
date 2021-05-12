@@ -1,5 +1,6 @@
 package com.sph.practice.test.sebase;
 
+import com.sph.practice.test.bean.ColorEnm;
 import com.sph.practice.test.bean.TimeEnm;
 import org.junit.Test;
 
@@ -61,5 +62,14 @@ public class EnumTest {
             System.out.println(timeEnm);
         }
         //return TimeEnm.TIME3;
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test9(){
+        String name = ColorEnm.red.name();
+        System.out.println(name);
     }
 }
