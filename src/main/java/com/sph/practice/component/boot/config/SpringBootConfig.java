@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -37,6 +38,8 @@ import java.util.concurrent.Executor;
 @Import({ImportClass.class})
 // 激活线程池
 @EnableAsync
+// 开启定时任务
+@EnableScheduling
 public class SpringBootConfig {
 
     // ConditionalProperty和其它注解一样，也是控制组件是否要加载的，下面介绍注解的具体属性

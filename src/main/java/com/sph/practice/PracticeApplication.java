@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 // 默认只扫描practice这个目录及以下的注解，但也提供了主动扫描某些目录的属性
 @SpringBootApplication(scanBasePackages = {"com.sph.practice", "com.sph.practice123"})
