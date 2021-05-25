@@ -34,6 +34,9 @@ public class CarCtl {
     @Resource
     private ClassNestClass classNestClass;
 
+    @Resource
+    private MapperPath mapperPath;
+
     /**
      * # 自定义配置项1  对象数据
      *
@@ -87,6 +90,11 @@ public class CarCtl {
     @RequestMapping("/test6.do")
     public ClassNestClass test6(){
         return classNestClass;
+    }
+
+    @RequestMapping("/test7.do")
+    public MapperPath test7() {
+        return mapperPath;
     }
 
 }

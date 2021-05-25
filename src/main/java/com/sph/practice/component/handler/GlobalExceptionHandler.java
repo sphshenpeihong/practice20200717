@@ -30,7 +30,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = BaseException.class)
     public ResponseEntity<Response> baseExceptionHandler(HttpServletRequest request, BaseException e) {
-        e.printStackTrace();
+        printException(e);
+
         return Response.error(new Response(e.getErrorCode(), e.getErrorMessage()));
     }
 
@@ -42,8 +43,18 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Response> exceptionHandler(Exception e) {
-        e.printStackTrace();
+        printException(e);
         return Response.error();
+    }
+
+    private void printException(Exception e) {
+        StringBuilder errorInfo = new StringBuilder();
+        errorInfo.append("异常信息--").append(e.getMessage());
+        StackTraceElement stackTraceElement = e.getStackTrace()[0];
+        errorInfo.append("--报错类--").append(stackTraceElement.getClassName());
+        errorInfo.append("--报错方法--").append(stackTraceElement.getMethodName());
+        errorInfo.append("--报错行数--").append(stackTraceElement.getLineNumber());
+        log.error(errorInfo.toString());
     }
 
 }

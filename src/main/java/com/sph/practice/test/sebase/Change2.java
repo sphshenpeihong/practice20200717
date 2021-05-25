@@ -1,5 +1,6 @@
 package com.sph.practice.test.sebase;
 
+import com.sph.practice.test.bean.User1;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class Change2 {
      */
     @Test
     public void test3(){
-
+        // new User1(1, );
     }
 
 }

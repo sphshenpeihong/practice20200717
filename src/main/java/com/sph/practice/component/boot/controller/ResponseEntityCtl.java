@@ -33,6 +33,12 @@ public class ResponseEntityCtl {
         return Response.ok(classVO);
     }
 
+    @RequestMapping("/test3")
+    public ResponseEntity<Response> test3() {
+        ClassVO classVO = null;
+        return Response.ok(classVO);
+    }
+
 
 
 

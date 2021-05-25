@@ -71,7 +71,18 @@ class-nest-class:
     carDesc: "贵"
 # -------- 20210223 测试一下yml配置文件的各种格式 end ----------
 
+mapperpath:
+  # 属性的话短杆配合驼峰
+  test-yi-xiaa: 123
+
+
 huanhang: "huanhang \n 123"
+
+logback:
+  #非开发环境是否开启控制台日志
+  enableConsoleLogWhenNotInDev: true
+  #**日志文件存放目录，目录后面无需再加"/"。备注如果这项不配置，则不输出日志文件
+  logFileDir: /data/logs
 
 
 

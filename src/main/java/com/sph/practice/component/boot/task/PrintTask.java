@@ -18,7 +18,7 @@ public class PrintTask {
     private AtomicInteger integer = new AtomicInteger(0);
 
     // 每三秒打印一条输出语句
-    @Scheduled(cron = "0/3 * * * * ? ")
+    // @Scheduled(cron = "0/3 * * * * ? ")
     public void print() {
         System.out.println("定时任务开始执行啦" + integer.getAndIncrement());
     }

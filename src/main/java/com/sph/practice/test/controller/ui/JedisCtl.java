@@ -355,7 +355,7 @@ public class JedisCtl {
         ListOperations listOperations = redisTemplate.opsForList();//创建list缓存对象
         //listOperations.leftPush("list1", "999"); //从左边插入值
         listOperations.leftPush("list1", "666", "999");//从左边插入值，并插在值666的前面，若key为list1的List中没有666这个值，则插入不成功
-        //listOperations.leftPush("list1","456");
+        //        //listOperations.leftPush("list1","456");
         System.out.println(listOperations.range("list1", 0, -1));
     }
 
@@ -1319,14 +1319,19 @@ public class JedisCtl {
 
     // 测试一些VO放到缓存，临时这个对象又加了字段 咋整
 
+    // 测试结果：
+
     @RequestMapping("/test94.do")
     public void test94(){
+        CacheVO cacheVO3 = (CacheVO) redisTemplate.opsForValue().get("cacheVO3");
+        System.out.println(cacheVO3);
+        CacheVO cacheVO = new CacheVO(1, "111");
+        cacheVO3 = (CacheVO) redisTemplate.opsForValue().get("cacheVO3");
+        System.out.println(cacheVO3);
+        redisTemplate.opsForValue().set("cacheVO3", cacheVO);
 
-        /*CacheVO cacheVO = new CacheVO(1, "111");
-        redisTemplate.opsForValue().set("cacheVO1", cacheVO);*/
-
-        CacheVO cacheVO1 = (CacheVO) redisTemplate.opsForValue().get("cacheVO1");
-        System.out.println(cacheVO1);
+        cacheVO3 = (CacheVO) redisTemplate.opsForValue().get("cacheVO3");
+        System.out.println(cacheVO3);
 
 
     }
@@ -1337,8 +1342,8 @@ public class JedisCtl {
     @Test
     public void test1000(){
         ArrayList<CacheVO> list = Lists.newArrayList();
-        list.add(new CacheVO(1,"1","1"));
-        list.add(new CacheVO(2,"2","2"));
+        //list.add(new CacheVO(1,"1","1"));
+        //list.add(new CacheVO(2,"2","2"));
         System.out.println(list);
         list.forEach(l -> l.setId(3));
         System.out.println(list);
@@ -1346,5 +1351,8 @@ public class JedisCtl {
 
     // A目录 VO set 缓存
     // B目录， 操作缓存
+
+
+
 
 }

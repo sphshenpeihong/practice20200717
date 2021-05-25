@@ -1,8 +1,10 @@
 package com.sph.practice.mybatis.controller;
 
+import com.sph.practice.component.exception.BaseException;
 import com.sph.practice.mybatis.pojo.QyTestPO;
 import com.sph.practice.mybatis.service.ITestService;
 import com.sph.practice.mybatis.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,7 @@ import java.util.Date;
  *
  * @since 1.0.0
  */
+@Slf4j
 @RestController
 @RequestMapping(value = "/test/mgr")
 public class TestMgrCtl {
@@ -55,6 +58,17 @@ public class TestMgrCtl {
         qyTestPO.setDate1(new Date());
         int data = testService.createData(qyTestPO);
         System.out.println(data);
+    }
+
+    @RequestMapping("/test5.do")
+    void test5(Integer code) throws Exception{
+        if (Integer.valueOf(1).equals(code)) {
+            throw new BaseException(6, "出错了");
+        } else if(Integer.valueOf(2).equals(code)){
+            throw new Exception("12321");
+        }
+        log.info("我试试看看test5");
+        System.out.println("111");
     }
 
 

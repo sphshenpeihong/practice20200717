@@ -67,7 +67,8 @@ public class Change1 {
      */
     @Test
     public void tes13t(){
-
+        ArrayList<Object> objects = Lists.newArrayList();
+        objects.add(null);
     }
 
 

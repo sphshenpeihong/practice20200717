@@ -61,7 +61,19 @@ public class IntegerTest {
      */
     @Test
     public void test4(){
+        Integer i1 = new Integer(129);
+        Integer i2 = new Integer(129);
+        System.out.println(i1 == i2);
+    }
 
+    /**
+     *
+     */
+    @Test
+    public void test5(){
+        Integer i1 = 1;
+        int i2 = 1;
+        System.out.println(i1 == i2);
     }
 
 }

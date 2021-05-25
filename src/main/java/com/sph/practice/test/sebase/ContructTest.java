@@ -1,5 +1,6 @@
 package com.sph.practice.test.sebase;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.Test;
 
 /**
@@ -25,6 +26,7 @@ public class ContructTest {
     public void test1(){
         ClassLoader classLoader = ContructTest.class.getClassLoader();
         System.out.println(classLoader);
+        /*new ProducerRecord<>()*/
     }
 
 

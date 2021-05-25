@@ -3,10 +3,15 @@ package com.sph.practice.test.poi;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.junit.Test;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -113,5 +118,15 @@ public class exportExcel {
         long v = (long)(beginFormatDate.getTime() + Math.random() * (endFormatDate.getTime() - beginFormatDate.getTime()));
         System.out.println(v);
         return temp;
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test1(){
+        String str = "/";
+        String str1 = "\\12";
+        System.out.println();
     }
 }
