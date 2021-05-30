@@ -1,5 +1,6 @@
 package com.sph.practice.component.boot.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
  */
 @RestController
 @RequestMapping("/completableFuture")
+@Slf4j
 public class CompletableFutureCtl {
 
     @RequestMapping("/thenAccept")
@@ -41,6 +43,30 @@ public class CompletableFutureCtl {
             打印future1，ForkJoinPool.commonPool-worker-1
             打印future2，ForkJoinPool.commonPool-worker-1
          */
+    }
+
+    // 开启异步线程，然后主要是看看traceId的效果
+
+    @RequestMapping("/runAsync")
+    public void runAsync() {
+        log.info("主线程打印" + Thread.currentThread().getName());
+
+        // 异步任务
+        CompletableFuture<Object> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            log.info("子线程打印");
+            return "hellp";
+        });
+
+        // 不阻塞回调函数 (有入参，无返回值)
+        future.thenAcceptAsync(resp -> {
+            log.info("回调函数打印异步任务的返回值先，resp = [{}]", resp);
+        });
+        log.info("主线程执行结束");
     }
 
 }

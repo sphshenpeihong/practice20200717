@@ -233,6 +233,16 @@ public class Test111 {
 
     }
 
+    /**
+     *
+     */
+    @Test
+    public void test15() {
+        LocalDate.now();
+        LocalDateTime of = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+        System.out.println(of.toString());
+    }
+
 
 
 

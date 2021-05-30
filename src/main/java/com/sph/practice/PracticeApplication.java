@@ -8,6 +8,7 @@ import com.sph.practice.mybatisplus.config.MybatisPlusConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,6 +22,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan({"com.sph.practice.mybatis.mapper", "com.sph.practice.mybatisplus.mapper"})
 @ImportResource({"classpath:applicationContext.xml"})
 @Import({QyTestPO.class, QyUserPO.class, MybatisPlusConfig.class}) //将指定类，加载到Spring容器当中，id的值就是类的全路径
+// 主动去扫描过滤器类
+@ServletComponentScan(basePackages = {"com.sph.practice.component.boot.filter", "com.sph.practice.component.boot.filter1"})
 public class PracticeApplication {
 
     //自动配置 （默认值）

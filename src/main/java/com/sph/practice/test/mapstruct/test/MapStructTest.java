@@ -9,6 +9,7 @@ import com.sph.practice.test.mapstruct.pojo.bo.Source1BO;
 import com.sph.practice.test.mapstruct.pojo.dto.MapStructDTO;
 import com.sph.practice.test.mapstruct.pojo.dto.MapStructSonDTO;
 import com.sph.practice.test.mapstruct.pojo.dto.Source1DTO;
+import lombok.experimental.FieldNameConstants;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.List;
  * @version 1.0
  * @since 1.0.0.1
  */
+@FieldNameConstants
 public class MapStructTest {
 
     /**
@@ -69,5 +71,6 @@ public class MapStructTest {
 
         System.out.println(mapStructBO);
     }
+
 
 }

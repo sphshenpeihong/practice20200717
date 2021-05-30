@@ -1,5 +1,7 @@
 package com.sph.practice.component.boot.config;
 
+import com.google.common.collect.Lists;
+import com.sph.practice.component.boot.filter2.ThirdFilter;
 import com.sph.practice.component.boot.param.*;
 import com.sph.practice.component.boot.pojo.vo.Car;
 import com.sph.practice.test.param.DateVO;
@@ -7,6 +9,7 @@ import com.sph.practice.test.param.FieldVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -16,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.Filter;
 import java.util.concurrent.Executor;
 
 /**
@@ -107,6 +111,15 @@ public class SpringBootConfig {
         executorService.setKeepAliveSeconds(3);
         executorService.setQueueCapacity(100);
         return executorService;
+    }
+
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean<Filter> filter = new FilterRegistrationBean<>();
+        filter.setFilter(new ThirdFilter());
+        filter.setName("ThirdFilter");
+        filter.setUrlPatterns(Lists.newArrayList("/test/*"));
+        return filter;
     }
 
 }

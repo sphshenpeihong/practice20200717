@@ -68,5 +68,18 @@ public class GenericClass {
         System.out.println(list1);
     }
 
+    /**
+     *
+     */
+    @Test
+    public void test4() {
+        String str = test5("123");
+        System.out.println(str);
+    }
+
+    private <T> T test5(T str) {
+        return str;
+    }
+
 
 }
