@@ -3,6 +3,7 @@ package com.sph.practice.test.param;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -23,6 +24,7 @@ public class POIVO implements Serializable,Cloneable {
     //账号
     private String username;
     //密码
+    @ToString.Exclude
     private String password;
 
 

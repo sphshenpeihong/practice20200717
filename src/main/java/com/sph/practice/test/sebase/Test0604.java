@@ -8,10 +8,12 @@ import com.google.common.collect.Sets;
 import com.sph.practice.mybatis.vo.Param1VO;
 import com.sph.practice.test.bean.ParentBeanVO;
 import com.sph.practice.test.bean.User1;
+import com.sph.practice.test.bean.UserInfo;
 import com.sph.practice.test.controller.bean.DefaultBean;
 import com.sph.practice.test.controller.bean.ParamBean;
 import com.sph.practice.test.jedis.utils.JedisUtils;
 import com.sph.practice.test.param.BankVO;
+import com.sph.practice.test.param.POIVO;
 import com.sph.practice.test.sebase.util.ObjectUtil1;
 import lombok.NonNull;
 import lombok.SneakyThrows;
@@ -721,6 +723,25 @@ public class Test0604 {
     public void test105(){
         /*ParentBeanVO parentBeanVO = new ParentBeanVO();
         parentBeanVO.setParentStr();*/
+        POIVO poivo = new POIVO();
+        poivo.setId("123");
+        poivo.setPassword("213");
+        poivo.setTitle("213");
+        poivo.setUsername("21321");
+        System.out.println(poivo);
+
+    }
+
+    /**
+     * lombok -> @Builder注解
+     */
+    @Test
+    public void test106() {
+        UserInfo user = UserInfo.builder()
+                                .id(1)
+                                .username("张三")
+                                .password("123465")
+                                .build();
     }
 
 }

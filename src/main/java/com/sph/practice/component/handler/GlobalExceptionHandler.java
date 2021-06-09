@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
      * 捕获BaseException异常
      *
      * @param request 请求对象
-     * @param e 捕获异常对象
+     * @param e       捕获异常对象
      * @return
      */
     @ExceptionHandler(value = BaseException.class)

@@ -20,7 +20,7 @@ public class ApplicationContextUtil {
         this.context = context;
     }
 
-    public ApplicationContext getContext() {
+    public static ApplicationContext getContext() {
         return context;
     }
 

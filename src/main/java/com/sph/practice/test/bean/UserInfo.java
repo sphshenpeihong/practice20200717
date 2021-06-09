@@ -1,11 +1,20 @@
 package com.sph.practice.test.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by Shen Peihong on 2020/9/8 11:27
  * Description:
  *
  * @since 1.0.0
  */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserInfo {
 
     private Integer id;
