@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  * @since 1.0.0.1
  */
-@Component
-@Named("TypeConversionWorker")
 public class TypeConversionWorker {
 
     /**

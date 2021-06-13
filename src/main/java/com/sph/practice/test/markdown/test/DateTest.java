@@ -2,6 +2,8 @@ package com.sph.practice.test.markdown.test;
 
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 
 /**
@@ -70,19 +72,30 @@ public class DateTest {
     }
 
     /**
-     *
+     * Date转Long
      */
     @Test
     public void test5(){
-
+        Date date = new Date();
+        long l = date.toInstant().toEpochMilli();
+        System.out.println(l);
+        System.out.println(System.currentTimeMillis());
     }
 
     /**
-     *
+     * LocalDatetime换时间戳
      */
     @Test
     public void test6(){
-
+        // 精确到秒
+        /*LocalDateTime now = LocalDateTime.now();
+        long l = now.toEpochSecond(ZoneOffset.MIN);
+        long l1 = now.toEpochSecond(ZoneOffset.UTC);
+        long l2 = now.toEpochSecond(ZoneOffset.MAX);
+        now.toEpochSecond(ZoneOffset.)
+        System.out.println(l);
+        System.out.println(l1);
+        System.out.println(l2);*/
     }
 
     /**
