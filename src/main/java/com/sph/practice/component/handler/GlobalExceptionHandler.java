@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,6 +42,10 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Response> exceptionHandler(Exception e) {
+        // 打印出全异常
+        e.printStackTrace();
+
+
         printException(e);
         return Response.error();
     }
