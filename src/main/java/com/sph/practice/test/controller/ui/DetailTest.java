@@ -1,6 +1,7 @@
 package com.sph.practice.test.controller.ui;
 
 import com.sph.practice.test.controller.bean.ParamBean;
+import com.sph.practice.test.controller.ui.param.CacheVO;
 import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.ResultVO;
 import com.sph.practice.test.param.TeacherVO;
@@ -115,6 +116,11 @@ public class DetailTest {
         /*
             urlTest
          */
+    }
+
+    @PostMapping(path = "/test6.do")
+    public Object test6(@RequestBody CacheVO cacheVO) {
+        return cacheVO;
     }
 
 
