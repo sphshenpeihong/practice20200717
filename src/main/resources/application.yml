@@ -88,6 +88,8 @@ spring:
     #map-underscore-to-camel-case: true
     #指定Mybatis应如何自动映射列到字段或属性，NONE标识关闭自动映射；PARTIAL只会自动映射没有定义嵌套结果映射的字段。FULL会自动映射任何复杂的结果集（无论是否嵌套），默认值是PARTIAL，我们可以在resultMap标签使用autoMapping=true。标签指定优先级比较好，全局配置优先级稍低
     #auto-mapping-behavior: full
+  main:
+    allow-bean-definition-overriding: true
 
 
 mybatis-plus:
@@ -121,3 +123,22 @@ pagehelper:
 #logging:
 #  level:
 #    com.sph.practice.mybatis.mapper: DEBUG
+
+iothub:
+  edge:
+    url: tcp://159.75.100.238:1884
+    username: M988OTSSKVXRay1;12010126;0URF8;1659926494
+    password: 7e3cbff5cb0daf08705a5e98323dc1865fbe8bbbdfbc7ebfa49ae6db660f9029;hmacsha256
+    client-id: M988OTSSKVXRay1
+    default-topic: M988OTSSKV/XRay1/test
+    completionTimeout: 60000
+  center:
+    url: tcp://159.75.100.238:1883
+    username: M988OTSSKVXRayReceiver;12010126;2OJTG;1659910371
+    password: e0bb81db6b5413bf476c4af99e1a2f00e9cc17c200fce29400241775a47b9aaa;hmacsha256
+    client-id: M988OTSSKVXRayReceiver
+    default-topic: M988OTSSKV/XRayReceiver/data
+    completion-timeout: 60000
+
+switch: true
+

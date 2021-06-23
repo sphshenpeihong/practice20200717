@@ -1,3 +1,4 @@
+/*
 package com.sph.practice.component.boot.kafka;
 
 import com.alibaba.fastjson.JSONObject;
@@ -11,11 +12,13 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import javax.annotation.Resource;
 
+*/
 /**
  * @author Shen Peihong
  * @version 1.0
  * @since 2.0.0.1
- */
+ *//*
+
 @Component
 @Slf4j
 public class KafkaProducer {
@@ -54,3 +57,4 @@ public class KafkaProducer {
 
     }
 }
+*/

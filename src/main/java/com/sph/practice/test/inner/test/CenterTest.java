@@ -19,7 +19,9 @@ public class CenterTest {
         // 内部类或内部静态类，本质也是属于CenterClass的对象
         CenterClass centerClass = new CenterClass();
         CenterClass.InnerClass innerClass = centerClass.new InnerClass();
+        new CenterClass().new InnerClass();
         CenterClass.staticInnerClass staticInnerClass = new CenterClass.staticInnerClass();
+        CenterClass centerClass1 = new CenterClass();
         staticInnerClass.test();
         CenterClass.staticInnerClass.staticTest();
     }

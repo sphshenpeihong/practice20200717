@@ -1,3 +1,4 @@
+/*
 package com.sph.practice.component.boot.kafka;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +11,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+*/
 /**
  * @author Shen Peihong
  * @version 1.0
  * @since 2.0.0.1
- */
+ *//*
+
 @Component
 @Slf4j
 public class KafkaComsumer {
@@ -41,3 +44,4 @@ public class KafkaComsumer {
         }
     }
 }
+*/

@@ -15,7 +15,7 @@ import java.io.IOException;
     urlPatterns：匹配规则
     filterName：过滤器的名字
  */
-@WebFilter(urlPatterns = "/*", filterName = "FristFilter")
+// @WebFilter(urlPatterns = "/*", filterName = "FristFilter")
 @Slf4j
 public class FristFilter implements Filter {
     @Override

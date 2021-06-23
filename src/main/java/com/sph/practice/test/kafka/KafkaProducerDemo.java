@@ -21,10 +21,12 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0.0.1
  */
 @Slf4j
-public class KafkaDemo {
+public class KafkaProducerDemo {
 
     // 定义topic主题
     private static final String topic = "frist";
+
+    public static final String topic1 = "test20210614a";
 
     /**
      * 1、直接new一个kafka生产者对象，去调用send方法下发数据到kafka消息队列中
@@ -94,7 +96,7 @@ public class KafkaDemo {
         for (int i = 0; i < 10; i++) {
             // 封装消息对象
             // 如果涉及到多个分区，那么需要提前在服务器先创建好主题，并划分好分区和副本
-            ProducerRecord<String, Object> producerRecord = new ProducerRecord<>(topic, 0, list.get(i % 3), i);
+            ProducerRecord<String, Object> producerRecord = new ProducerRecord<>(topic1, 0, list.get(i % 3), i);
             producer.send(producerRecord, (metaData, exception) -> {
                 log.info("当前子线程name = {}", Thread.currentThread().getName());
                 log.info("partition = {} --- offset = {}", metaData.partition(), metaData.offset());
