@@ -1,5 +1,6 @@
 package com.sph.practice.test.okhttp.test;
 
+import com.sph.practice.test.okhttp.utils.OkHttpUtil;
 import org.junit.Test;
 
 /**
@@ -14,7 +15,9 @@ public class OkHttpTest {
      */
     @Test
     public void test1() {
-
+        // 使用Get方法
+        /*OkHttpUtil.builder()
+                  .get()*/
     }
 
 }

@@ -1,3 +1,4 @@
+/*
 package com.sph.practice.component.mqtt;
 
 import cn.hutool.core.codec.Base64;
@@ -18,11 +19,13 @@ import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+*/
 /**
  * @author Shen Peihong
  * @version 1.0
  * @since 2.0.0.1
- */
+ *//*
+
 @RestController
 @RequestMapping("/mqtt")
 @Slf4j
@@ -52,3 +55,4 @@ public class MqttTestController {
 
 }
 
+*/

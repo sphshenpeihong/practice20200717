@@ -1,8 +1,10 @@
 package com.sph.practice.test.controller.request;
 
 import com.google.common.collect.Lists;
+import com.sph.practice.test.bean.AuthVO;
 import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.ResultVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +28,13 @@ import java.util.Properties;
  */
 @RequestMapping(value = "/request")
 @RestController
+@Slf4j
 public class RequestCtl {
+
+    @RequestMapping("/test19")
+    public void test19(@RequestBody AuthVO authVO) {
+        log.info("打印入参，authVO = {}", authVO);
+    }
 
     /**
      * request相关方法测试

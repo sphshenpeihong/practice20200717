@@ -1,10 +1,12 @@
 package com.sph.practice.test.markdown.annotationAndReflect;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.google.common.collect.Maps;
 import org.junit.Test;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -104,6 +106,8 @@ public class ReflectTest {
         for (Annotation annotation : annotations) {
             System.out.println(annotation);
         }
+
+
     }
 
     /**
@@ -230,5 +234,40 @@ public class ReflectTest {
             }
         }
     }
+
+    /**
+     * 给定一个实体类，获取name和value
+     */
+    private void test5(Object o) throws ClassNotFoundException, IllegalAccessException {
+        //获取某个类的Class对象
+        Class<?> clazz = o.getClass();
+        // 如果value不为null，则set进Map中
+        HashMap<String, String> paramMap = Maps.newHashMap();
+        for (Field field : clazz.getDeclaredFields()) {
+            field.setAccessible(true);
+            Object value = field.get(o);
+            if (value == null) {
+                continue;
+            }
+            paramMap.put(field.getName(), (String) value);
+        }
+
+        for (Map.Entry<String, String> entry : paramMap.entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test6() throws IllegalAccessException, ClassNotFoundException {
+        UserPO userPO = new UserPO("1", null, "456");
+        test5(userPO);
+    }
+
+
+
 
 }

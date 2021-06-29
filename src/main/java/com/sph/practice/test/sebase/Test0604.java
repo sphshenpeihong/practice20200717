@@ -2,6 +2,7 @@ package com.sph.practice.test.sebase;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -742,6 +743,59 @@ public class Test0604 {
                                 .username("张三")
                                 .password("123465")
                                 .build();
+    }
+
+    // 私有方法，出现异常被捕捉，返回值是否返回
+
+    /**
+     *
+     */
+    @Test
+    public void test107() {
+
+    }
+
+    // Http工具，有异常不上抛，直接打印日志，返回null值
+    // 调用方需要根据是否null值去判断
+    private String test107Pri() {
+
+        try {
+            int i = 10 / 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return null;
+
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test108() {
+        HashMap<String, String> map = Maps.newHashMap();
+        map.put("username", "password");
+        HashMap<String, String> map1 = Maps.newHashMap();
+        map1.put("a", "1");
+        map1.put("b", "2");
+        map.putAll(map1);
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test109() {
+        String str = "\"wifiMac\":\"b4:1c:30:10:3f:16\",\"time\":\"2021-06-28 13:24:34\",\"deviceId\":\"800309001\"";
+        JSONObject jsonObject = JSON.parseObject(str);
+        System.out.println(jsonObject);
     }
 
 }

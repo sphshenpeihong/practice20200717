@@ -1,3 +1,4 @@
+/*
 package com.sph.practice.component.mqtt.config;
 
 import com.sph.practice.component.mqtt.properties.MqttEdgeGatewayProperties;
@@ -24,6 +25,7 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+*/
 /**
  * 〈一句话功能简述〉<br>
  * 〈MQTT发送消息配置〉
@@ -31,7 +33,8 @@ import java.util.Date;
  * @author AnswerChang
  * @create 2018/6/4
  * @since 1.0.0
- */
+ *//*
+
 @Slf4j
 @Configuration
 @IntegrationComponentScan
@@ -40,11 +43,13 @@ public class MqttEdgeGatewayConfig {
     @Resource
     private MqttEdgeGatewayProperties edgeGatewayProperties;
 
-    /**
-     * MQTT连接对象
-     *
-     * @return MQTT连接对象bean
-     */
+    */
+/**
+ * MQTT连接对象
+ *
+ * @return MQTT连接对象bean
+ *//*
+
     @Bean
     public MqttConnectOptions getMqttConnectOptionsForEdge() {
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
@@ -53,17 +58,21 @@ public class MqttEdgeGatewayConfig {
         mqttConnectOptions.setServerURIs(new String[]{edgeGatewayProperties.getUrl()});
         mqttConnectOptions.setKeepAliveInterval(90);
         mqttConnectOptions.setCleanSession(false);
+*/
 /*        mqttConnectOptions.setConnectionTimeout(10);
         mqttConnectOptions.setCleanSession(true);
-        mqttConnectOptions.setAutomaticReconnect(true);*/
+        mqttConnectOptions.setAutomaticReconnect(true);*//*
+
         return mqttConnectOptions;
     }
 
-    /**
-     * MQTT对象工厂
-     *
-     * @return MQTT对象工厂bean
-     */
+    */
+/**
+ * MQTT对象工厂
+ *
+ * @return MQTT对象工厂bean
+ *//*
+
     @Bean
     public MqttPahoClientFactory mqttClientFactoryForEdge() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
@@ -71,34 +80,40 @@ public class MqttEdgeGatewayConfig {
         return factory;
     }
 
-    /**
-     * MQTT传输通道   (发布通道)
-     *
-     * @return MQTT传输通道bean
-     */
+    */
+/**
+ * MQTT传输通道   (发布通道)
+ *
+ * @return MQTT传输通道bean
+ *//*
+
     @Bean
     public MessageChannel mqttEdgeGatewayChannel() {
         log.info("建立发布通道");
         return new DirectChannel();
     }
 
-    /**
-     * MQTT传输通道   (订阅通道)
-     *
-     * @return MQTT传输通道bean
-     */
+    */
+/**
+ * MQTT传输通道   (订阅通道)
+ *
+ * @return MQTT传输通道bean
+ *//*
+
     @Bean
     public MessageChannel mqttEdgeGatewayReceiverChannel() {
         log.info("建立订阅通道");
         return new DirectChannel();
     }
 
-    /**
-     * 往推送数据通道推送数据的Handler处理器（相当于客户端，多个客户端的clientId不能重复）
-     * 注：如果clientId重复，那么会自动断掉已连接成功的客户端
-     *
-     * @return 消息处理器
-     */
+    */
+/**
+ * 往推送数据通道推送数据的Handler处理器（相当于客户端，多个客户端的clientId不能重复）
+ * 注：如果clientId重复，那么会自动断掉已连接成功的客户端
+ *
+ * @return 消息处理器
+ *//*
+
     @Bean
     @ServiceActivator(inputChannel = "mqttEdgeGatewayChannel")
     public MessageHandler edgeGatewaySenderHandler() {
@@ -142,4 +157,4 @@ public class MqttEdgeGatewayConfig {
             }
         };
     }
-}
+}*/
