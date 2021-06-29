@@ -3,6 +3,7 @@ package com.sph.practice.test.okhttp.utils;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.springframework.lang.NonNull;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -10,6 +11,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -32,6 +34,9 @@ public class OkHttpUtil {
     private Map<String, String> paramMap;
     private String url;
     private Request.Builder request;
+
+    private static final String HEADER_JSON = "application/json; charset=utf-8";
+    private static final String DEFAULT_MIME_ENCODING = "UTF-8";
 
     /**
      * 初始化okHttpClient，并且允许https访问
@@ -58,7 +63,7 @@ public class OkHttpUtil {
     /**
      * 创建OkHttpUtils
      *
-     * @return
+     * @return 实例对象
      */
     public static OkHttpUtil builder() {
         return new OkHttpUtil();
@@ -67,8 +72,8 @@ public class OkHttpUtil {
     /**
      * 添加url
      *
-     * @param url
-     * @return
+     * @param url 请求URL
+     * @return 当前对象
      */
     public OkHttpUtil url(String url) {
         this.url = url;
@@ -76,17 +81,53 @@ public class OkHttpUtil {
     }
 
     /**
-     * 添加参数
+     * 添加单个参数
      *
      * @param key   参数名
      * @param value 参数值
-     * @return
+     * @return 当前对象
      */
     public OkHttpUtil addParam(String key, String value) {
         if (paramMap == null) {
             paramMap = new LinkedHashMap<>(16);
         }
         paramMap.put(key, value);
+        return this;
+    }
+
+    /**
+     * 添加多个参数
+     *
+     * @return 当前对象
+     */
+    public OkHttpUtil addParams(@NonNull Map<String, String> paramMap) {
+        if (this.paramMap == null) {
+            this.paramMap = new LinkedHashMap<>(16);
+        }
+        this.paramMap.putAll(paramMap);
+        return this;
+    }
+
+    /**
+     * 添加实体类
+     *
+     * @param o 实体类对象
+     * @return 当前对象
+     */
+    public OkHttpUtil addParams(@NonNull Object o) throws IllegalAccessException {
+        if (this.paramMap == null) {
+            this.paramMap = new LinkedHashMap<>(16);
+        }
+
+        Class<?> clazz = o.getClass();
+        for (Field field : clazz.getDeclaredFields()) {
+            field.setAccessible(true);
+            Object value = field.get(o);
+            // 属性对应的值不为null时，则添加
+            if (value != null) {
+                paramMap.put(field.getName(), (String) field.get(o));
+            }
+        }
         return this;
     }
 
@@ -116,13 +157,13 @@ public class OkHttpUtil {
             urlBuilder.append("?");
             try {
                 for (Map.Entry<String, String> entry : paramMap.entrySet()) {
-                    urlBuilder.append(URLEncoder.encode(entry.getKey(), "utf-8")).
-                            append("=").
-                                      append(URLEncoder.encode(entry.getValue(), "utf-8")).
-                                      append("&");
+                    urlBuilder.append(URLEncoder.encode(entry.getKey(), DEFAULT_MIME_ENCODING))
+                              .append("=")
+                              .append(URLEncoder.encode(entry.getValue(), DEFAULT_MIME_ENCODING))
+                              .append("&");
                 }
             } catch (UnsupportedEncodingException e) {
-                log.info("参数加密出错");
+                log.error("参数加密出错");
             }
             urlBuilder.deleteCharAt(urlBuilder.length() - 1);
         }
@@ -144,7 +185,7 @@ public class OkHttpUtil {
             if (paramMap != null) {
                 json = JSON.toJSONString(paramMap);
             }
-            requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+            requestBody = RequestBody.create(MediaType.parse(HEADER_JSON), json);
         } else {
             FormBody.Builder formBody = new FormBody.Builder();
             if (paramMap != null) {
@@ -162,17 +203,12 @@ public class OkHttpUtil {
      * @return 返参（json字符串）
      */
     public String sync() {
-        setHeader(request);
         String resp = null;
         try {
             Response response = okHttpClient.newCall(request.build()).execute();
-            // assert response.body() != null;
-            if (response.body() == null) {
-                return null;
-            }
             resp = response.body().string();
         } catch (IOException e) {
-            log.error("OkHttp发送HTTP同步请求出错，请求地址url = [{}]，e = [{}]", url, e.getMessage());
+            log.error("OkHttp发送HTTP异步请求出错，请求地址url = {}", url, e.fillInStackTrace());
         }
         return resp;
     }
@@ -183,21 +219,17 @@ public class OkHttpUtil {
      * @return 返参（json字符串）
      */
     public String async() {
-        StringBuilder buffer = new StringBuilder("");
-        setHeader(request);
+        StringBuilder buffer = new StringBuilder();
         okHttpClient.newCall(request.build()).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                log.error("OkHttp发送HTTP异步请求出错，请求地址url = [{}]，e = [{}]", url, e.getMessage());
+                log.error("OkHttp发送HTTP异步请求出错，请求地址url = {}", url, e.fillInStackTrace());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                // assert response.body() != null;
-                if (response.body() == null) {
-                    return;
-                }
                 buffer.append(response.body().string());
+                log.info("异步请求结束，打印返回值，buffer = {}", buffer.toString());
             }
         });
         return buffer.toString();
@@ -209,20 +241,15 @@ public class OkHttpUtil {
      * @param callBack 回调函数
      */
     public void async(ICallBack callBack) {
-        setHeader(request);
         okHttpClient.newCall(request.build()).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                log.error("OkHttp发送HTTP异步请求出错，请求地址url = [{}]，e = [{}]", url, e.getMessage());
+                log.error("OkHttp发送HTTP异步请求出错，请求地址url = {}", url, e.fillInStackTrace());
                 callBack.onFailure(call, e.getMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                // assert response.body() != null;
-                if (response.body() == null) {
-                    return;
-                }
                 callBack.onSuccessful(call, response.body().string());
             }
         });
@@ -290,3 +317,4 @@ public class OkHttpUtil {
     }
 
 }
+
