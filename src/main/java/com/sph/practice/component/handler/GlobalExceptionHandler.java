@@ -23,14 +23,12 @@ public class GlobalExceptionHandler {
     /**
      * 捕获BaseException异常
      *
-     * @param request 请求对象
      * @param e       捕获异常对象
      * @return
      */
     @ExceptionHandler(value = BaseException.class)
-    public ResponseEntity<Response> baseExceptionHandler(HttpServletRequest request, BaseException e) {
-        printException(e);
-
+    public ResponseEntity<Response> baseExceptionHandler(BaseException e) {
+        log.error("********** 全局异常处理器捕获到“自定义”异常 **********", e.fillInStackTrace());
         return Response.error(new Response(e.getErrorCode(), e.getErrorMessage()));
     }
 
@@ -42,22 +40,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Response> exceptionHandler(Exception e) {
-        // 打印出全异常
-        e.printStackTrace();
-
-
-        printException(e);
+        log.error("********** 全局异常处理器捕获到“未知”异常 **********", e.fillInStackTrace());
         return Response.error();
-    }
-
-    private void printException(Exception e) {
-        StringBuilder errorInfo = new StringBuilder();
-        errorInfo.append("异常信息--").append(e.getMessage());
-        StackTraceElement stackTraceElement = e.getStackTrace()[0];
-        errorInfo.append("--报错类--").append(stackTraceElement.getClassName());
-        errorInfo.append("--报错方法--").append(stackTraceElement.getMethodName());
-        errorInfo.append("--报错行数--").append(stackTraceElement.getLineNumber());
-        log.error(errorInfo.toString());
     }
 
 }
