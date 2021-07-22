@@ -103,7 +103,17 @@ public class DateTest {
      */
     @Test
     public void test7(){
+        // LocalDateTime
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+
+
+        // Date
+        Date date = new Date();
+        System.out.println(date);
+
 
     }
+
 
 }

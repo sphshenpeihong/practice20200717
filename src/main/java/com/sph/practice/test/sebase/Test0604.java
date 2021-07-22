@@ -1,6 +1,7 @@
 package com.sph.practice.test.sebase;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
@@ -29,6 +30,7 @@ import org.springframework.util.MultiValueMap;
 import javax.annotation.Nonnull;
 import java.io.*;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -796,6 +798,38 @@ public class Test0604 {
         String str = "\"wifiMac\":\"b4:1c:30:10:3f:16\",\"time\":\"2021-06-28 13:24:34\",\"deviceId\":\"800309001\"";
         JSONObject jsonObject = JSON.parseObject(str);
         System.out.println(jsonObject);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test110() {
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+        LocalDateTime localDateTime = LocalDateTime.now().minusSeconds(30);
+        System.out.println(localDateTime);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test111() {
+        int num = RandomUtil.randomInt(0, 99);
+        System.out.println(num);
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test112() {
+
+        int[] i = new int[]{1, 2, 3};
+
+
     }
 
 }

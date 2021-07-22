@@ -1,6 +1,6 @@
-/*
-package com.sph.practice.component.boot.kafka;
+package com.sph.practice.component.boot.kafka.test;
 
+import com.sph.practice.component.boot.kafka.constant.TopicConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-*/
+
 /**
  * @author Shen Peihong
  * @version 1.0
  * @since 2.0.0.1
- *//*
+ */
 
 @Component
 @Slf4j
 public class KafkaComsumer {
 
-    @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP1)
+    @KafkaListener(topics = TopicConstant.TOPIC_PassersByCapture, groupId = TopicConstant.TOPIC_GROUP1)
     public void topic_test(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
         Optional message = Optional.ofNullable(record.value());
@@ -33,7 +33,7 @@ public class KafkaComsumer {
         }
     }
 
-    @KafkaListener(topics = KafkaProducer.TOPIC_TEST, groupId = KafkaProducer.TOPIC_GROUP2)
+    @KafkaListener(topics = TopicConstant.TOPIC_PassersByCapture, groupId = TopicConstant.TOPIC_GROUP2)
     public void topic_test1(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
         Optional message = Optional.ofNullable(record.value());
@@ -44,4 +44,4 @@ public class KafkaComsumer {
         }
     }
 }
-*/
+
