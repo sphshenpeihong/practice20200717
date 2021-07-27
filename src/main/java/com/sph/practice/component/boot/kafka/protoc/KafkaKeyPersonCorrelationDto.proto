@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_outer_classname = "FaceAlarmProto";
+
+// 布控人员信息
+message KafkaKeyPersonCorrelationDto {
+        // 重点人员主键
+        fixed64 empId = 1;
+        // 特性主键 ID
+        fixed64 correlationId = 2;
+        // 特性类型
+        fixed32 correlationType = 3;
+        // 特性类型内容
+        string correlationContent = 4;
+        // 发送时间
+        fixed64 sendTime = 5;
+}

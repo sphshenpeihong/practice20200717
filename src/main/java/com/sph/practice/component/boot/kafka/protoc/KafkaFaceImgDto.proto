@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_outer_classname = "FaceImgProto";
+
+// 人脸图片信息
+message KafkaFaceImgDto {
+        // 数据来源
+        string dataSource = 1;
+        // 设备编号，国标码
+        string deviceId = 2;
+        // 设备商
+        string manufacturer = 3;
+        // 抓拍小图url
+        string imgMinUrl = 4;
+        // 抓拍大图url
+        string imgMaxUrl = 5;
+        // 抓拍时间
+        fixed64 imgTime = 6;
+        // 数据接收时的时间戳
+        fixed64 serverReceiveTime = 7;
+}

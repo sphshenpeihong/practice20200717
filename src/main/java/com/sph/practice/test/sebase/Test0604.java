@@ -827,9 +827,29 @@ public class Test0604 {
     @Test
     public void test112() {
 
-        int[] i = new int[]{1, 2, 3};
+        handletestNext();
+        System.out.println("嘿嘿");
 
 
     }
+
+    private void handletestNext() {
+        if (true) {
+            try {
+                System.out.println("哈哈");
+                handle1();
+                System.out.println("呵呵");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void handle1() throws Exception {
+        if (true) {
+            throw new Exception();
+        }
+    }
+
 
 }

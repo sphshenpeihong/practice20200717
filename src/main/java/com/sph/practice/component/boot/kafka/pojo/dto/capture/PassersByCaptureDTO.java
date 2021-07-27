@@ -17,34 +17,11 @@ import java.io.Serializable;
  */
 @Data
 public class PassersByCaptureDTO implements Serializable {
-    private Object dataSource;
-    private Object deviceId;
-    private Object manufacturer;
-    private Object imgMinUrl;
-    private Object imgMaxUrl;
+    private String dataSource;
+    private String deviceId;
+    private String manufacturer;
+    private String imgMinUrl;
+    private String imgMaxUrl;
     private Long imgTime;
     private Long serverReceiveTime;
-
-
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeObject(this.dataSource);
-        out.writeObject(this.deviceId);
-        out.writeObject(this.manufacturer);
-        out.writeObject(this.imgMinUrl);
-        out.writeObject(this.imgMaxUrl);
-        out.writeObject(this.imgTime);
-        out.writeObject(this.serverReceiveTime);
-        byte[] bytes = JSON.toJSONBytes(this);
-    }
-
-
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        this.dataSource = in.readObject();
-        this.deviceId = in.readObject();
-        this.manufacturer = in.readObject();
-        this.imgMinUrl = in.readObject();
-        this.imgMaxUrl = in.readObject();
-        this.imgTime = (Long) in.readObject();
-        this.serverReceiveTime = (Long) in.readObject();
-    }
 }
