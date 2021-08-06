@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = BaseException.class)
     public ResponseEntity<Response> baseExceptionHandler(BaseException e) {
-        log.error("********** 全局异常处理器捕获到“自定义”异常 **********", e.fillInStackTrace());
+        log.error("********** 全局异常处理器捕获到“自定义”异常 **********", e);
         return Response.error(new Response(e.getErrorCode(), e.getErrorMessage()));
     }
 
@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Response> exceptionHandler(Exception e) {
-        log.error("********** 全局异常处理器捕获到“未知”异常 **********", e.fillInStackTrace());
+        log.error("********** 全局异常处理器捕获到“未知”异常 **********", e);
         return Response.error();
     }
 

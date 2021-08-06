@@ -851,5 +851,26 @@ public class Test0604 {
         }
     }
 
+    /**
+     *
+     */
+    @Test
+    public void test113() {
+        List<String> list = null;
+        for (String s : list) {
+            System.out.println(s);
+        }
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test114() {
+        Date date = new Date();
+        System.out.println(date);
+    }
+
+
 
 }

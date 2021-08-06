@@ -23,10 +23,10 @@ import javax.annotation.Resource;
 
 @Component
 @Slf4j
-public class KafkaProducer {
+public class KafkaProducer<T> {
 
     @Resource
-    private KafkaTemplate<String, byte[]> kafkaTemplate;
+    private KafkaTemplate<String, T> kafkaTemplate;
 
     /**
      * 根据接口文档，模拟数据，调通接口
@@ -35,10 +35,10 @@ public class KafkaProducer {
      * @param bytes 传输字节数组
      * @throws Exception
      */
-    public void send(@NonNull String topic, byte[] bytes) throws Exception {
+    public void send(@NonNull String topic, T bytes) throws Exception {
         //发送消息
-        ListenableFuture<SendResult<String, byte[]>> future = kafkaTemplate.send(topic, bytes);
-        future.addCallback(new ListenableFutureCallback<SendResult<String, byte[]>>() {
+        ListenableFuture<SendResult<String, T>> future = kafkaTemplate.send(topic, bytes);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, T>>() {
             @Override
             public void onFailure(Throwable throwable) {
                 //发送失败的处理
@@ -46,7 +46,7 @@ public class KafkaProducer {
             }
 
             @Override
-            public void onSuccess(SendResult<String, byte[]> stringObjectSendResult) {
+            public void onSuccess(SendResult<String, T> stringObjectSendResult) {
                 //成功的处理
                 log.info(topic + " - 生产者 发送消息成功：" + stringObjectSendResult.toString());
             }

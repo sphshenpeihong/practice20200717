@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PoliceKafkaSendController {
 
     @Autowired
-    private KafkaProducer kafkaProducer;
+    private KafkaProducer<byte[]> kafkaProducer;
 
     /**
      * 路人抓拍图片
