@@ -2,9 +2,7 @@ package com.sph.practice.component.websocket.service;
 
 import com.sph.practice.component.exception.BaseException;
 import com.sph.practice.component.websocket.pojo.vo.SessionVO;
-import com.sph.practice.mybatis.util.ApplicationContextUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -36,15 +34,12 @@ import java.util.concurrent.CopyOnWriteArraySet;
     websocket对象监听的地址（{sid}是变量，也即是由变量的不同，可能创建多个连接，也即是会创建多个websocketServer实例对象）
     建立websocket连接的时候，此两个参数就固定了，在onOpen、onMessage、onClose、onError方法的形参中，都可以拿到这两个参数了
  */
-@ServerEndpoint("/webSocket/cluster/{liveId}/{userId}")
+@ServerEndpoint("/webSocket/{liveId}/{userId}")
 @Component
-public class WebsocketClusterServer {
-
+public class WebsocketServer {
 
     // concurrent包的线程安全Set，用来存放每个客户端对应的WebSocketServer对象。
     private static Map<String, CopyOnWriteArraySet<SessionVO>> clientMap = new ConcurrentHashMap<>();
-
-    private RedisTemplate<String, SessionVO> redisTemplate = ApplicationContextUtil.getBean("redisTemplate", RedisTemplate.class);
 
     /**
      * ws连接通道建立完毕后，将入参的session、liveId、userId存储到静态Map，存储完毕后，向该场直播的其他人发送消息，说这个人进入直播了
@@ -61,10 +56,6 @@ public class WebsocketClusterServer {
         SessionVO sessionVO = new SessionVO();
         sessionVO.setUserId(userId);
         sessionVO.setSession(session);
-        CopyOnWriteArraySet<String> set = new CopyOnWriteArraySet<>();
-        set.add("123123");
-        redisTemplate.opsForSet().add(liveId, sessionVO);
-
         System.out.println("userId：" + userId + "，当前ws连接指向的服务器端口为：" + getServerPort());
         // 当直播存在时
         if (clientMap.containsKey(liveId)) {
@@ -74,7 +65,7 @@ public class WebsocketClusterServer {
             sendMessage(clientMap.get(liveId), userId, message);
         } else {
             // 当前直播不存在时
-            CopyOnWriteArraySet<SessionVO> sessionSet = new CopyOnWriteArraySet();
+            CopyOnWriteArraySet<SessionVO> sessionSet = new CopyOnWriteArraySet<>();
             sessionSet.add(sessionVO);
             clientMap.put(liveId, sessionSet);
         }
@@ -168,4 +159,5 @@ public class WebsocketClusterServer {
     }
 
 }
+
 
