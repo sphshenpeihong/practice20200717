@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -29,10 +30,11 @@ import java.util.Map;
  * @since 1.0.0
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+// 因为加了Websocket，所以
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SimpleTest {
 
-    @Autowired
+    @Resource
     private PlusUserMapper plusUserMapper;
 
     /**

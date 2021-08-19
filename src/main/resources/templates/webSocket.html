@@ -15,7 +15,7 @@
             //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
             var userId = document.getElementById('userId').value;
             var liveId = document.getElementById('liveId').value;
-            var socketUrl="ws://shenpeihong.com/shop/webSocket/" + liveId + "/" + userId;
+            var socketUrl = "ws://10.1.38.20:8085/shop/webSocket/single/" + liveId + "/" + userId;
             console.log(socketUrl);
             if(socket!=null){
                 socket.close();

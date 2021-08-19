@@ -15,21 +15,20 @@ public class ApplicationContextUtil {
 
     public ApplicationContextUtil(){}
 
-    //支持构造方法注入
-    public ApplicationContextUtil(ApplicationContext context) {
-        this.context = context;
-    }
-
     public static ApplicationContext getContext() {
         return context;
     }
 
-    //也支持set方法注入
     public static void setContext(ApplicationContext paramContext) {
         context = paramContext;
     }
 
-    //提供一个getBean方法 两个参数，一个是想获取的反射类型，一个是注册时的id或name
+    /**
+     * @param name bean注册时命名的name或id
+     * @param c    bean的类型
+     * @param <T>  泛型
+     * @return bean单例对象
+     */
     public static <T> T getBean(String name, Class<T> c){
         return context.getBean(name, c);
     }
