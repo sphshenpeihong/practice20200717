@@ -24,6 +24,7 @@ public class SocketController {
     public ModelAndView socket() {
         ModelAndView mav = new ModelAndView("/webSocket");
         //mav.addObject("userId", userId);
+        System.out.println("有无打印执行到此？");
         return mav;
     }
 

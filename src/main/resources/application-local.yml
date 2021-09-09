@@ -84,5 +84,7 @@ logback:
   #**日志文件存放目录，目录后面无需再加"/"。备注如果这项不配置，则不输出日志文件
   logFileDir: /data/logs
 
+kafka:
+  groupId: consumer-1
 
 

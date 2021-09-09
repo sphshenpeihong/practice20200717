@@ -18,18 +18,9 @@ import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.POIVO;
 import com.sph.practice.test.sebase.util.ObjectUtil1;
 import lombok.NonNull;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.springframework.core.io.UrlResource;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.lang.Nullable;
-import org.springframework.util.MultiValueMap;
 
-import javax.annotation.Nonnull;
-import java.io.*;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -870,6 +861,43 @@ public class Test0604 {
         Date date = new Date();
         System.out.println(date);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void test115() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("2021-08-26".replaceAll("-", ""), 0, 6);
+        String s = sb.toString();
+        System.out.println(s);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test116() {
+        String serTime = "2021-08-26";
+        String tableName = "security_info";
+        StringBuilder sb = new StringBuilder();
+        String str = sb
+                .append("_")
+                .append(serTime.replaceAll("-", "").substring(0, 6))
+                .toString();
+        System.out.println(str);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test117() {
+        if (true) {
+            throw new NullPointerException();
+        }
+    }
+    
 
 
 

@@ -18,8 +18,6 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import javax.annotation.Resource;
-
 /**
  * Created by Shen Peihong on 2020/9/17 1:49
  * Description: 进行序列化处理
@@ -73,7 +71,8 @@ public class RedisConfig {
      * @param listenerAdapter   消息监听器适配器
      * @return 消息监听器
      */
-    @Bean
+    // 暂时不使用基于redis发布订阅功能
+    //@Bean
     RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
                                             MessageListenerAdapter listenerAdapter) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();

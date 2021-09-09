@@ -17,4 +17,11 @@ public class WebsocketUtil {
      */
     public static final String DEAULT_LISTENER_METHOD = "receiveMessage";
 
+    /**
+     * 直播评论Topic
+     */
+    public static final String TOPIC_LIVE_COMMENT = "TOPIC_LIVE_COMMENT";
+
+
+
 }

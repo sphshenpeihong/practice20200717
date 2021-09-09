@@ -7,45 +7,47 @@
 </head>
 <script>
     var socket;
+
     function openSocket() {
-        if(typeof(WebSocket) == "undefined") {
+        if (typeof (WebSocket) == "undefined") {
             console.log("您的浏览器不支持WebSocket");
-        }else{
+        } else {
             console.log("您的浏览器支持WebSocket");
             //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
             var userId = document.getElementById('userId').value;
             var liveId = document.getElementById('liveId').value;
-            var socketUrl = "ws://10.1.38.20:8087/shop/webSocket/cluster/" + liveId + "/" + userId;
+            var socketUrl = "ws://192.168.122.129:80/shop/webSocket/cluster/" + liveId + "/" + userId;
             console.log(socketUrl);
-            if(socket!=null){
+            if (socket != null) {
                 socket.close();
-                socket=null;
+                socket = null;
             }
             socket = new WebSocket(socketUrl);
             //打开事件
-            socket.onopen = function() {
+            socket.onopen = function () {
                 console.log("websocket已打开");
             };
 
             //获得消息事件
-            socket.onmessage = function(msg) {
+            socket.onmessage = function (msg) {
                 // 当前ws连接获取到信息，直接展示在页面上
                 document.getElementById('record').append(msg.data);
             };
             //关闭事件
-            socket.onclose = function() {
+            socket.onclose = function () {
                 console.log("websocket已关闭");
             };
             //发生了错误事件
-            socket.onerror = function() {
+            socket.onerror = function () {
                 console.log("websocket发生了错误");
             }
         }
     }
+
     function sendMessage() {
-        if(typeof(WebSocket) == "undefined") {
+        if (typeof (WebSocket) == "undefined") {
             console.log("您的浏览器不支持WebSocket");
-        }else {
+        } else {
             var msg = document.getElementById('send').value;
             socket.send(msg);
         }
@@ -55,14 +57,20 @@
 
 <body>
 <h3>hello socket</h3>
-    <p>请输入liveId：<div><input id="liveId" name="liveId" type="text" value="10"></div>
-    <p>请输入userId：<div><input id="userId" name="userId" type="text" value="10"></div>
-    <p>请输入发言：<div><input id="send" name="send" type="text" value="啦啦啦啦"></div>
-    <p>操作:<div><a onclick="openSocket()">开启socket</a></div>
-    <p>【操作】：<div><a onclick="sendMessage()">发送消息</a></div>
-    <p><div id="record"></div>
+<p>请输入liveId：
+<div><input id="liveId" name="liveId" type="text" value="10"></div>
+<p>请输入userId：
+<div><input id="userId" name="userId" type="text" value="10"></div>
+<p>请输入发言：
+<div><input id="send" name="send" type="text" value="啦啦啦啦"></div>
+<p>操作:
+<div><a onclick="openSocket()">开启socket</a></div>
+<p>【操作】：
+<div><a onclick="sendMessage()">发送消息</a></div>
+<p>
+<div id="record"></div>
 
 </body>
-<script src="js/jquery-1.3.2.js"/>
+<script src="../js/jquery-1.3.2.js"/>
 
 </html>

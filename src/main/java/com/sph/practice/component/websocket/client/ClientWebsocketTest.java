@@ -47,7 +47,7 @@ public class ClientWebsocketTest {
                 log.info("[websocket] 连接错误={}", ex.getMessage());
             }
         };
-        webSocketClient.addHeader("token", "{\"appAccessToken\":\"88a2278f-3fa0-44ac-ab92-ee4f9a5e8471\",\"appId\":\"1425728806500564992\",\"userId\":1074,\"localSessionKey\":\"\"}");
+        webSocketClient.addHeader("token", "{\"appAccessToken\":\"4ffd1f5a-fff4-49a9-86b1-6b09744eb55b\",\"appId\":\"1425728806500564992\",\"userId\":1074,\"localSessionKey\":\"\"}");
         webSocketClient.connect();
         //
         TimeUnit.HOURS.sleep(1);
