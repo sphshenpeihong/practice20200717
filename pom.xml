@@ -338,6 +338,13 @@
             <version>3.9.1</version>
         </dependency>
 
+        <!-- SpringBoot整合SpringSecurity -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>
