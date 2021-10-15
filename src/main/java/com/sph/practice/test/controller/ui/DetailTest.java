@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 /**
@@ -73,7 +75,7 @@ public class DetailTest {
     @RequestMapping(path = "/test1.do")
     public ResultVO test1() throws UnsupportedEncodingException {
         System.out.println("我也看看isOpen " + isOpen);
-        String s = new String("测试一下".getBytes(), "UTF-8");
+        String s = new String("测试一下1".getBytes(), "UTF-8");
         ResultVO resultVO = new ResultVO();
         resultVO.setResult(s);
         return resultVO;
