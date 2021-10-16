@@ -101,6 +101,12 @@
 		<level value="INFO" />
 	</logger>
 
+	<!-- kafka -->
+	<logger name="org.apache.kafka.clients.NetworkClient">
+		<level value="OFF"/>
+	</logger>
+
+
 	<root level="INFO">
 		<springProfile name="dev">
 			<!-- 日志输出，STDOUT为控制台输出，一般适用于开发环境，其他环境建议去掉这个输出 -->

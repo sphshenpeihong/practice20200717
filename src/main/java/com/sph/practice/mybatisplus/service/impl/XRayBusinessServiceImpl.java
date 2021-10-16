@@ -33,6 +33,7 @@ public class XRayBusinessServiceImpl implements XRayBusinessService {
         wrapper.eq("device_id", dto.getDeviceId());
         wrapper.gt("msg_send_time", dto.getStartTime());
         wrapper.lt("msg_send_time", dto.getEndTime());
+        wrapper.likeRight("event_id", "XATX_");
         wrapper.orderByAsc("msg_send_time");
         List<CheckResultX> checkResultXPOList = checkResultXMapper.selectList(wrapper);
 
@@ -59,31 +60,42 @@ public class XRayBusinessServiceImpl implements XRayBusinessService {
             newMap.put(key, boMap.get(key));
         }
 
-        // 记录不合法的ID列表
-        List<Long> unqualifiedIdList = Lists.newArrayList();
         // 丢包总数
         int loseTotal = 0;
 
         // key列表
         List<Long> idList = Lists.newArrayList(newMap.keySet());
-        // 获取到Map的key，然后做比较
+        // 记录合法ID，以及不合法ID列表（即为漏包ID）
+        HashMap<Long, List<Long>> recordMap = new LinkedHashMap<>();
+
         for (int i = 0; i < newMap.size() - 1; i++) {
             Long front = idList.get(i);
             Long back = idList.get(i + 1);
             if (NumberUtil.compare(front + 1, back) != 0) {
-                // 若不相等的话，需要看看相减的值是多少，也即为丢包数量
-                unqualifiedIdList.add(front);
+                long differValue = back - front;
+                List<Long> unQualifiedIdList = Lists.newArrayList();
+                for (long j = 1; j < differValue; j++) {
+                    unQualifiedIdList.add(front + j);
+                }
+                /**
+                 * key：合法ID
+                 * value：不合法ID列表（都紧跟在合法ID后面的丢包事件ID(简化版，截取后8位)）
+                 */
+                recordMap.put(front, unQualifiedIdList);
                 loseTotal += NumberUtil.sub(back, front).intValue() - 1;
             }
         }
-        System.out.println("打印不连贯的事件ID：");
-        for (Long unqualifiedId : unqualifiedIdList) {
-            System.out.println(newMap.get(unqualifiedId).getEventId());
-        }
-        System.out.println("丢包数量：" + loseTotal);
 
-        // 上面已记录了不合法的ID列表，通过Map取出事件ID列表，然后开始POI导出
-        // List<String> unqualifiedEventIdList = unqualifiedIdList.stream().map(unqualifiedId -> boMap.get(unqualifiedId).getEventId()).collect(Collectors.toList());
+        // 打印信息到控制台
+        for (Map.Entry<Long, List<Long>> entry : recordMap.entrySet()) {
+            System.out.println("合法事件ID为：\n" + newMap.get(entry.getKey()).getEventId());
+            System.out.println("不合法ID为：");
+            entry.getValue().forEach(System.out::println);
+            System.out.println("丢了：" + entry.getValue().size() + " 个包");
+            System.out.println("***************\n");
+        }
+        System.out.println("总丢包数量为：" + loseTotal);
+
     }
 
 }
