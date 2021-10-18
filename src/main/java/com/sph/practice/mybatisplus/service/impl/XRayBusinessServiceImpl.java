@@ -94,6 +94,10 @@ public class XRayBusinessServiceImpl implements XRayBusinessService {
             System.out.println("丢了：" + entry.getValue().size() + " 个包");
             System.out.println("***************\n");
         }
+
+        System.out.println("丢包事件ID列表打印：\n");
+        recordMap.values().stream().flatMap(Collection::stream).forEach(System.out::println);
+
         System.out.println("总丢包数量为：" + loseTotal);
 
     }
