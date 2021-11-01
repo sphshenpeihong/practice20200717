@@ -2,6 +2,7 @@ package com.sph.practice.mybatisplus.service;
 
 import com.sph.practice.mybatisplus.pojo.bo.XRayLeakagePackageBO;
 import com.sph.practice.mybatisplus.pojo.dto.LeakagePackageDTO;
+import com.sph.practice.mybatisplus.pojo.vo.CheckResultStatisticsVO;
 
 import java.util.List;
 
@@ -30,5 +31,15 @@ public interface XRayBusinessService {
      * @since 2021-10-15
      */
     void handleXRayLeakagePackage(List<XRayLeakagePackageBO> boList);
+
+    /**
+     * 物检结果统计
+     *
+     * @param dayTime 某天（格式yyyy-MM-dd）
+     * @return 返参
+     * @author Shen Peihong
+     * @since 2021-10-18
+     */
+    CheckResultStatisticsVO checkResultXStatistics(String dayTime);
 
 }

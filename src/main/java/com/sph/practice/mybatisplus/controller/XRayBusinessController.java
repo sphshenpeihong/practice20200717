@@ -4,13 +4,11 @@ import com.sph.practice.component.boot.resp.Response;
 import com.sph.practice.component.exception.BaseException;
 import com.sph.practice.mybatisplus.pojo.bo.XRayLeakagePackageBO;
 import com.sph.practice.mybatisplus.pojo.dto.LeakagePackageDTO;
+import com.sph.practice.mybatisplus.pojo.vo.CheckResultStatisticsVO;
 import com.sph.practice.mybatisplus.service.XRayBusinessService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -44,5 +42,20 @@ public class XRayBusinessController {
         // 响应前端
         return Response.ok();
     }
+
+    /**
+     * 物检统计
+     *
+     * @return 返参
+     * @throws Exception     异常
+     * @throws BaseException 异常
+     */
+    @GetMapping("/checkResultXStatistics")
+    public ResponseEntity<Response> checkResultXStatistics(@RequestParam(required = false) String dayTime) throws Exception, BaseException {
+        CheckResultStatisticsVO vo = xRayBusinessService.checkResultXStatistics(dayTime);
+        // 响应前端
+        return Response.ok(vo);
+    }
+
 
 }

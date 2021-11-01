@@ -142,7 +142,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.4.3</version>
+            <version>5.7.9</version>
         </dependency>
 
         <!-- 使用jsp引擎，springboot内置tomcat没有此依赖 springboot项目中要加载jsp的话 需要导入此依赖呢 -->
@@ -344,6 +344,17 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>-->
 
+        <dependency>
+            <groupId>com.corundumstudio.socketio</groupId>
+            <artifactId>netty-socketio</artifactId>
+            <version>1.7.11</version>
+        </dependency>
+        <!-- socket.io客户端 -->
+        <dependency>
+            <groupId>io.socket</groupId>
+            <artifactId>socket.io-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 
