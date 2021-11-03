@@ -44,3 +44,4 @@ ENTRYPOINT exec java $JAVA_OPTS -jar -Djava.security.egd=file:/dev/./urandom -ja
 #CMD ["java", "-jar", "/opt/app/docker-0.0.1-SNAPSHOT.jar"]
 
 
+# 测试Git
