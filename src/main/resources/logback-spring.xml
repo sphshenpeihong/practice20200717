@@ -23,6 +23,7 @@
 	</appender>
 
 	<if condition='property("logFileDir") != null &amp;&amp; !property("logFileDir").isEmpty() &amp;&amp; !"bootstrap".equals(property("appName"))'>
+		<!-- 基础日志 -->
 		<then>
 			<!-- 文件输出 -->
 			<appender name="bizLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -41,6 +42,30 @@
 				<queueSize>512</queueSize>
 				<neverBlock>true</neverBlock>
 				<appender-ref ref="bizLogFile" />
+			</appender>
+		</then>
+	</if>
+
+	<!-- 物检结果上传数据 -->
+	<if condition='property("logFileDir") != null &amp;&amp; !property("logFileDir").isEmpty() &amp;&amp; !"bootstrap".equals(property("appName"))'>
+		<then>
+			<!-- 文件输出 -->
+			<appender name="bizLogFileCR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+				<file>${LOG_FILE_DIR}/cr.log</file>
+				<append>true</append>
+				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+					<fileNamePattern>${HIS_LOG_FILE_DIR}/%d{yyyy-MM/dd}-cr.gz</fileNamePattern>
+				</rollingPolicy>
+				<encoder>
+					<pattern>%d{MM-dd HH:mm:ss.SSS}|%level|%logger{36}|%thread|%X{trackNo}|%msg%n</pattern>
+				</encoder>
+			</appender>
+
+			<appender name="asyncBizLoggerAppenderCR" class="ch.qos.logback.classic.AsyncAppender">
+				<discardingThreshold>0</discardingThreshold>
+				<queueSize>512</queueSize>
+				<neverBlock>true</neverBlock>
+				<appender-ref ref="bizLogFileCR"/>
 			</appender>
 		</then>
 	</if>
@@ -102,9 +127,9 @@
 	</logger>
 
 	<!-- kafka -->
-	<logger name="org.apache.kafka.clients.NetworkClient">
+	<!--<logger name="org.apache.kafka.clients.NetworkClient">
 		<level value="OFF"/>
-	</logger>
+	</logger>-->
 
 
 	<root level="INFO">
@@ -128,5 +153,10 @@
 			</then>
 		</if>
 	</root>
+
+	<!-- LoggerCR -->
+	<logger name="asyncBizLoggerAppenderCR" additivity="false" level="INFO">
+		<appender-ref ref="asyncBizLoggerAppenderCR"/>
+	</logger>
 
 </configuration>

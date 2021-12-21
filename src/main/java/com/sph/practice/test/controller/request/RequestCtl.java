@@ -2,16 +2,16 @@ package com.sph.practice.test.controller.request;
 
 import com.google.common.collect.Lists;
 import com.sph.practice.test.bean.AuthVO;
-import com.sph.practice.test.param.BankVO;
 import com.sph.practice.test.param.ResultVO;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -30,6 +30,8 @@ import java.util.Properties;
 @RestController
 @Slf4j
 public class RequestCtl {
+
+    private final static Logger crLogger = LoggerFactory.getLogger("asyncBizLoggerAppenderCR");
 
     @RequestMapping("/test19")
     public void test19(@RequestBody AuthVO authVO) {
@@ -177,7 +179,12 @@ public class RequestCtl {
      */
     @RequestMapping("/test10.do")
     public void test10(){
-
+        try {
+            int i = 1 / 0;
+        } catch (Exception e) {
+            log.error("测试1，异常了，e = {}", e);
+            log.error("测试2，异常了，", e);
+        }
     }
 
 }
