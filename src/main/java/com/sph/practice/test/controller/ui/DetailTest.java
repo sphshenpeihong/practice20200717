@@ -1,5 +1,7 @@
 package com.sph.practice.test.controller.ui;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sph.practice.test.controller.bean.ParamBean;
 import com.sph.practice.test.controller.ui.param.CacheVO;
 import com.sph.practice.test.param.BankVO;
@@ -15,7 +17,10 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  * Created by Shen Peihong on 2020/9/28 18:10
@@ -36,7 +41,6 @@ public class DetailTest {
     private void invoke(@Nonnull String yes){
         System.out.println("123123");
     }
-
 
 
     //注解扫描，执行于此的时候，有static顺带先执行掉了，因为一扫描到类，装载时就立即先执行static块了，获取值是后面的了。
@@ -93,7 +97,7 @@ public class DetailTest {
      * 使用@RequestBody 接收Json串
      */
     @RequestMapping(path = "/test3.do")
-    public void test3( BankVO bankVO) {
+    public void test3(BankVO bankVO) {
         System.out.println(bankVO);
     }
 
@@ -105,6 +109,13 @@ public class DetailTest {
         System.out.println(json);
     }
 
+    private static final ResourceBundle ourBundle = ResourceBundle.getBundle("elk.Messages", new Locale("en", "US"));
+
+    @PostMapping(path = "/test6.do")
+    public Object test6(@RequestBody CacheVO cacheVO) {
+        return cacheVO;
+    }
+
     /**
      *
      */
@@ -113,17 +124,83 @@ public class DetailTest {
         Properties properties = new Properties();
         InputStream is = this.getClass().getClassLoader().getResourceAsStream("jdbc/jdbc.properties");//获取指向classes目录
         properties.load(is);//指向输入流地址
-        String url = properties.getProperty("url");
+        String url = properties.getProperty("code");
         System.out.println(url);
         /*
             urlTest
          */
     }
 
-    @PostMapping(path = "/test6.do")
-    public Object test6(@RequestBody CacheVO cacheVO) {
-        return cacheVO;
+    /**
+     *
+     */
+    @GetMapping(path = "/test7.do")
+    public void test7() throws IOException {
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("elk/exception/exception.json");//获取指向classes目录
+        assert is != null;
+        JSONObject json = JSON.parseObject(is, Object.class);
+        String value = json.getString("100001");
+        System.out.println(value);
+        /*
+            当前登录失败
+         */
     }
 
+    /**
+     *
+     */
+    @GetMapping(path = "/test8.do")
+    public void test8() throws IOException {
+        Properties properties = new Properties();
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("elk/Messages.properties");//获取指向classes目录
+        properties.load(is);//指向输入流地址
+        String value = properties.getProperty("center-gs10001");
+        /*
+            当前登录失败
+         */
+    }
+
+    /**
+     *
+     */
+    @GetMapping(path = "/test9.do")
+    public void test9() throws IOException {
+        //String value = ourBundle.getString("center-gs10001");
+        String value = message("security-center-gs1001");
+        System.out.println(value);
+        /*
+            当前登录失败
+         */
+    }
+
+    /**
+     *
+     */
+    @GetMapping(path = "/test10.do")
+    public void test10() throws IOException {
+        //String value = ourBundle.getString("center-gs10001");
+        String value = message("center-gs10002");
+        System.out.println(value);
+        /*
+            当前登录失败
+         */
+    }
+
+    /**
+     * get value from resource bundle
+     *
+     * @param key message key
+     * @return message value
+     */
+    public String message(String key) {
+        ResourceBundle ourBundle = ResourceBundle.getBundle("elk.Messages", new Locale("en", "US"));
+        String value;
+        try {
+            value = ourBundle.getString(key);
+        } catch (MissingResourceException ignore) {
+            value = "!!!" + key + "!!!";
+        }
+        return key + ": " + value;
+    }
 
 }

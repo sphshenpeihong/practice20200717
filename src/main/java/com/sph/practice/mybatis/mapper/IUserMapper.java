@@ -1,8 +1,8 @@
 package com.sph.practice.mybatis.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sph.practice.mybatis.pojo.QyUserPO;
 import com.sph.practice.mybatis.vo.Param1VO;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @since 1.0.0
  */
-public interface IUserMapper {
+public interface IUserMapper extends BaseMapper<QyUserPO> {
 
     //简单通过id查询user表
     public QyUserPO getUserById(Integer id) throws Exception;

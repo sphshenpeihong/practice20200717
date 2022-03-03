@@ -77,6 +77,7 @@ mapperpath:
 
 
 huanhang: "huanhang \n 123"
+huanhang.huang: "huanhang \n 123"
 
 logback:
   #非开发环境是否开启控制台日志

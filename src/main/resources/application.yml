@@ -9,6 +9,8 @@ server:
 
 
 spring:
+  application:
+    name: practice
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db_mybatis?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
@@ -151,4 +153,8 @@ iothub:
     completion-timeout: 60000
 
 switch: true
+
+
+
+
 

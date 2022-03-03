@@ -1,0 +1,150 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9011/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 3
+    prefer-ip-address: true
+grg-face:
+  threshold: 60
+http:
+  serverUrl:
+    imageDiscover: 123
+imsi:
+  freshtime: 30
+  path: /home/grg/SJTZ/
+logback:
+  cleanHistoryOnStart: true
+  enableConsoleLogWhenNotInDev: true
+  logFileDir: /data/logs
+  maxHistory: 60
+mac:
+  freshtime: 10
+  path: /home/grg/WLRZ/
+mybatis:
+  configuration:
+    cache-enabled: false
+    jdbc-type-for-null: 'null'
+    lazy-loading-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    multiple-result-sets-enabled: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.grgbanking.security.center.gs.model.pojo.entity, com.grgbanking.security.center.gs.api.dto
+recorder:
+  main:
+    cron: 0/3 * * * * ?
+scheduled:
+  statFrequent: 0 */1 * * * ?
+  statFrequentUser: 0 0 5 * * ?
+  switch: true
+screen:
+  clear:
+    cron: 0 0 2 * * ?
+  query:
+    cron: 0 0/30 * * * ?
+security:
+  admin:
+    autoIdentified: true
+    frequent:
+      statCount: 6
+      statDays: 6
+      statOfficeCount: 6
+      statOfficeDays: 6
+  center:
+    base-path: /data/file
+    image:
+      extension: .jpg
+      path: /gate
+      pathThermometry: /thermometry
+    server-url: http://localhost:8081
+    user:
+      anonymous:
+        path: /anonymous/
+        suffix: _head,_full,_frontopt,_oppoopt,_frontpers,_oppopers
+      similar:
+        path: /similar
+        suffix: _similar
+server:
+  max-http-header-size: 102400
+  port: 9005
+  servlet:
+    context-path: /${spring.application.name}
+sharding:
+  jdbc:
+    config:
+      props:
+        sql:
+          show: false
+    datasource:
+      master:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: secuSeCu@!#
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://10.252.176.71:3306/mali_security_center?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=true
+        username: root
+      names: master
+simImsi:
+  main:
+    cron: 0/3 * * * * ?
+  truncate:
+    cron: 0 20 1 * * ?
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
+  application:
+    name: center-gs
+  cache:
+    cache-names: security
+    redis:
+      key-prefix: security
+      time-to-live: 30s
+    type: redis
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-commit-interval: 100
+      auto-offset-reset: latest
+      enable-auto-commit: true
+      group-id: centergrade
+      key-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    listener:
+      concurrency: 1
+    producer:
+      batch-size: 4096
+      buffer-memory: 40960000
+      key-serializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      retries: 0
+      value-serializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    database: 1
+    host: localhost
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    password: foobared
+    port: 6379
+    timeout: 3000
+ssh-server:
+  host: 10.32.243.73
+  password: rt#tianyuan73
+  port: 22
+  username: root
+suiTeng:
+  switch: true
+  url:
+    checkUpload: http://developer.suiteng.gzmetro.com/comptDebugUrlPrefix-s/Common-grg/security-api-support-person/check/personCheckUpload
+    token: http://coregw.suiteng.gzmetro.com:8080/suiteng-app-auth/core/suiteng-app-auth-biz/appAuth/oauth2/appAccessToken?appId=1436203351472734208&appSecret=1b63dfa5-500d-4619-8d7a-fdba0ff953bc&grantType=client_credential
+wifiMac:
+  main:
+    cron: 0/3 * * * * ?
+  truncate:
+    cron: 0 20 1 * * ?

@@ -1,0 +1,196 @@
+#服务配置
+server:
+  port: 9005
+  servlet:
+    context-path: /${spring.application.name}
+  max-http-header-size: 102400
+
+#注册中心配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9011/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 10
+
+
+spring:
+
+  application:
+    name: center-gs
+  #redis配置
+  redis:
+    host: 10.252.176.6
+    port: 6380
+    password: foobared
+    timeout: 3000
+    database: 0
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
+  cache:
+    type: redis
+    cache-names: security
+    redis:
+      time-to-live: 30s
+      key-prefix: security
+  #kafka配置
+  kafka:
+    bootstrap-servers: 10.252.176.6:9092
+    listener:
+      concurrency: 1
+    consumer:
+      group-id: centergrade
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    producer:
+      retries: 0
+      batch-size: 4096
+      buffer-memory: 40960000
+      key-serializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+  main:
+    allow-bean-definition-overriding: true
+    #profiles:
+    # 包含的配置文件，命名规则要以“application-”开头，后接具体配置的内容
+#    include:
+#      - mac-config
+#      - scheduled-config
+
+#sharding-jdbc数据库配置
+sharding:
+  jdbc:
+    datasource:
+      names: master #不支持_命名
+      master: # 数据源master->逻辑命名
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://10.252.176.6:3306/security_center?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=true
+        username: root
+        password: secuSeCu@!#
+    config:
+      props:
+        sql.show: false
+#      sharding:
+#        tables:
+#          security_info:
+#            actual-data-nodes: master.security_info_20210${1..2},master.security_info_2021${10..12} #数据节点,3.0.0以下的版本要先建表，不然会报错
+#            table-strategy:
+#              complex: #复合查询策略
+#                sharding-columns: id,created_at,event_id
+#                algorithm-class-name: com.grgbanking.security.center.gs.web.config.algorithm.SecurityInfoAlgorithm
+#          security_item:
+#            actual-data-nodes: master.security_item_20210${1..9},master.security_item_2021${10..12}
+#            table-strategy:
+#              complex:
+#                sharding-columns: id,created_at,event_id
+#                algorithm-class-name: com.grgbanking.security.center.gs.web.config.algorithm.SecurityItemAlgorithm
+#        default-key-generator-class-name: com.grgbanking.security.center.gs.web.config.algorithm.IdGenerator
+#        binding-tables:
+#          - security_info,security_item #绑定表
+
+#mac-config
+ssh-server:
+  host: 10.32.243.73
+  port: 22
+  username: root
+  password: "rt#tianyuan73"
+mac:
+  path: /home/grg/WLRZ/
+  freshtime: 10
+imsi:
+  path: /home/grg/SJTZ/
+  freshtime: 30
+
+security:
+  admin:
+    autoIdentified: true
+    frequent:
+      statOfficeDays: 10
+      statOfficeCount: 6
+      statDays: 10
+      statCount: 6
+  center:
+    server-url: http://10.252.176.6:8081 #图片服务器地址
+    base-path: /data/file
+    image:
+      path: /gate
+      pathThermometry: /thermometry
+      extension: .jpg
+    user:
+      anonymous:
+        path: /anonymous/
+        suffix: _head,_full,_frontopt,_oppoopt,_frontpers,_oppopers
+      similar:
+        path: /similar
+        suffix: _similar
+
+
+logback:
+  #非开发环境是否开启控制台日志
+  enableConsoleLogWhenNotInDev: true
+  #**日志文件存放目录，目录后面无需再加"/"。备注如果这项不配置，则不输出日志文件
+  logFileDir: /data/logs
+  # 清除历史日志开关
+  cleanHistoryOnStart: true
+  # 保留历史日志天数
+  maxHistory: 15
+
+#scheduled-config
+recorder:
+  main:
+    cron: 0/3 * * * * ?
+wifiMac:
+  main:
+    cron: 0/3 * * * * ?
+  truncate:
+    cron: 0 20 1 * * ?
+simImsi:
+  main:
+    cron: 0/3 * * * * ?
+  truncate:
+    cron: 0 20 1 * * ?
+screen:
+  query:
+    cron: 0 0/30 * * * ?
+  clear:
+    cron: 0 0 2 * * ?
+scheduled:
+  switch: true
+  statFrequent: 0 0 4 * * ? #0 0 4 * * ? 每天凌晨4点，统计最近10天，是否有人在同一个地铁站出现过6次及以上
+  statFrequentUser: 0 0 5 * * ? #每天凌晨5点，统计最近10天，是否有常旅客和上班族变成了普通乘客
+
+mybatis:
+  type-aliases-package: com.grgbanking.security.center.gs.model.pojo.entity, com.grgbanking.security.center.gs.api.dto
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    lazy-loading-enabled: true
+    jdbc-type-for-null: null
+    multiple-result-sets-enabled: true
+#    # 打印SQL
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 算法调度模块使用了@Value注解，所以需要加上这个，不然跑不起来
+grg-face:
+  threshold: 60
+
+http:
+  serverUrl:
+    imageDiscover: 123
+
+suiTeng:
+  switch: true
+  url:
+    checkUpload: http://developer.suiteng.gzmetro.com/comptDebugUrlPrefix-s/Common-grg/security-api-support-person/check/personCheckUpload
+    token: http://coregw.suiteng.gzmetro.com:8080/suiteng-app-auth/core/suiteng-app-auth-biz/appAuth/oauth2/appAccessToken?appId=1436203351472734208&appSecret=1b63dfa5-500d-4619-8d7a-fdba0ff953bc&grantType=client_credential

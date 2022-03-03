@@ -1,5 +1,6 @@
 package com.sph.practice.mybatis.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,11 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("qy_user")
 public class QyUserPO implements Cloneable, Serializable {
 
     private Integer id;
     private String userName;
+    private String password;
 
 }

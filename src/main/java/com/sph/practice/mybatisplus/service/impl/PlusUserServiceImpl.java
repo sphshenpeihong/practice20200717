@@ -1,5 +1,6 @@
 package com.sph.practice.mybatisplus.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sph.practice.mybatisplus.mapper.PlusUserMapper;
 import com.sph.practice.mybatisplus.pojo.po.QyPlusUser;
 import com.sph.practice.mybatisplus.service.IPlusUserService;
@@ -17,7 +18,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @Service("plusUserService")
-public class PlusUserServiceImpl implements IPlusUserService {
+public class PlusUserServiceImpl extends ServiceImpl<PlusUserMapper, QyPlusUser> implements IPlusUserService {
 
     @Autowired
     private PlusUserMapper plusUserMapper;

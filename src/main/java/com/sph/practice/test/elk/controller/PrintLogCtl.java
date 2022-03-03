@@ -6,6 +6,7 @@ import com.sph.practice.test.elk.util.ELKUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class PrintLogCtl {
     }
 
     // 打印特定日志
-    @RequestMapping("specificLog")
+    @PostMapping("specificLog")
     public void specificLog(@RequestBody SpecificLogDTO dto) {
         crLogger.info(ELKUtil.ELK_SPECIFIC_LOG_SPLIT + JSON.toJSONString(dto));
     }
