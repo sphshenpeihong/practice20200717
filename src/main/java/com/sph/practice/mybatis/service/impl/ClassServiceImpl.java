@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.sph.practice.mybatis.mapper.IClassMapper;
 import com.sph.practice.mybatis.pojo.QyClassPO;
 import com.sph.practice.mybatis.pojo.QyStudentPO;
-import com.sph.practice.mybatis.pojo.QyUserPO;
 import com.sph.practice.mybatis.service.IClassService;
 import com.sph.practice.mybatis.vo.CSVO;
 import com.sph.practice.mybatis.vo.CSVO1;
@@ -52,7 +51,8 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public List<QyClassPO> getClassByIds(List<Integer> ids) {
-        return classMapper.getClassByIds(ids);
+        // return classMapper.getClassByIds(ids);
+        return classMapper.getClassByIds1(new Integer[]{1, 2});
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.sph.practice.mybatis.mapper;
 
 import com.sph.practice.mybatis.pojo.QyClassPO;
 import com.sph.practice.mybatis.pojo.QyStudentPO;
-import com.sph.practice.mybatis.pojo.QyUserPO;
 import com.sph.practice.mybatis.vo.CSVO;
 import com.sph.practice.mybatis.vo.CSVO1;
 import com.sph.practice.mybatis.vo.ClassVO;
@@ -28,6 +27,9 @@ public interface IClassMapper<T> {
 
     //批量查询数据
     public List<QyClassPO> getClassByIds(List<Integer> ids);
+
+    //批量查询数据（入参用String[]）
+    public List<QyClassPO> getClassByIds1(Integer[] asaxasxas);
 
     //通过类类型查询数据
     public QyClassPO getClassByVO(@Param("vo") CSVO vo);

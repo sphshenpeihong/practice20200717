@@ -47,8 +47,18 @@
         </foreach>
     </select>
 
+    <select id="getClassByIds1" resultType="QyClassPO">
+        select * from qy_class c where c.id
+        IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
     <select id="getClassByVO" parameterType="csvo" resultType="QyClassPO">
-        select id,class_name from qy_class c where c.id = 1
+        select id, class_name
+        from qy_class c
+        where c.id = 1
     </select>
 
     <select id="getCSVOByClassId" parameterType="Integer" resultMap="selectCSVO">

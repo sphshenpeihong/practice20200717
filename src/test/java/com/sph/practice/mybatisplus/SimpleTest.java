@@ -1,6 +1,5 @@
 package com.sph.practice.mybatisplus;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -8,18 +7,16 @@ import com.google.common.collect.Maps;
 import com.sph.practice.component.boot.pojo.dto.Pager;
 import com.sph.practice.component.boot.pojo.vo.ReqPager;
 import com.sph.practice.component.boot.utils.util.WebUtil;
+import com.sph.practice.mybatis.vo.CSVO;
 import com.sph.practice.mybatisplus.mapper.PlusUserMapper;
 import com.sph.practice.mybatisplus.pojo.po.QyPlusUser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -169,6 +166,19 @@ public class SimpleTest {
     }
 
     /**
+     * nested
+     */
+    @Test
+    public void likeTest() {
+        QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
+        wrapper.nested(wq -> wq.like("email", 2).or().like("name", 2).or().like("version", "1"));
+        wrapper.eq("id", 1);
+
+        List<QyPlusUser> userList = plusUserMapper.selectList(wrapper);
+        userList.forEach(System.out::println);
+    }
+
+    /**
      * Wrapper是底层接口，具体许多条件构造器的方法封装到抽象类AbstractWrapper
      */
     @Test
@@ -220,7 +230,7 @@ public class SimpleTest {
         // 创建分页对象
         IPage<QyPlusUser> page = new Page();
         page.setCurrent(3);
-        page.setSize(22);
+        page.setSize(2);
         plusUserMapper.selectPage(page, wrapper);
         Pager pager = Pager.formatRespPage(page);
         System.out.println(pager);
@@ -245,6 +255,13 @@ public class SimpleTest {
         System.out.println("page :" + page);
     }
 
+    // 多表联合查询分页
+    @Test
+    public void multiTablePage() {
+        IPage<CSVO> page = new Page<>();
+        plusUserMapper.pageList(page, 2);
+        System.out.println(page);
+    }
 
 
 }

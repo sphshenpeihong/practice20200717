@@ -27,9 +27,9 @@ public class IteratorTest {
         list.add("222");
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
-            if ("111".equals(iterator.next())) {
-                iterator.remove();
-            }
+            String node = iterator.next();
+            iterator.remove();
+            System.out.println(node);
         }
         System.out.println(list);
         /*

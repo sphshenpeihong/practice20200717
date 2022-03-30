@@ -38,13 +38,21 @@ public class PathsTest {
         // 当前日期字符串
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern(format));
         // 目录路径类，可以用来拼接目录路径
-        Path path = Paths.get(first, date, "temp");
+        Path path = Paths.get(first, "", "temp");
         System.out.println(path.toString());
         /*
             security\2021-05-21\temp
          */
     }
 
+    // 整数类型比较
+    @Test
+    public void test3() throws IOException {
+        Byte b1 = 1;
+        Byte b2 = 1;
+
+        System.out.println(b1.equals(b2));
+    }
 
 
 }
