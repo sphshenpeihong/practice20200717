@@ -1,5 +1,6 @@
 package com.sph.practice.test.jdk8.lambda;
 
+import com.google.common.collect.Lists;
 import com.sph.practice.test.bean.User1;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -15,14 +16,16 @@ import java.util.stream.Collectors;
  */
 public class JDK8Test {
 
+    List<String> collect = Lists.newArrayList(new User1(1, "zhangsan", "zhangsan", -1)).stream().map(User1::getUsername).collect(Collectors.toList());
+
     /**
      * Collectors.toList()  map映射然后转换成List
      */
     @Test
-    public void collectorsSimple(){
-        User1 u1 = new User1(1,"zhangsan","zhangsan",-1);
-        User1 u2 = new User1(2,"lisi","lisi",-1);
-        User1 u3 = new User1(3,"wangwu","wangwu",-2);
+    public void collectorsSimple() {
+        User1 u1 = new User1(1, "zhangsan", "zhangsan", -1);
+        User1 u2 = new User1(2, "lisi", "lisi", -1);
+        User1 u3 = new User1(3, "wangwu", "wangwu", -2);
         List<User1> list = new ArrayList<>();
         list.add(u1);
         list.add(u2);

@@ -19,5 +19,5 @@ import org.springframework.stereotype.Component;
 public class Car {
     private String carName;
     private Integer carPrice;
-    private String carDesc;
+    public static String carDesc;
 }

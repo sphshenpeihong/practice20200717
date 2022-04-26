@@ -44,6 +44,7 @@ public class CarCtl {
      */
     @RequestMapping("/test1.do")
     public Car test1(){
+        System.out.println(Car.carDesc);
         return car;
     }
 

@@ -17,7 +17,7 @@ public class Base64Test {
      */
     @Test
     public void imgToBase64() {
-        String base64 = ImgBase64Util.imgToBase64("D:\\Java\\广电运通&安检系统项目\\录入图片汇总\\黄韬高清.png");
+        String base64 = ImgBase64Util.imgToBase64("D:\\Java\\广电运通&安检系统项目\\录入图片汇总\\黄韬高清11.png");
         System.out.println(base64);
     }
 

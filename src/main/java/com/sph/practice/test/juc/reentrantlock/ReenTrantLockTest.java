@@ -21,7 +21,7 @@ public class ReenTrantLockTest {
     // 子线程获取到锁后，执行完代码后，去通知指定等待对象
     // 最后按照既定的执行顺序执行完业务代码
 
-    private static final Object o = new Object();
+    private final Object o = new Object();
 
     private static final Lock lock = new ReentrantLock();
 
@@ -58,6 +58,7 @@ public class ReenTrantLockTest {
                 // 通知等待的某个对象，若有多个，则会按照自身某种策略方式
                 // 也可以使用notifyAll()，通知全部，哪个先拿到就先执行
                 o.notify();
+                log.info("线程等待完毕，执行结束，当前线程名称为：{}", Thread.currentThread().getName());
             }
         }, "B").start();
         TimeUnit.SECONDS.sleep(6);
@@ -99,7 +100,7 @@ public class ReenTrantLockTest {
         }, "C").start();
 
         // 主线程休眠，目的是让A线程先执行
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(3);
 
         // 子线程B
         new Thread(() -> {
@@ -109,9 +110,11 @@ public class ReenTrantLockTest {
                 // 通知等待的某个对象，若有多个，则会按照自身某种策略方式
                 // 也可以使用notifyAll()，通知全部，哪个先拿到就先执行
                 o.notifyAll();
+                log.info("执行结束，打印当前线程，name = {}", Thread.currentThread().getName());
             }
         }, "B").start();
         TimeUnit.SECONDS.sleep(6);
+
     }
 
     // ------------------- sync、wait()、notify()、notifyAll() 组合 -------------------------

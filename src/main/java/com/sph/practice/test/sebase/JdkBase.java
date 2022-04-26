@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by Shen Peihong on 2020/9/16 22:03
@@ -169,6 +171,8 @@ public class JdkBase {
         System.out.println(list);
     }
 
+    volatile List<String> list = new CopyOnWriteArrayList<>();
+
     /**
      * CopyOnWriteArrayList
      * 同样也会对代码块进行上锁，每次执行添加下一个值时，会先复制一份
@@ -176,7 +180,7 @@ public class JdkBase {
     @Test
     public void test12() throws InterruptedException {
         // 开多个线程，同事操作一个list 防止出现ConcurrentModify
-        List<String> list = new CopyOnWriteArrayList<>();
+
         for (int i = 0; i < 100; i++) {
             new Thread(() -> {
                 // 多线程情况下对ArrayList进行读写，会发生线程安全问题
@@ -243,6 +247,32 @@ public class JdkBase {
             return "Hello,Wolrd!";
         });
         TimeUnit.SECONDS.sleep(1);
+    }
+
+    /**
+     * 死锁
+     */
+    @Test
+    public void test16() throws InterruptedException {
+        Lock lock = new ReentrantLock();
+        // 两个线程，等同一把锁
+        new Thread(() -> {
+            lock.lock();
+            System.out.println("打印A");
+            // 手动抛异常去
+            int i = 1 / 0;
+            lock.unlock();
+        }, "A").start();
+
+        TimeUnit.SECONDS.sleep(1);
+        new Thread(() -> {
+            lock.lock();
+            System.out.println("打印B");
+            lock.unlock();
+        }, "B").start();
+
+        TimeUnit.SECONDS.sleep(10);
+
     }
 
 

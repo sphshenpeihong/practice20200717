@@ -24,9 +24,12 @@ public class SupplierTest {
     public void executeSupplier(){
         //由于函数式接口里面定义的方法有返回值，所以实现方法的时候也需要return
         //由于只有一行代码，所以花括号、分号、return 都可以省略不写
-        String response = supplierTest(()->"OK"); //一般实现方法的方法体中不是输出语句的话，那么可以确定是省略了return的
+        String response = supplierTest(() -> "OK"); //一般实现方法的方法体中不是输出语句的话，那么可以确定是省略了return的
         //这里调用完是有返回值类型的
         System.out.println(response);
+        /*
+            OK
+         */
     }
 
     //定义Supplier是Integer类型
@@ -36,12 +39,15 @@ public class SupplierTest {
 
     //调用含有Supplier<T>函数式接口的方法
     @Test
-    public void executeSupplierInteger(){
+    public void executeSupplierInteger() {
         Integer min = 9;
         Integer max = 10;
         //返回两个数的最大值
-        Integer maxNum = supplierInteger(() ->max > min ? max : min);//省略了{} ;  return
-        System.out.println("两个数的最大值为："+maxNum);
+        Integer maxNum = supplierInteger(() -> max > min ? max : min);//省略了{} ;  return
+        System.out.println("两个数的最大值为：" + maxNum);
+        /*
+            两个数的最大值为：10
+         */
     }
 
 

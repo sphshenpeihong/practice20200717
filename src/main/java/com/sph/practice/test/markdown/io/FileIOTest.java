@@ -62,11 +62,12 @@ public class FileIOTest {
             fis = new FileInputStream(file);
             //获取文件输入缓冲流
             bis = new BufferedInputStream(fis);
+            // 获取输入流数据长度
+            int length = bis.available();
             //定义字节数组待接收输入字节数据
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[length];
             //读取输入字节数据
-            int length = bis.read(bytes);
-            if (length!=0){
+            if (bis.read(bytes) != 0) {
                 //字节数组转String类型
                 String str = new String(bytes, 0, length);
                 System.out.println(str);

@@ -1,16 +1,11 @@
 package com.sph.practice.test.jdk8.lambda;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Lists;
 import com.sph.practice.test.jdk8.lambda.vo.CalculateVO;
-import com.sph.practice.test.jdk8.lambda.vo.CopyPO;
-import com.sph.practice.test.jdk8.lambda.vo.CopyVO;
 import com.sph.practice.test.jdk8.lambda.vo.LearnonlineVO;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 /**
@@ -22,11 +17,18 @@ import java.util.stream.Collectors;
  */
 public class FinnalyTest {
 
+    List<String> list11 = new ArrayList<String>() {
+        {
+            this.add("123");
+            this.add("456");
+        }
+    };
+
     /**
      * allMatch 遍历的元素全部都匹配条件
      */
     @Test
-    public void test1(){
+    public void test1() {
         List<String> list = new ArrayList<String>() {
             {
                 add("123");

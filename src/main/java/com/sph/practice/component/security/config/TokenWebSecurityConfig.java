@@ -18,8 +18,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -74,8 +76,9 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
             .and().logout().logoutUrl("/security/logout")    // 退出路径
             .addLogoutHandler(new TokenLogoutHandler(tokenManager, redisTemplate)).and()
-            .addFilter(new TokenLoginFilter(tokenManager, redisTemplate, authenticationManager()))
-            .addFilter(new TokenAuthFilter(tokenManager, redisTemplate, authenticationManager())).httpBasic();
+            .addFilterAt(new TokenLoginFilter(tokenManager, redisTemplate, authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+            .addFilterAt(new TokenAuthFilter(tokenManager, redisTemplate, authenticationManager()), BasicAuthenticationFilter.class)
+            .httpBasic();
 
         // 表单登录配置
         http.formLogin()

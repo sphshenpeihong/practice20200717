@@ -1,7 +1,6 @@
 package com.sph.practice.test.controller.internet;
 
 import com.sph.practice.test.markdown.internet.AcceptThread;
-import com.sph.practice.test.markdown.internet.SendThread;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Shen Peihong on 2020/10/29 11:26
@@ -49,7 +47,7 @@ public class TcpCtl {
         try {
             System.out.println("开始打印：");
             //地址指向接收端
-            socket = new Socket("192.168.122.129", 7878);
+            socket = new Socket("localhost", 7878);
             //数据传输需要创建流管道
             output = socket.getOutputStream();
             Scanner scanner = new Scanner(System.in);//获取控制台输入，敲回车则为一行

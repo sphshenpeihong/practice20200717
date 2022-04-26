@@ -1,6 +1,5 @@
 package com.sph.practice.test.juc.completableFuture;
 
-import com.sph.practice.component.exception.BaseException;
 import org.junit.Test;
 
 import java.util.concurrent.CompletableFuture;
@@ -107,9 +106,6 @@ public class CompletableFutureTest {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-            if (true) {
-                throw new RuntimeException();
             }
             System.out.println("打印future1，" + Thread.currentThread().getName());
             return "123";

@@ -158,7 +158,7 @@ public class SimpleTest {
     public void queryWrapperTest() {
         // 查找年龄大于17岁，名字是J开头的数据
         QueryWrapper<QyPlusUser> wrapper = new QueryWrapper<>();
-        wrapper.gt("age", 17);
+        wrapper.gt("age", 500);
         wrapper.likeRight("name", "J");
 
         List<QyPlusUser> userList = plusUserMapper.selectList(wrapper);

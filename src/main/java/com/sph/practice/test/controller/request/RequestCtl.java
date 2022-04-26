@@ -2,6 +2,8 @@ package com.sph.practice.test.controller.request;
 
 import com.google.common.collect.Lists;
 import com.sph.practice.test.bean.AuthVO;
+import com.sph.practice.test.innerclass2.Constants;
+import com.sph.practice.test.innerclass2.OutClass;
 import com.sph.practice.test.param.ResultVO;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -178,7 +180,7 @@ public class RequestCtl {
      *
      */
     @RequestMapping("/test10.do")
-    public void test10(){
+    public void test10() {
         try {
             int i = 1 / 0;
         } catch (Exception e) {
@@ -187,4 +189,23 @@ public class RequestCtl {
         }
     }
 
+    @RequestMapping("/test11.do")
+    public OutClass test11() {
+        OutClass outClass = new OutClass();
+        OutClass.InnerClass innerClass = outClass.new InnerClass();
+        innerClass.setId(1);
+        innerClass.setUsername("123");
+        innerClass.setPassword("456");
+        outClass.setInnerClass(innerClass);
+        outClass.setCode(0);
+        outClass.setMessage("哈哈");
+        return outClass;
+    }
+
+    @RequestMapping("/test12.do")
+    public void test12(@RequestBody OutClass outClass) {
+        String typeAdd = Constants.Constant1.TYPE_ADD;
+        System.out.println(typeAdd);
+
+    }
 }
