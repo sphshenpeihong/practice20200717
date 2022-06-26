@@ -11,7 +11,7 @@ public class InnerClass4 implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName() + "：" + count++);
+        System.out.println(count++);
     }
 
 }

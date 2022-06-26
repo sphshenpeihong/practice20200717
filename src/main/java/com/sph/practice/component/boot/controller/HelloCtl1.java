@@ -3,6 +3,8 @@ package com.sph.practice.component.boot.controller;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.sph.practice.component.boot.pojo.dto.PUTTempDTO;
+import com.sph.practice.component.boot.pojo.enums.HelloEnum;
+import com.sph.practice.component.boot.resp.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -100,6 +102,17 @@ public class HelloCtl1 {
         String s = HttpUtil.get("http://localhost:8086/shop/hello1/test3.do?code=5");
         System.out.println(s);
         return "1";
+    }
+
+    @GetMapping("/test1.do")
+    public Response test12() {
+        Response response = new Response();
+        response.setCode(1);
+        response.setDesc("123123");
+
+
+        response.setData(HelloEnum.TEST);
+        return response;
     }
 
 

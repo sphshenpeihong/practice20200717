@@ -179,7 +179,7 @@ public class JdkBase {
      */
     @Test
     public void test12() throws InterruptedException {
-        // 开多个线程，同事操作一个list 防止出现ConcurrentModify
+        // 开多个线程，同时操作一个list 防止出现ConcurrentModify
 
         for (int i = 0; i < 100; i++) {
             new Thread(() -> {
@@ -189,7 +189,7 @@ public class JdkBase {
             }, "A").start();
 
         }
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(2000);
     }
 
     // 线程安全，Set

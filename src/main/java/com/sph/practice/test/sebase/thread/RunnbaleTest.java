@@ -14,18 +14,29 @@ public class RunnbaleTest {
 
     @Test
     public void test() throws InterruptedException {
-        new Thread(new MyThread(),"A").start();
-        new Thread(new MyThread(),"B").start();
+        new Thread(new MyThread(), "A").start();
+        new Thread(new MyThread(), "B").start();
         TimeUnit.SECONDS.sleep(1);
     }
 
+    /**
+     * 两个不同的线程，看看线程的名称
+     */
+    @Test
+    public void test1() throws InterruptedException {
+        new Thread(() -> {System.out.println(Thread.currentThread().getName());}).start();
+        new Thread(() -> {System.out.println(Thread.currentThread().getName());}).start();
+        TimeUnit.SECONDS.sleep(2);
 
-class MyThread implements Runnable{
-
-    @Override
-    public void run() {
-        System.out.println("run1");
     }
-}
+
+
+    class MyThread implements Runnable {
+
+        @Override
+        public void run() {
+            System.out.println("run1");
+        }
+    }
 
 }

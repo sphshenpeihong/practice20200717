@@ -2,6 +2,8 @@ package com.sph.practice.test.sebase.juc;
 
 import org.junit.Test;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * 测试AtomicInteger原子类的一些方法，以及方法底层的思想
  *
@@ -28,11 +30,17 @@ public class AtomicIntegerTest {
     private static final int THREADS_CONUT = 20;
     public volatile static int count = 0;
 
+    static ReentrantLock reentrantLock = new ReentrantLock();
+
+
     public static void increase() {
         count++;
     }
 
+    static Object o;
+
     public static void main(String[] args) {
+        System.out.println(o);
         Thread[] threads = new Thread[THREADS_CONUT];
         for (int i = 0; i < THREADS_CONUT; i++) {
             threads[i] = new Thread(new Runnable() {

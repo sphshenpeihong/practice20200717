@@ -44,4 +44,23 @@ public class LiveKafkaListener {
         }
     }
 
+    /* 相同消费者组的实例，各自消费不同topic，这种理论上不允许，测试一下是否有问题 start */
+    @KafkaListener(topics = "theSameGroup1", groupId = "theSameGroup")
+    public void theSameGroup1(ConsumerRecord<?, ?> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
+        log.info("theSameGroup1 = {}", record.value().toString());
+        // 手动提交offset
+        // ack.acknowledge();
+        Optional message = Optional.ofNullable(record.value());
+    }
+
+    @KafkaListener(topics = "theSameGroup2", groupId = "theSameGroup")
+    public void theSameGroup2(ConsumerRecord<?, ?> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
+        log.info("theSameGroup2 = {}", record.value().toString());
+        // 手动提交offset
+        //ack.acknowledge();
+        Optional message = Optional.ofNullable(record.value());
+    }
+
+    /* 相同消费者组的实例，各自消费不同topic，这种理论上不允许，测试一下是否有问题 end */
+
 }

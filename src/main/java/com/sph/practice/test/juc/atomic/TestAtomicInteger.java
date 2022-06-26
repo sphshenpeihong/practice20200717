@@ -83,5 +83,12 @@ public class TestAtomicInteger {
         System.out.println(reference.get());
     }
 
+    class Innerclass extends Thread {
+        @Override
+        public void run() {
+            System.out.println("123");
+        }
+    }
+
 
 }

@@ -127,9 +127,9 @@
 	</logger>
 
 	<!-- kafka -->
-	<logger name="org.apache.kafka.clients.NetworkClient">
+<!--	<logger name="org.apache.kafka.clients.NetworkClient">
         <level value="OFF"/>
-    </logger>
+    </logger>-->
 
 
 	<root level="INFO">

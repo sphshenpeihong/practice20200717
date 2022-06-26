@@ -41,6 +41,7 @@ public class ArrayBlockingQueueTest {
             while (true) {
                 try {
                     System.out.println("阻塞1？");
+                    Thread.sleep(1000);
                     // 移除并返回队列头部的元素 如果队列为空，则阻塞
                     Integer val = queue.take();
                     System.out.println("消费者1进行取值：" + val);

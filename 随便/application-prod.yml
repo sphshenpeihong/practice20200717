@@ -103,7 +103,7 @@ spring:
       time-to-live: 30s
     type: redis
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: 192.168.122.132:9092
     consumer:
       auto-commit-interval: 100
       auto-offset-reset: latest

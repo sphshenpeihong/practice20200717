@@ -59,10 +59,28 @@ public class PatternAndMatcher {
         list.add("123");
         List<String> list1 = new ArrayList<>();
         list.add("1234");
-        list1.stream().forEach(e-> System.out.println("123213"));
+        list1.stream().forEach(e -> System.out.println("123213"));
     }
 
-    static class A{
+    /**
+     *
+     */
+    @Test
+    public void test12() {
+        String regex = "java";
+        String test = "eejavaee";
+        //新建匹配规则
+        Pattern pattern = Pattern.compile(regex);
+        //下面进行匹配，matcher是匹配后的结果对象
+        Matcher matcher = pattern.matcher(test);
+        //若找到与匹配规则相同的话
+        if (matcher.find()) {
+            //返回匹配上的字符串
+            System.out.println(matcher.group(0));
+        }
+    }
+
+    static class A {
         public static void main(String[] args) {
             PatternAndMatcher p = new PatternAndMatcher();
             System.out.println("4343434");

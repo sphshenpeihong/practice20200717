@@ -16,7 +16,7 @@ public class IntegerAsyncTest {
      */
     @Test
     public void test() throws InterruptedException {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i <= 1000; i++) {
             new Thread(new InnerClass4(), String.valueOf(i)).start();
         }
         TimeUnit.SECONDS.sleep(3);

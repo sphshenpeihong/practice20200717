@@ -42,7 +42,7 @@ spring:
       key-prefix: security
   #kafka配置
   kafka:
-    bootstrap-servers: 10.252.176.6:9092
+    bootstrap-servers: 192.168.122.132:9092
     listener:
       concurrency: 1
     consumer:
